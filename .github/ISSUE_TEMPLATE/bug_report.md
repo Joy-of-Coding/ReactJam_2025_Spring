@@ -4,7 +4,7 @@ about: Create a report to help us improve
 title: ''
 labels: 'bug'
 type: 'bug'
-assignees: 'alyssa-dannielle'
+assignees: ''
 projects: ['TechJoySoftware/Support Local']
 ---
 

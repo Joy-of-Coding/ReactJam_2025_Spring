@@ -3,7 +3,8 @@ name: User Story
 about: Create a story to implement a desired functionality or feature
 title: ''
 labels: 'story'
-assignees: 'KatrinaWright'
+type: 'feature'
+assignees: ''
 projects: ['Joy-of-Coding/ReactJam_2025_Spring']
 ---
 
