@@ -28,31 +28,6 @@ function App() {
 
   return (
     <>
-      <div id="board" className={!lastMovePlayerId ? "initial" : ""}>
-        {cells.map((cell, cellIndex) => {
-          const cellValue = cells[cellIndex]
-
-          return (
-            <button
-              key={cellIndex}
-              onClick={() => Rune.actions.claimCell(cellIndex)}
-              data-player={(cellValue !== null
-                ? playerIds.indexOf(cellValue)
-                : -1
-              ).toString()}
-              data-dim={String(
-                (winCombo && !winCombo.includes(cellIndex)) ||
-                  (!freeCells && !winCombo)
-              )}
-              {...(cells[cellIndex] ||
-              lastMovePlayerId === yourPlayerId ||
-              winCombo
-                ? { "data-disabled": "" }
-                : {})}
-            />
-          )
-        })}
-      </div>
       <ul id="playersSection">
         {playerIds.map((playerId, index) => {
           const player = Rune.getPlayerInfo(playerId)
@@ -61,9 +36,9 @@ function App() {
             <li
               key={playerId}
               data-player={index.toString()}
-              data-your-turn={String(
-                playerIds[index] !== lastMovePlayerId && !winCombo && freeCells
-              )}
+              // data-your-turn={String(
+              //   playerIds[index] !== lastMovePlayerId && !winCombo && freeCells
+              // )}
             >
               <img src={player.avatarUrl} />
               <span>
