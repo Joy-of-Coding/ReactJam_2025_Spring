@@ -1,3 +1,7 @@
+# Online Used Carsale Game
+
+### making a merge to make a point
+
 # Getting Started with Rune
 
 ### `npm run dev`
@@ -20,7 +24,7 @@ Runs the validation rules. You can read about them in the [docs on server-side l
 
 ## Learn More
 
-See the [Rune docs](https://developers.rune.ai/docs/quick-start) for more info. You can also ask any questions in the [Rune Discord](https://discord.gg/rune-devs), we're happy to help!
+## See the [Rune docs](https://developers.rune.ai/docs/quick-start) for more info. You can also ask any questions in the [Rune Discord](https://discord.gg/rune-devs), we're happy to help!
 
 ---------------------------------
 Game Title: Sell the Car
