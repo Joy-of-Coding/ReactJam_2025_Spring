@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import Buyer from "./components/Buyer"
+import Salesperson from "./components/Salesperson"
 
 import selectSoundAudio from "./assets/select.wav"
 
@@ -28,6 +30,8 @@ function App() {
 
   return (
     <>
+      <Salesperson />
+      <Buyer />
       <ul id="playersSection">
         {playerIds.map((playerId, index) => {
           const player = Rune.getPlayerInfo(playerId)
@@ -40,6 +44,7 @@ function App() {
               //   playerIds[index] !== lastMovePlayerId && !winCombo && freeCells
               // )}
             >
+
               <img src={player.avatarUrl} />
               <span>
                 {player.displayName}
