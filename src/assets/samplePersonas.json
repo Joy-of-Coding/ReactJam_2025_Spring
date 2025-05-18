@@ -1,0 +1,598 @@
+{
+  "personas": [
+    {
+      "id": "family_buyer",
+      "name": "Sarah Johnson",
+      "age": 38,
+      "occupation": "Teacher",
+      "description": "Mother of three looking for a reliable family vehicle with plenty of space and safety features.",
+      "budget": {
+        "min": 10000,
+        "max": 22000
+      },
+      "goals": [
+        "Space for family of five",
+        "Excellent safety record",
+        "Good fuel economy",
+        "Low maintenance costs"
+      ],
+      "must_haves": [
+        "Rear space for kids/cargo",
+        "Reliability",
+        "Safety features"
+      ],
+      "nice_to_haves": [
+        "Modern tech features",
+        "Comfort amenities"
+      ],
+      "deal_breakers": [
+        "Two-door vehicles",
+        "Sports cars",
+        "High maintenance costs",
+        "Poor safety ratings"
+      ],
+      "matching_cars": [3, 5, 8, 10, 12, 14, 16, 18]
+    },
+    {
+      "id": "vintage_collector",
+      "name": "Robert Chen",
+      "age": 58,
+      "occupation": "Retired Engineer",
+      "description": "Passionate car collector looking to add another vintage vehicle to his collection.",
+      "budget": {
+        "min": 20000,
+        "max": 45000
+      },
+      "goals": [
+        "Find a well-preserved classic",
+        "Vehicle with historical significance",
+        "Something that will appreciate in value",
+        "Car with character and style"
+      ],
+      "must_haves": [
+        "Original parts where possible",
+        "Good documentation of history",
+        "Mechanical integrity"
+      ],
+      "nice_to_haves": [
+        "Original paint",
+        "Low production numbers",
+        "Special edition features"
+      ],
+      "deal_breakers": [
+        "Heavily modified classics",
+        "Rust or major body damage",
+        "Missing documentation"
+      ],
+      "matching_cars": [1, 2, 4, 9, 17]
+    },
+    {
+      "id": "young_professional",
+      "name": "Alicia Martinez",
+      "age": 27,
+      "occupation": "Marketing Executive",
+      "description": "Young professional looking for a stylish car that reflects her success while remaining practical.",
+      "budget": {
+        "min": 15000,
+        "max": 25000
+      },
+      "goals": [
+        "Modern, stylish appearance",
+        "Good tech features",
+        "Reasonable fuel economy",
+        "Fun to drive"
+      ],
+      "must_haves": [
+        "Bluetooth connectivity",
+        "Modern styling",
+        "Good reliability"
+      ],
+      "nice_to_haves": [
+        "Leather seats",
+        "Sunroof",
+        "Premium sound system"
+      ],
+      "deal_breakers": [
+        "Outdated styling",
+        "Poor fuel economy",
+        "Lack of tech features"
+      ],
+      "matching_cars": [5, 8, 12, 14, 20]
+    },
+    {
+      "id": "outdoor_enthusiast",
+      "name": "Derek Wilson",
+      "age": 32,
+      "occupation": "Wildlife Photographer",
+      "description": "Outdoor enthusiast who needs a vehicle that can handle off-road conditions and carry equipment.",
+      "budget": {
+        "min": 5000,
+        "max": 30000
+      },
+      "goals": [
+        "Off-road capability",
+        "Cargo space for gear",
+        "Reliability in remote areas",
+        "Towing capacity"
+      ],
+      "must_haves": [
+        "4x4 or AWD",
+        "Ground clearance",
+        "Cargo space"
+      ],
+      "nice_to_haves": [
+        "Roof rack",
+        "Tow package",
+        "Durable interior"
+      ],
+      "deal_breakers": [
+        "Low clearance vehicles",
+        "Poor reliability",
+        "No cargo space"
+      ],
+      "matching_cars": [8, 10, 11, 13]
+    },
+    {
+      "id": "budget_student",
+      "name": "Jordan Taylor",
+      "age": 22,
+      "occupation": "College Student",
+      "description": "College student looking for an affordable, reliable car that won't break the bank.",
+      "budget": {
+        "min": 5000,
+        "max": 10000
+      },
+      "goals": [
+        "Affordability",
+        "Low maintenance costs",
+        "Good fuel economy",
+        "Basic reliability"
+      ],
+      "must_haves": [
+        "Low price",
+        "Fuel efficiency",
+        "Reliable track record"
+      ],
+      "nice_to_haves": [
+        "Some modern features",
+        "Appealing style",
+        "Easy to park"
+      ],
+      "deal_breakers": [
+        "High maintenance costs",
+        "Poor fuel economy",
+        "History of major repairs"
+      ],
+      "matching_cars": [6, 7, 11, 16, 19]
+    },
+    {
+      "id": "weekend_warrior",
+      "name": "Michael King",
+      "age": 35,
+      "occupation": "Software Developer",
+      "description": "Tech professional looking for a fun weekend car that stands out from the crowd.",
+      "budget": {
+        "min": 10000,
+        "max": 40000
+      },
+      "goals": [
+        "Driving enjoyment",
+        "Distinct styling",
+        "Performance capability",
+        "Something conversation-worthy"
+      ],
+      "must_haves": [
+        "Fun driving dynamics",
+        "Distinctive appearance",
+        "Good condition"
+      ],
+      "nice_to_haves": [
+        "Convertible top",
+        "Manual transmission",
+        "Limited production history"
+      ],
+      "deal_breakers": [
+        "Boring styling",
+        "Poor performance",
+        "Common models everyone has"
+      ],
+      "matching_cars": [1, 7, 9, 15, 17, 20]
+    },
+    {
+      "id": "practical_commuter",
+      "name": "Emily Ross",
+      "age": 29,
+      "occupation": "Nurse",
+      "description": "Healthcare worker who needs a practical, economical vehicle for daily commuting.",
+      "budget": {
+        "min": 8000,
+        "max": 20000
+      },
+      "goals": [
+        "Excellent fuel economy",
+        "Reliability for daily use",
+        "Low maintenance costs",
+        "Comfortable for commuting"
+      ],
+      "must_haves": [
+        "Fuel efficiency",
+        "Reliability track record",
+        "Comfortable interior"
+      ],
+      "nice_to_haves": [
+        "Modern safety features",
+        "Bluetooth connectivity",
+        "Low mileage"
+      ],
+      "deal_breakers": [
+        "Gas guzzlers",
+        "High maintenance costs",
+        "Uncomfortable driving position"
+      ],
+      "matching_cars": [3, 5, 12, 14, 16, 18, 19]
+    },
+    {
+      "id": "luxury_buyer",
+      "name": "Thomas Wright",
+      "age": 45,
+      "occupation": "Attorney",
+      "description": "Successful professional looking for a luxury vehicle that reflects his status.",
+      "budget": {
+        "min": 20000,
+        "max": 35000
+      },
+      "goals": [
+        "Premium brand reputation",
+        "Upscale features and materials",
+        "Comfort and refinement",
+        "Impressive to clients"
+      ],
+      "must_haves": [
+        "Luxury brand",
+        "Leather interior",
+        "Premium features"
+      ],
+      "nice_to_haves": [
+        "Advanced tech features",
+        "Distinctive styling",
+        "Performance capability"
+      ],
+      "deal_breakers": [
+        "Economy brands",
+        "Basic trim levels",
+        "Outdated technology"
+      ],
+      "matching_cars": [6, 15, 17, 20]
+    },
+    {
+      "id": "family_commuter",
+      "name": "Family Commuter",
+      "description": "Has a family of four and needs a reliable, spacious vehicle for daily commute and weekend activities.",
+      "budget": {
+        "min": 10000,
+        "max": 20000,
+        "preferred": 15000
+      },
+      "goals": [
+        "Find a reliable family car with low maintenance costs",
+        "Needs good fuel economy for daily commuting",
+        "Wants modern safety features for family protection",
+        "Prefers a vehicle less than 8 years old"
+      ],
+      "mustHaveFeatures": [
+        "Backup camera",
+        "Bluetooth connectivity",
+        "Good safety ratings"
+      ],
+      "niceToHaveFeatures": [
+        "Leather seats",
+        "Sunroof",
+        "Advanced driver assistance"
+      ],
+      "dealBreakers": [
+        "High mileage (over 100,000)",
+        "History of accidents",
+        "Poor fuel economy"
+      ],
+      "matchingCars": [3, 5, 12, 14, 16, 18],
+      "topMatch": 12
+    },
+    {
+      "id": "classic_enthusiast",
+      "name": "Classic Car Enthusiast",
+      "description": "Collector looking for a vintage vehicle as a weekend driver and passion project.",
+      "budget": {
+        "min": 15000,
+        "max": 40000,
+        "preferred": 25000
+      },
+      "goals": [
+        "Add a unique classic to their collection",
+        "Find a well-preserved example with original parts",
+        "Purchase a car likely to appreciate in value",
+        "Enjoy weekend drives with a distinctive vehicle"
+      ],
+      "mustHaveFeatures": [
+        "Original or period-correct components",
+        "Good mechanical condition",
+        "Distinctive styling"
+      ],
+      "niceToHaveFeatures": [
+        "Original documentation",
+        "Low production numbers",
+        "Interesting history"
+      ],
+      "dealBreakers": [
+        "Extensive modern modifications",
+        "Significant rust or structural damage",
+        "Non-original powertrain"
+      ],
+      "matchingCars": [1, 2, 4, 9, 17],
+      "topMatch": 1
+    },
+    {
+      "id": "first_time_buyer",
+      "name": "First-Time Car Buyer",
+      "description": "Recent college graduate looking for an affordable, reliable first car.",
+      "budget": {
+        "min": 5000,
+        "max": 10000,
+        "preferred": 7500
+      },
+      "goals": [
+        "Find an affordable, reliable vehicle",
+        "Low maintenance and insurance costs",
+        "Good fuel efficiency",
+        "Easy to drive and park in urban areas"
+      ],
+      "mustHaveFeatures": [
+        "Reliability",
+        "Good fuel economy",
+        "Affordable insurance"
+      ],
+      "niceToHaveFeatures": [
+        "Bluetooth connectivity",
+        "Modern styling",
+        "USB ports"
+      ],
+      "dealBreakers": [
+        "High maintenance costs",
+        "Poor reliability reputation",
+        "Complicated features"
+      ],
+      "matchingCars": [7, 11, 16, 19],
+      "topMatch": 16
+    },
+    {
+      "id": "weekend_warrior",
+      "name": "Weekend Warrior",
+      "description": "Outdoor enthusiast who needs a vehicle for weekend adventures while still being practical enough for daily use.",
+      "budget": {
+        "min": 10000,
+        "max": 30000,
+        "preferred": 20000
+      },
+      "goals": [
+        "Find a vehicle capable of light off-roading",
+        "Enough cargo space for camping gear",
+        "Reliable in various weather conditions",
+        "Comfortable for long road trips"
+      ],
+      "mustHaveFeatures": [
+        "All-wheel drive or 4x4 capability",
+        "Roof rack or cargo space",
+        "Towing capacity"
+      ],
+      "niceToHaveFeatures": [
+        "Ground clearance",
+        "Adventure-oriented features",
+        "Durable interior materials"
+      ],
+      "dealBreakers": [
+        "Poor reliability",
+        "Limited cargo space",
+        "Low ground clearance"
+      ],
+      "matchingCars": [8, 10, 11, 13],
+      "topMatch": 8
+    },
+    {
+      "id": "luxury_seeker",
+      "name": "Luxury Seeker",
+      "description": "Professional looking for a comfortable, prestigious vehicle that reflects their successful status.",
+      "budget": {
+        "min": 15000,
+        "max": 45000,
+        "preferred": 30000
+      },
+      "goals": [
+        "Find a vehicle that projects success and sophistication",
+        "Experience premium comfort features",
+        "Enjoy advanced technology and connectivity",
+        "Make a statement with distinctive styling"
+      ],
+      "mustHaveFeatures": [
+        "Leather interior",
+        "Premium sound system",
+        "Luxury brand cachet"
+      ],
+      "niceToHaveFeatures": [
+        "Advanced driver assistance",
+        "Premium styling details",
+        "State-of-the-art infotainment"
+      ],
+      "dealBreakers": [
+        "Outdated technology",
+        "Economy car styling",
+        "Worn interior"
+      ],
+      "matchingCars": [6, 15, 17],
+      "topMatch": 17
+    },
+    {
+      "id": "driving_enthusiast",
+      "name": "Driving Enthusiast",
+      "description": "Car enthusiast looking for a vehicle that delivers driving excitement and enjoyment on winding roads.",
+      "budget": {
+        "min": 10000,
+        "max": 25000,
+        "preferred": 18000
+      },
+      "goals": [
+        "Find a vehicle with engaging handling and performance",
+        "Enjoy the connection between driver and machine",
+        "Stand out from typical commuter cars",
+        "Have fun on weekend drives"
+      ],
+      "mustHaveFeatures": [
+        "Responsive handling",
+        "Manual transmission (preferred)",
+        "Performance-oriented design"
+      ],
+      "niceToHaveFeatures": [
+        "Convertible top",
+        "Sport-tuned suspension",
+        "Premium audio system"
+      ],
+      "dealBreakers": [
+        "Sluggish acceleration",
+        "Numb steering feel",
+        "Boring driving experience"
+      ],
+      "matchingCars": [7, 15, 20],
+      "topMatch": 20
+    },
+    {
+      "id": "eco_conscious",
+      "name": "Eco-Conscious Driver",
+      "description": "Environmentally aware buyer looking for a fuel-efficient vehicle with a smaller carbon footprint.",
+      "budget": {
+        "min": 10000,
+        "max": 22000,
+        "preferred": 15000
+      },
+      "goals": [
+        "Minimize fuel consumption and emissions",
+        "Find a vehicle with strong efficiency ratings",
+        "Reduce environmental impact",
+        "Save money on fuel costs"
+      ],
+      "mustHaveFeatures": [
+        "Excellent fuel economy",
+        "Low emissions",
+        "Efficient engine technology"
+      ],
+      "niceToHaveFeatures": [
+        "Hybrid technology",
+        "Eco driving modes",
+        "Recycled/sustainable materials"
+      ],
+      "dealBreakers": [
+        "High fuel consumption",
+        "Excessive emissions",
+        "Large carbon footprint"
+      ],
+      "matchingCars": [3, 5, 12, 16, 18],
+      "topMatch": 5
+    },
+    {
+      "id": "budget_buyer",
+      "name": "Budget-Conscious Buyer",
+      "description": "Pragmatic buyer looking for the most value for money with minimal expenses.",
+      "budget": {
+        "min": 5000,
+        "max": 9000,
+        "preferred": 7000
+      },
+      "goals": [
+        "Find the most reliable car for the lowest price",
+        "Minimize total cost of ownership",
+        "Avoid expensive repairs and maintenance",
+        "Get the most practical features for the money"
+      ],
+      "mustHaveFeatures": [
+        "Proven reliability",
+        "Good fuel economy",
+        "Low maintenance costs"
+      ],
+      "niceToHaveFeatures": [
+        "Power windows and locks",
+        "Air conditioning",
+        "Basic audio system"
+      ],
+      "dealBreakers": [
+        "History of major mechanical problems",
+        "Premium features that cost extra to repair",
+        "Luxury brands with expensive parts"
+      ],
+      "matchingCars": [6, 7, 11, 19],
+      "topMatch": 7
+    },
+    {
+      "id": "growing_family",
+      "name": "Growing Family",
+      "description": "Parents expecting another child who need more space for car seats, strollers, and family trips.",
+      "budget": {
+        "min": 15000,
+        "max": 30000,
+        "preferred": 25000
+      },
+      "goals": [
+        "Find a spacious vehicle for a growing family",
+        "Prioritize safety features and crash ratings",
+        "Have room for strollers, groceries, and gear",
+        "Plan for long-term family use"
+      ],
+      "mustHaveFeatures": [
+        "Multiple car seat compatibility",
+        "Large cargo space",
+        "Top safety ratings"
+      ],
+      "niceToHaveFeatures": [
+        "Entertainment system",
+        "Easy-clean interior",
+        "Rear climate control"
+      ],
+      "dealBreakers": [
+        "Limited rear seat space",
+        "Poor safety ratings",
+        "Difficult child seat installation"
+      ],
+      "matchingCars": [3, 8, 10, 14],
+      "topMatch": 10
+    },
+    {
+      "id": "retiree",
+      "name": "Retiree Downsizer",
+      "description": "Recently retired individual looking for a comfortable, easy-to-drive vehicle with good visibility and accessibility.",
+      "budget": {
+        "min": 10000,
+        "max": 20000,
+        "preferred": 15000
+      },
+      "goals": [
+        "Find a comfortable, easy-to-enter vehicle",
+        "Prioritize reliability and low maintenance",
+        "Good visibility and simple controls",
+        "Comfortable for longer road trips"
+      ],
+      "mustHaveFeatures": [
+        "Easy entry and exit",
+        "Simple, intuitive controls",
+        "Comfortable ride"
+      ],
+      "niceToHaveFeatures": [
+        "Heated seats",
+        "Power adjustable seats",
+        "Advanced safety features"
+      ],
+      "dealBreakers": [
+        "Low seating position",
+        "Complicated technology",
+        "Firm or sporty suspension"
+      ],
+      "matchingCars": [3, 10, 14, 16, 18],
+      "topMatch": 3
+    }
+  ]
+}
