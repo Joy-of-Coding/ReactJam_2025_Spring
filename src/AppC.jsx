@@ -1,5 +1,93 @@
 import { useState, useEffect } from 'react';
 
+// HowToPopup component
+const HowToPopup = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+  
+  return (
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 1000
+    }}>
+      <div style={{
+        backgroundColor: 'white',
+        borderRadius: '8px',
+        padding: '24px',
+        maxWidth: '600px',
+        width: '90%',
+        maxHeight: '90vh',
+        overflow: 'auto',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+      }}>
+        <h2 style={{ 
+          fontSize: '24px', 
+          fontWeight: 'bold', 
+          marginBottom: '16px',
+          borderBottom: '1px solid #eee',
+          paddingBottom: '12px'
+        }}>How To Use Car Dealership App</h2>
+        
+        <div style={{ marginBottom: '16px' }}>
+          <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '8px' }}>For Buyers:</h3>
+          <ol style={{ paddingLeft: '24px' }}>
+            <li style={{ marginBottom: '8px' }}>Start in the lobby and look for salespersons (marked with *seller)</li>
+            <li style={{ marginBottom: '8px' }}>Click on a salesperson to approach them</li>
+            <li style={{ marginBottom: '8px' }}>Browse the available vehicles they have in their inventory</li>
+            <li style={{ marginBottom: '8px' }}>Consider your budget and requirements when selecting a vehicle</li>
+            <li style={{ marginBottom: '8px' }}>Click back to lobby to speak with a different salesperson</li>
+          </ol>
+        </div>
+        
+        <div style={{ marginBottom: '16px' }}>
+          <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '8px' }}>For Sellers:</h3>
+          <ol style={{ paddingLeft: '24px' }}>
+            <li style={{ marginBottom: '8px' }}>Wait for buyers to approach you in the lobby</li>
+            <li style={{ marginBottom: '8px' }}>Show your inventory of vehicles based on customer preferences</li>
+            <li style={{ marginBottom: '8px' }}>Highlight features that match the buyer's needs</li>
+            <li style={{ marginBottom: '8px' }}>Consider price negotiations within the allowed range</li>
+            <li style={{ marginBottom: '8px' }}>Close the sale by finding the right match for the buyer</li>
+          </ol>
+        </div>
+        
+        <div style={{ marginBottom: '24px' }}>
+          <h3 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '8px' }}>Tips for Success:</h3>
+          <ul style={{ paddingLeft: '24px' }}>
+            <li style={{ marginBottom: '8px' }}>Buyers: Be clear about your budget and requirements</li>
+            <li style={{ marginBottom: '8px' }}>Sellers: Listen to the buyer's needs and suggest appropriate vehicles</li>
+            <li style={{ marginBottom: '8px' }}>Communication is key to a successful transaction</li>
+            <li style={{ marginBottom: '8px' }}>Don't be afraid to negotiate on price and features</li>
+          </ul>
+        </div>
+        
+        <button 
+          onClick={onClose}
+          style={{
+            padding: '8px 16px',
+            backgroundColor: '#0066ff',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '16px',
+            display: 'block',
+            margin: '0 0 0 auto'
+          }}
+        >
+          Got it!
+        </button>
+      </div>
+    </div>
+  );
+};
+
 // CSS styles
 const styles = {
   container: {
@@ -359,6 +447,7 @@ function App() {
   const [yourPlayerId, setYourPlayerId] = useState();
   const [view, setView] = useState('lobby'); // 'lobby' or 'carDetails'
   const [selectedSeller, setSelectedSeller] = useState(null);
+  const [showHowTo, setShowHowTo] = useState(true); // Show by default when app loads
   
   // Mock select sound
   const selectSound = { play: () => console.log("Sound played") };
@@ -394,8 +483,45 @@ function App() {
     setSelectedSeller(null);
   };
 
+  // Define help button style
+  const helpButtonStyle = {
+    position: 'fixed',
+    right: '20px',
+    bottom: '20px',
+    width: '50px',
+    height: '50px',
+    borderRadius: '50%',
+    backgroundColor: '#0066ff',
+    color: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '24px',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.3)',
+    border: 'none'
+  };
+
   return (
     <div style={styles.container}>
+      {/* How To Popup */}
+      <HowToPopup 
+        isOpen={showHowTo}
+        onClose={() => setShowHowTo(false)}
+      />
+      
+      {/* Help Button */}
+      {!showHowTo && (
+        <button 
+          style={helpButtonStyle}
+          onClick={() => setShowHowTo(true)}
+          title="Show Help"
+        >
+          ?
+        </button>
+      )}
+
       {view === 'lobby' ? (
         <DealershipLobby 
           playerIds={playerIds}
