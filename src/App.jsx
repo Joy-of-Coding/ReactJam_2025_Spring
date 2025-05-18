@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Car from "./components/Car"
 
 import selectSoundAudio from "./assets/select.wav"
 
@@ -28,6 +29,14 @@ function App() {
 
   return (
     <>
+      <Car 
+        year={1982} 
+        model={'DeLorean'} 
+        condition={'Used'} 
+        mileage={185000} 
+        price={39999.99} 
+        features={['Gull-Wing Doors', 'Apple Carplay', 'LED Headlights' ]}
+      />
       <ul id="playersSection">
         {playerIds.map((playerId, index) => {
           const player = Rune.getPlayerInfo(playerId)
