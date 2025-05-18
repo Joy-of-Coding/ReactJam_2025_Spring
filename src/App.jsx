@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import Buyer from "./components/Buyer"
+import Salesperson from "./components/Salesperson"
 import Car from "./components/Car"
 
 import selectSoundAudio from "./assets/select.wav"
@@ -29,6 +31,8 @@ function App() {
 
   return (
     <>
+      <Salesperson />
+      <Buyer />
       <Car 
         year={1982} 
         model={'DeLorean'} 
@@ -49,6 +53,7 @@ function App() {
               //   playerIds[index] !== lastMovePlayerId && !winCombo && freeCells
               // )}
             >
+
               <img src={player.avatarUrl} />
               <span>
                 {player.displayName}
