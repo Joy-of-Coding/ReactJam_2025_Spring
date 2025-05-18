@@ -24,7 +24,7 @@ Runs the validation rules. You can read about them in the [docs on server-side l
 
 ## Learn More
 
-## See the [Rune docs](https://developers.rune.ai/docs/quick-start) for more info. You can also ask any questions in the [Rune Discord](https://discord.gg/rune-devs), we're happy to help!
+See the [Rune docs](https://developers.rune.ai/docs/quick-start) for more info. You can also ask any questions in the [Rune Discord](https://discord.gg/rune-devs), we're happy to help!
 
 ---------------------------------
 Game Title: Sell the Car
@@ -38,7 +38,6 @@ Minimum Number of Players: 2
         attractive for sale. Buyer can elect to buy negotiated car for price offered or walk away.
 
         Primary Goal - purchase car at least 1% below list price that meets the criteria set by buyer in the beginning.
-        
         Secondary Goal - purchase car from dealership at a price where the sum of the
         car price without the markup + a number of spiffs making price still 1% below markup.
 
@@ -59,14 +58,6 @@ Additional Players:
         Primary Goal - 
 Maximum Number of Players: 6
 
-here is the info from Walters document: .
-Primary Goal - purchase car at least 1% below list price;
-Secondary Goal - purchase car from dealership at a price where the sum of the
-car price without the markup + a number of spiffs making price still 1% below markup.
-
-Salesperson: person selling car at a car dealership.
-Primary Goal - sell car at least 1% above list price, not including spiffs;
-Secondary Goal - buyer does not "walk out" on the sale.
 
 Additional Players:
 Sales Manager: person with inventory of cars.
