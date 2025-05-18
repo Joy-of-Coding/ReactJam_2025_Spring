@@ -53,12 +53,9 @@ Minimum Number of Players: 2
 
         Secondary Goal - buyer does not "walk out" on the sale.
 
-Additional Players:
-    Sales Manager: person with inventory of cars.
-        Primary Goal - 
 Maximum Number of Players: 6
 
-
+Nice to haves below according to original discussion
 Additional Players:
 Sales Manager: person with inventory of cars.
 Primary Goal - Keep inventory young by prioritizing sale of older cars. Gains bonuses in this order:
