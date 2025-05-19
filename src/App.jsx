@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Buyer from "./components/Buyer"
 import Salesperson from "./components/Salesperson"
 import Car from "./components/Car"
+import CarList from "./components/CarList"
 
 import StartScreen from './components/StartScreen.jsx';
 import GameScreen from './components/GameScreen.jsx';
@@ -62,7 +63,11 @@ function App() {
         features={['Gull-Wing Doors', 'Apple Carplay', 'LED Headlights' ]}
       />
 
+      <CarList />
+
+
       <WalkAwayButton />
+
       
       <ul id="playersSection">
         {playerIds.map((playerId, index) => {
