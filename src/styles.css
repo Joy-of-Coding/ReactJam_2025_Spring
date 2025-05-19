@@ -15,7 +15,7 @@ main {
   align-items: center;
   justify-content: space-around;
 }
-
+/* 
 #board {
   width: 90vw;
   max-width: min(90vh, 600px);
@@ -144,9 +144,9 @@ button:not([data-disabled]) {
   -webkit-text-fill-color: transparent;
 
   animation: tap-to-play 1.5s ease-in-out infinite;
-}
+} */
 
-@media (hover: hover) {
+/* @media (hover: hover) {
   button:not([data-disabled]):after {
     content: "";
     display: block;
@@ -166,7 +166,7 @@ button:not([data-disabled]) {
   button:hover:after {
     scale: 1;
   }
-}
+} */
 
 ul {
   list-style: none;
