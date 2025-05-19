@@ -2,8 +2,12 @@ import { useEffect, useState } from "react"
 import Buyer from "./components/Buyer"
 import Salesperson from "./components/Salesperson"
 import Car from "./components/Car"
+
 import StartScreen from './components/StartScreen.jsx';
 import GameScreen from './components/GameScreen.jsx';
+
+import WalkAwayButton from "./components/Buttons/WalkAwayButton"
+
 
 import selectSoundAudio from "./assets/select.wav"
 
@@ -57,6 +61,9 @@ function App() {
         price={39999.99}
         features={['Gull-Wing Doors', 'Apple Carplay', 'LED Headlights' ]}
       />
+
+      <WalkAwayButton />
+      
       <ul id="playersSection">
         {playerIds.map((playerId, index) => {
           const player = Rune.getPlayerInfo(playerId)
@@ -84,8 +91,44 @@ function App() {
           )
         })}
       </ul>
-    </>
-  )
-}
 
+      {/* === Buttons Section === */}
+      <div style={{ display: "flex", gap: "1rem"  }}>
+        <button 
+          style={{ backgroundColor: "blue", color: "white" ,
+             boxShadow: "rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0",
+            color: "#008000",
+            cursor: "pointer",
+            display: "inline-block",
+            fontFamily: "Arial, sans-serif",
+            fontSize: "1em",
+            height: "50px",
+            padding: "0 25px",
+            transition: "all 200ms"
+          }} 
+          onClick={() => alert("Instructions go here")}
+        >
+          How to play
+        </button
+          >
+        <button 
+          style={{ backgroundColor: "magenta", color: "white" ,
+          boxShadow: "rgba(218, 25, 225, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0",
+          color: "#008000",
+          cursor: "pointer",
+          display: "inline-block",
+          fontFamily: "Arial, sans-serif",
+          fontSize: "1em",
+          height: "50px",
+          padding: "0 25px",
+          transition: "all 200ms"
+        }} 
+        
+        onClick={() => alert("Game by Your Name")}>
+          Credits
+        </button>
+      </div>
+  </>
+)
+}
 export default App
