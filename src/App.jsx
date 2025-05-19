@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Buyer from "./components/Buyer"
 import Salesperson from "./components/Salesperson"
 import Car from "./components/Car"
+import CarList from "./components/CarList"
 
 import selectSoundAudio from "./assets/select.wav"
 
@@ -41,6 +42,8 @@ function App() {
         price={39999.99} 
         features={['Gull-Wing Doors', 'Apple Carplay', 'LED Headlights' ]}
       />
+      <CarList />
+      
       <ul id="playersSection">
         {playerIds.map((playerId, index) => {
           const player = Rune.getPlayerInfo(playerId)
