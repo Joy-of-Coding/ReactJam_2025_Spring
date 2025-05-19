@@ -2,13 +2,31 @@ import { useEffect, useState } from "react"
 import Buyer from "./components/Buyer"
 import Salesperson from "./components/Salesperson"
 import Car from "./components/Car"
+
+import StartScreen from './components/StartScreen.jsx';
+import GameScreen from './components/GameScreen.jsx';
+
 import WalkAwayButton from "./components/Buttons/WalkAwayButton"
+
 
 import selectSoundAudio from "./assets/select.wav"
 
 const selectSound = new Audio(selectSoundAudio)
 
 function App() {
+//   ///
+  const [gameStarted, setGameStarted] = useState(false);
+
+  const handleStartGame = () => {
+    console.log("The game has started");
+    setGameStarted(true);
+  };
+
+  const handleEndGame = () => {
+    setGameStarted(false);
+  };
+
+  /// jaypox
   const [game, setGame] = useState()
   const [yourPlayerId, setYourPlayerId] = useState()
 
@@ -32,14 +50,15 @@ function App() {
 
   return (
     <>
+    <StartScreen onStartGame={handleStartGame} />
       <Salesperson />
       <Buyer />
-      <Car 
-        year={1982} 
-        model={'DeLorean'} 
-        condition={'Used'} 
-        mileage={185000} 
-        price={39999.99} 
+      <Car
+        year={1982}
+        model={'DeLorean'}
+        condition={'Used'}
+        mileage={185000}
+        price={39999.99}
         features={['Gull-Wing Doors', 'Apple Carplay', 'LED Headlights' ]}
       />
 
