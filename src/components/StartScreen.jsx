@@ -3,7 +3,19 @@ import "./styles/StartScreen.css";
 // import bg from '../assets/bg.jpg';
 
 const StartScreen = ({ onStartGame }) => {
-// const StartScreen = () => {
+  // const StartScreen = () => {
+  const openBuyer = () => {
+    console.log("Buyer button clicked");
+    // Logic to open the buyer's screen
+  };
+  const openSalesperson = () => {
+    console.log("Salesperson button clicked");
+    // Logic to open the salesperson's screen
+  };
+  const handleSpectate = () => {
+    console.log("Spectate button clicked");
+    // Logic to open the spectator's screen
+  };
   return (
     // <div className="start-screen" style={{ backgroundImage: `url(${bg})` }}>
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
@@ -25,6 +37,17 @@ const StartScreen = ({ onStartGame }) => {
           <h2>Credits</h2>
           <p>Created by Team ReactJam May 2025 – Add everyone involved</p>
         </section>
+        <div className="flex">
+          <button onClick={handleSpectate}>Spectate</button>
+        </div>
+        <div className="flex">
+          <button className="buyer-button" onClick={openBuyer}>
+            I'm the Buyer
+          </button>
+          <button className="seller-button" onClick={openSalesperson}>
+            I'm the Salesperson
+          </button>
+        </div>
         <button className="start-button" onClick={onStartGame}>
           Start Game
         </button>
