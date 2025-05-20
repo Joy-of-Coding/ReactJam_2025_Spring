@@ -12,6 +12,10 @@ const StartScreen = ({ onStartGame }) => {
     console.log("Salesperson button clicked");
     // Logic to open the salesperson's screen
   };
+  const handleSpectate = () => {
+    console.log("Spectate button clicked");
+    // Logic to open the spectator's screen
+  };
   return (
     // <div className="start-screen" style={{ backgroundImage: `url(${bg})` }}>
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
@@ -33,6 +37,9 @@ const StartScreen = ({ onStartGame }) => {
           <h2>Credits</h2>
           <p>Created by Team ReactJam May 2025 – Add everyone involved</p>
         </section>
+        <div className="flex">
+          <button onClick={handleSpectate}>Spectate</button>
+        </div>
         <div className="flex">
           <button className="buyer-button" onClick={openBuyer}>
             I'm the Buyer

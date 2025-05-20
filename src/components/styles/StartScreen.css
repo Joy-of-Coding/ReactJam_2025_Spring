@@ -70,5 +70,5 @@ section {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 0.5rem; /* Adds space between button groups */
+  margin-bottom: 0.5rem;
 }
