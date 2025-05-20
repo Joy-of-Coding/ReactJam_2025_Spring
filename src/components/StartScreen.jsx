@@ -25,8 +25,12 @@ const StartScreen = ({ onStartGame }) => {
           <h2>Credits</h2>
           <p>Created by Team ReactJam May 2025 – Add everyone involved</p>
         </section>
-        <button className="buyer-button">I'm the Buyer</button>
-        <button className="seller-button">I'm the Salesperson</button>
+        <div className="flex">
+          <div className="flex" style={{ gap: "1rem" }}>
+            <button className="buyer-button">I'm the Buyer</button>
+            <button className="seller-button">I'm the Salesperson</button>
+          </div>
+        </div>
         <button className="start-button" onClick={onStartGame}>
           Start Game
         </button>

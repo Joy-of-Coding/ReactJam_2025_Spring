@@ -37,13 +37,14 @@ section {
 }
 
 .buyer-button {
-  padding: 1rem 2rem;
+  padding: 10px 20px;
   font-size: 1.2rem;
   background-color: #4caf50;
   border: none;
   cursor: pointer;
   border-radius: 6px;
   color: #fff;
+  margin: 0;
 }
 
 .buyer-button:hover {
@@ -51,15 +52,23 @@ section {
 }
 
 .seller-button {
-  padding: 1rem 2rem;
+  padding: 10px 20px;
   font-size: 1.2rem;
   background-color: #2196f3;
   border: none;
   cursor: pointer;
   border-radius: 6px;
   color: #fff;
+  margin: 0;
 }
 
 .seller-button:hover {
   background-color: #0b7dda;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem; /* Adds space between button groups */
 }
