@@ -1,5 +1,5 @@
 .start-screen {
-  height: 100vh;
+  height: 50%;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -24,12 +24,13 @@ section {
 
 .start-button {
   padding: 1rem 2rem;
-  font-size: 1.2rem;
+  font-size: 2rem;
   background-color: #ffd700;
   border: none;
   cursor: pointer;
   border-radius: 6px;
   color: #000;
+  width: 100%
 }
 
 .start-button:hover {
