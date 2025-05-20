@@ -35,3 +35,17 @@ section {
 .start-button:hover {
   background-color: #ffcf33;
 }
+
+.buyer-seller-button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background-color: #4caf50;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.buyer-seller-button:hover {
+  background-color: #45a049;
+}
