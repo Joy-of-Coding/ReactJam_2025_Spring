@@ -3,7 +3,7 @@ import "./styles/StartScreen.css";
 // import bg from '../assets/bg.jpg';
 
 const StartScreen = ({ onStartGame }) => {
-// const StartScreen = () => {
+  // const StartScreen = () => {
   return (
     // <div className="start-screen" style={{ backgroundImage: `url(${bg})` }}>
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
@@ -25,6 +25,8 @@ const StartScreen = ({ onStartGame }) => {
           <h2>Credits</h2>
           <p>Created by Team ReactJam May 2025 – Add everyone involved</p>
         </section>
+        <button>I'm the Buyer</button>
+        <button>I'm the Salesperson</button>
         <button className="start-button" onClick={onStartGame}>
           Start Game
         </button>
