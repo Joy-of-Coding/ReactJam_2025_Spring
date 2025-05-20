@@ -36,7 +36,7 @@ section {
   background-color: #ffcf33;
 }
 
-.buyer-seller-button {
+.buyer-button {
   padding: 1rem 2rem;
   font-size: 1.2rem;
   background-color: #4caf50;
@@ -46,6 +46,20 @@ section {
   color: #fff;
 }
 
-.buyer-seller-button:hover {
+.buyer-button:hover {
   background-color: #45a049;
+}
+
+.seller-button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background-color: #2196f3;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.seller-button:hover {
+  background-color: #0b7dda;
 }

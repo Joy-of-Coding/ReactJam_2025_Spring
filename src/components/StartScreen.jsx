@@ -25,8 +25,8 @@ const StartScreen = ({ onStartGame }) => {
           <h2>Credits</h2>
           <p>Created by Team ReactJam May 2025 – Add everyone involved</p>
         </section>
-        <button className="buyer-seller-button">I'm the Buyer</button>
-        <button className="buyer-seller-button">I'm the Salesperson</button>
+        <button className="buyer-button">I'm the Buyer</button>
+        <button className="seller-button">I'm the Salesperson</button>
         <button className="start-button" onClick={onStartGame}>
           Start Game
         </button>
