@@ -7,7 +7,7 @@ function SignTheContractButton () {
     }
   return (
     <button onClick={handleClick}>
-        Sign the contract
+        Sign the contract!
     </button>
   )
 }
