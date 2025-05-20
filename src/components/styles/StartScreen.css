@@ -36,30 +36,30 @@ section {
   background-color: #ffcf33;
 }
 
-.buyer-button {
-  padding: 10px 20px;
+.buyer-button,
+.seller-button {
+  width: 130px;
+  padding: 10px 10px;
   font-size: 1.2rem;
-  background-color: #4caf50;
   border: none;
   cursor: pointer;
   border-radius: 6px;
   color: #fff;
   margin: 0;
+}
+
+/* Unique styles for buyer button */
+.buyer-button {
+  background-color: #4caf50;
 }
 
 .buyer-button:hover {
   background-color: #45a049;
 }
 
+/* Unique styles for seller button */
 .seller-button {
-  padding: 10px 20px;
-  font-size: 1.2rem;
   background-color: #2196f3;
-  border: none;
-  cursor: pointer;
-  border-radius: 6px;
-  color: #fff;
-  margin: 0;
 }
 
 .seller-button:hover {
