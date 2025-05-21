@@ -12,7 +12,7 @@ const NegotiationScreen = () => {
             <Salesperson />
             <Buyer />
             <CarList />
-            {/* */}
+            {/*Creating a template */}
         </div>
     )
 }
