@@ -31,7 +31,7 @@ function App() {
         setGame(game);
         setYourPlayerId(yourPlayerId);
 
-        if (action && action.name === "claimCell") selectSound.play();
+        // if (action && action.name === "claimCell") selectSound.play();
       },
     });
   }, []);
@@ -41,7 +41,7 @@ function App() {
     return;
   }
 
-  const { winCombo, cells, lastMovePlayerId, playerIds, freeCells } = game;
+  const { roles, playerIds } = game;
 
   return (
     <>
@@ -62,7 +62,7 @@ function App() {
               //   playerIds[index] !== lastMovePlayerId && !winCombo && freeCells
               // )}
             >
-              <img src={player.avatarUrl} />
+              {/*<img src={player.avatarUrl} />*/}
               <span>
                 {player.displayName}
                 {player.playerId === yourPlayerId && (

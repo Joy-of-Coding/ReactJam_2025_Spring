@@ -2,6 +2,8 @@ import React from "react";
 import "../styles/StartScreen.css";
 // import bg from '../assets/bg.jpg';
 
+
+
 const StartScreen = ({ onStartGame }) => {
   // const StartScreen = () => {
   const openBuyer = () => {
@@ -10,6 +12,7 @@ const StartScreen = ({ onStartGame }) => {
   };
   const openSalesperson = () => {
     console.log("Salesperson button clicked");
+    Rune.actions.assignRole("Seller")
     // Logic to open the salesperson's screen
   };
   const handleSpectate = () => {
