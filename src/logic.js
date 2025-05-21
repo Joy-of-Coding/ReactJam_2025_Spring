@@ -17,17 +17,13 @@ const cars = [
 
 Rune.initLogic({
   minPlayers: 2,
-  maxPlayers: 4,
-
-  setup: (allPlayerIds) => {
-    const roles = [];
-
-    for (let playerId of allPlayerIds) {
-      roles[playerId] = null;
-    }
-
-    return { roles, allPlayerIds };
-  },
+  maxPlayers: 2,
+  setup: (allPlayerIds) => ({
+    cells: new Array(9).fill(null),
+    winCombo: null,
+    lastMovePlayerId: null,
+    playerIds: allPlayerIds,
+  }),
   actions: {
     assignRole: (role, { game, playerId }) => {
       game.roles[playerId] = role;
