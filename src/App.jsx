@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-
-
 import StartScreen from "./components/Screens/StartScreen.jsx";
 import GameScreen from "./components/Screens/GameScreen.jsx";
-
 import selectSoundAudio from "./assets/select.wav";
 import { render } from "react-dom";
+
 
 const selectSound = new Audio(selectSoundAudio);
 
 function App() {
-  //   ///
   const [gameStarted, setGameStarted] = useState(false);
 
   const handleStartGame = () => {
@@ -23,40 +20,24 @@ function App() {
   };
 
   /// jaypox
-  // const [game, setGame] = useState();
-  // const [yourPlayerId, setYourPlayerId] = useState();
-// client.js
-  Rune.initClient({
-    onChange: ({
-                 game,
-                 yourPlayerId,
-                 allPlayerIds,
-                 action,
-               }) => {
-      const { roles } = game;
-      const playerIds = allPlayerIds
-    },
-  })
-  // useEffect(() => {
-  //   Rune.initClient({
-  //     onChange: ({
-  //                  game,
-  //                  action,
-  //                   yourPlayerId }) => {
-  //       setGame(game);
-  //       setYourPlayerId(yourPlayerId);
-  //
-  //       // if (action && action.name === "claimCell") selectSound.play();
-  //     },
-  //   });
-  // }, []);
+  const [game, setGame] = useState();
+  const [yourPlayerId, setYourPlayerId] = useState();
 
-  // if (!game) {
-  //   // Rune only shows your game after an onChange() so no need for loading screen
-  //   return;
-  // }
+  useEffect(() => {
+    Rune.initClient({
+      onChange: ({ game, yourPlayerId }) => {
+        setGame(game)
+        setYourPlayerId(yourPlayerId)
+      }
+    })
+  }, []);
 
+  if (!game) {
+    // Rune only shows your game after an onChange() so no need for loading screen
+    return;
+  }
 
+  const { winCombo, cells, lastMovePlayerId, playerIds, freeCells } = game;
 
   return (
     <>
@@ -68,16 +49,14 @@ function App() {
       <ul id="playersSection">
         {playerIds.map((p, index) => {
           const player = Rune.getPlayerInfo(p);
-
+          console.log(player)
           return (
             <li
-              key={playerId}
+              key={player.playerId}
               data-player={index.toString()}
-              // data-your-turn={String(
-              //   playerIds[index] !== lastMovePlayerId && !winCombo && freeCells
-              // )}
+
             >
-              {/*<img src={player.avatarUrl} />*/}
+              <img src={player.avatarUrl} />
               <span>
                 {player.displayName}
                 {player.playerId === yourPlayerId && (

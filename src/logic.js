@@ -19,9 +19,12 @@ Rune.initLogic({
   minPlayers: 2,
   maxPlayers: 2,
   setup: (allPlayerIds) => ({
-    cells: new Array(9).fill(null),
-    winCombo: null,
-    lastMovePlayerId: null,
+    // const roles = {};
+    // const playerIds = []
+    roles: allPlayerIds.forEach((p) => {
+      [p, null];
+    }),
+
     playerIds: allPlayerIds,
   }),
   actions: {
