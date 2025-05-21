@@ -48,7 +48,6 @@ const StartScreen = ({ onStartGame }) => {
             color: "white",
             boxShadow:
               "rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0",
-            color: "#008000",
             cursor: "pointer",
             display: "inline-block",
             fontFamily: "Arial, sans-serif",
@@ -67,7 +66,6 @@ const StartScreen = ({ onStartGame }) => {
             color: "white",
             boxShadow:
               "rgba(218, 25, 225, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0",
-            color: "#008000",
             cursor: "pointer",
             display: "inline-block",
             fontFamily: "Arial, sans-serif",
