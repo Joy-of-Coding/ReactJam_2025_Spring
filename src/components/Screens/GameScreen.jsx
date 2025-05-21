@@ -36,11 +36,13 @@ const GameScreen = ({ onEndGame }) => {
           <input type="text" placeholder="Splits and Features textbox!" />
         </div>
       
-      {/* Price component */}
+      {/* Price component next to Car component*/}
         <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
-          <label htmlFor="price-input" style={{ fontWeight: "bold" }}>Price:</label>
-          <input id="price-input" type="text" placeholder="Enter your price" />
-        </div> 
+            <label htmlFor="price-input" style={{ fontWeight: "bold" }}>Price:</label>
+            <input id="price-input" type="text" placeholder="Enter your price" />
+            <span style={{ fontWeight: "bold" }}>Car:</span>
+            <input id="car-input" type="text" placeholder="Enter car name" />
+        </div>
   
       {/* Buyer buying component */}
         <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
