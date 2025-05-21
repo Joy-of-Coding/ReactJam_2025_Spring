@@ -5,6 +5,7 @@ import StartScreen from "./components/Screens/StartScreen.jsx";
 import GameScreen from "./components/Screens/GameScreen.jsx";
 
 import selectSoundAudio from "./assets/select.wav";
+import { render } from "react-dom";
 
 const selectSound = new Audio(selectSoundAudio);
 
@@ -22,26 +23,40 @@ function App() {
   };
 
   /// jaypox
-  const [game, setGame] = useState();
-  const [yourPlayerId, setYourPlayerId] = useState();
+  // const [game, setGame] = useState();
+  // const [yourPlayerId, setYourPlayerId] = useState();
+// client.js
+  Rune.initClient({
+    onChange: ({
+                 game,
+                 yourPlayerId,
+                 allPlayerIds,
+                 action,
+               }) => {
+      const { roles } = game;
+      const playerIds = allPlayerIds
+    },
+  })
+  // useEffect(() => {
+  //   Rune.initClient({
+  //     onChange: ({
+  //                  game,
+  //                  action,
+  //                   yourPlayerId }) => {
+  //       setGame(game);
+  //       setYourPlayerId(yourPlayerId);
+  //
+  //       // if (action && action.name === "claimCell") selectSound.play();
+  //     },
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    Rune.initClient({
-      onChange: ({ game, action, yourPlayerId }) => {
-        setGame(game);
-        setYourPlayerId(yourPlayerId);
+  // if (!game) {
+  //   // Rune only shows your game after an onChange() so no need for loading screen
+  //   return;
+  // }
 
-        // if (action && action.name === "claimCell") selectSound.play();
-      },
-    });
-  }, []);
 
-  if (!game) {
-    // Rune only shows your game after an onChange() so no need for loading screen
-    return;
-  }
-
-  const { roles, playerIds } = game;
 
   return (
     <>
@@ -51,8 +66,8 @@ function App() {
       
 
       <ul id="playersSection">
-        {playerIds.map((playerId, index) => {
-          const player = Rune.getPlayerInfo(playerId);
+        {playerIds.map((p, index) => {
+          const player = Rune.getPlayerInfo(p);
 
           return (
             <li
