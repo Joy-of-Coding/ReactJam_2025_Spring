@@ -74,3 +74,4 @@ Primary Goal - sell a loan at the highest interest rate possible
 15 points for loans greater than 23%
 Secondary goal - sell spiffs that Salesperson was unable to sell
 and get the points as the Salesperson would have.
+
