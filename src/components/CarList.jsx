@@ -1,16 +1,22 @@
 
-import carData from './CarInfo'; // Importing data from CarInfo
-
-const CarList = () => {
+// import carData from './CarInfo'; // Importing data from CarInfo
+import React from "react";
+const CarList = ({cars, seller}) => {
     return (
-        <ul className="car-features-list">
-            {carData.map((car, index) => (
-                <li key={index} style={{ marginBottom: '10px' }}>
-                    <div><strong>Make:</strong> {car.make}</div>
-                    <div><strong>Model:</strong> {car.model}</div>
-                </li>
-            ))}
-        </ul>
+      <div >
+          <ul>
+        {/*<ul className="car-features-list">*/}
+            {cars.map((car, i) =>
+              <div className="car-info-box compact" key={i}>
+                  <li><strong>Make:</strong> {car.make}</li>
+                  <li><strong>Model:</strong> {car.model}</li>
+                  {seller &&
+                    <li><strong>List Price:</strong> {car.price}</li>
+                  }
+              </div>
+            )}
+          </ul>
+      </div>
     );
 };
 

@@ -6,8 +6,9 @@ import "../styles/StartScreen.css";
 
 const StartScreen = ({ onStartGame }) => {
   // const StartScreen = () => {
-  const openBuyer = () => {
+  const updateBuyer = () => {
     console.log("Buyer button clicked");
+    Rune.actions.assignRole("Buyer")
     // Logic to open the buyer's screen
   };
   const openSalesperson = () => {
@@ -17,6 +18,7 @@ const StartScreen = ({ onStartGame }) => {
   };
   const handleSpectate = () => {
     console.log("Spectate button clicked");
+    Rune.actions.assignRole("Spectator")
     // Logic to open the spectator's screen
   };
   return (
@@ -29,7 +31,7 @@ const StartScreen = ({ onStartGame }) => {
           <button onClick={handleSpectate}>Spectate</button>
         </div>
         <div className="flex">
-          <button className="buyer-button" onClick={openBuyer}>
+          <button className="buyer-button" onClick={updateBuyer}>
             I'm the Buyer
           </button>
           <button className="seller-button" onClick={openSalesperson}>

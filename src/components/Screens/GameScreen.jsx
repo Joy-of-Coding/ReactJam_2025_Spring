@@ -6,17 +6,25 @@ import Car from "../Car.jsx";
 import CarList from "../CarList.jsx";
 import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
 import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
+import gameScreen from "./GameScreen.jsx";
 
 
-const GameScreen = ({ onEndGame }) => {
+const GameScreen = ({ onEndGame, roles, game, yourPlayerId, cars }) => {
+  const buyer = roles[yourPlayerId]==="Buyer"
+  const seller = roles[yourPlayerId] === "Seller"
   return (
     <div className="game-screen">
-      <h2>The game has started!</h2>
-      
-      <>
-      <Salesperson />
-      <Buyer />
-      </>
+      <h2>Dave's Used Car Lot</h2>
+
+      {seller &&
+        <Salesperson />
+      }
+
+      { buyer &&
+        <Buyer />
+      }
+
+
       {/* <Car
         year={1982}
         model={"DeLorean"}
@@ -26,35 +34,36 @@ const GameScreen = ({ onEndGame }) => {
         features={["Gull-Wing Doors", "Apple Carplay", "LED Headlights"]}
       />
        */}
+      { (buyer || seller) &&
+        <CarList cars={cars} seller={seller} />
+      }
+      {/*/!* Beginning contract component *!/*/}
+      {/*/!* Spits and Features component *!/*/}
+      {/*<div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>*/}
+      {/*  <span style={{ fontWeight: "bold" }}>Splits and Features:</span>*/}
+      {/*  <input type="text" placeholder="Splits and Features textbox!" />*/}
+      {/*</div>*/}
 
-      <CarList />
+      {/*/!* Price component next to Car component*!/*/}
+      {/*<div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>*/}
+      {/*  <label htmlFor="price-input" style={{ fontWeight: "bold" }}>Price:</label>*/}
+      {/*  <input id="price-input" type="text" placeholder="Enter your price" />*/}
+      {/*  <span style={{ fontWeight: "bold" }}>Car:</span>*/}
+      {/*  <input id="car-input" type="text" placeholder="Enter car name" />*/}
+      {/*</div>*/}
 
-      {/* Beginning contract component */}
-      {/* Spits and Features component */}
-        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-          <span style={{ fontWeight: "bold" }}>Splits and Features:</span>
-          <input type="text" placeholder="Splits and Features textbox!" />
-        </div>
-      
-      {/* Price component next to Car component*/}
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
-            <label htmlFor="price-input" style={{ fontWeight: "bold" }}>Price:</label>
-            <input id="price-input" type="text" placeholder="Enter your price" />
-            <span style={{ fontWeight: "bold" }}>Car:</span>
-            <input id="car-input" type="text" placeholder="Enter car name" />
-        </div>
-  
+
       {/* Buyer buying component */}
-        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-          <span style={{ fontWeight: "bold" }}>Buyer:</span>
-          <WalkAwayButton />
-          <SignTheContractButton />
-        </div>
-
+      {buyer &&
+      <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+        <span style={{ fontWeight: "bold" }}>Buyer:</span>
+        <WalkAwayButton />
+        <SignTheContractButton />
+      </div>
+      }
 
       {/* End game button */}
 
-       
 
       <button className="end-button" onClick={onEndGame}>
         End Game

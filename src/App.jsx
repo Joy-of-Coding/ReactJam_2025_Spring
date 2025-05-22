@@ -28,6 +28,7 @@ function App() {
       onChange: ({ game, yourPlayerId }) => {
         setGame(game)
         setYourPlayerId(yourPlayerId)
+
       }
     })
   }, []);
@@ -37,19 +38,27 @@ function App() {
     return;
   }
 
-  const { winCombo, cells, lastMovePlayerId, playerIds, freeCells } = game;
+  const { playerIds,  roles, cars } = game;
 
+
+console.log(roles)
   return (
     <>
     	{!gameStarted && <StartScreen onStartGame={handleStartGame} />}
-			{gameStarted && <GameScreen onStartGame={handleStartGame} />}
+			{gameStarted && <GameScreen
+        onStartGame={handleStartGame}
+        roles={roles}
+        game={game}
+        yourPlayerId={yourPlayerId}
+        cars={cars}
+      />}
       {/* <StartScreen onStartGame={handleStartGame} /> */}
       
 
       <ul id="playersSection">
-        {playerIds.map((p, index) => {
-          const player = Rune.getPlayerInfo(p);
-          console.log(player)
+        {playerIds.map((playerId, index) => {
+          const player = Rune.getPlayerInfo(playerId);
+          console.log(playerId,  player)
           return (
             <li
               key={player.playerId}
