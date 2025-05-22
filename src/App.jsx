@@ -46,7 +46,7 @@ function App() {
   return (
     <>
     	{!gameStarted && <StartScreen onStartGame={handleStartGame} />}
-			{gameStarted && <GameScreen onStartGame={handleStartGame} />}
+      {gameStarted && <GameScreen onStartGame={handleStartGame} playerId={yourPlayerId} />}
       {/* <StartScreen onStartGame={handleStartGame} /> */}
   
   
