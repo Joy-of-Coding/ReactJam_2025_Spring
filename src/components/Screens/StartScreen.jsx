@@ -6,14 +6,18 @@ const StartScreen = ({ onStartGame }) => {
   // const StartScreen = () => {
   const openBuyer = () => {
     console.log("Buyer button clicked");
+    Rune.actions.assignRole("Buyer")
+    console.log("Buyer role assigned");
     // Logic to open the buyer's screen
   };
   const openSalesperson = () => {
     console.log("Salesperson button clicked");
+    Rune.actions.assignRole("Seller")
     // Logic to open the salesperson's screen
   };
   const handleSpectate = () => {
     console.log("Spectate button clicked");
+    Rune.actions.assignRole("Spectator")
     // Logic to open the spectator's screen
   };
   return (
