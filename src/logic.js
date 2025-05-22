@@ -47,7 +47,6 @@ Rune.initLogic({
           },
         })
       }
-
       game.freeCells = game.cells.findIndex((cell) => cell === null) !== -1
 
       if (!game.freeCells) {
