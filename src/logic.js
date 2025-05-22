@@ -81,6 +81,8 @@ Rune.initLogic({
   // Click the 'Add player' button on the desktop version succesfully adds a new player
   events: {
     playerJoined: (playerId, {game}) => {
+      const player = self.getPlayerInfo(playerId);
+      console.log(playerId,  player)
       console.log("Player joined:", playerId);
       console.log("Current players:", game.playerIds);
       console.log("Current roles:", game.roles); 
