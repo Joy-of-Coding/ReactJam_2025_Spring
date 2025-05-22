@@ -48,8 +48,8 @@ function App() {
     	{!gameStarted && <StartScreen onStartGame={handleStartGame} />}
 			{gameStarted && <GameScreen onStartGame={handleStartGame} />}
       {/* <StartScreen onStartGame={handleStartGame} /> */}
-      
-
+  
+  
       <ul id="playersSection">
         {playerIds.map((playerId, index) => {
           const player = Rune.getPlayerInfo(playerId);
