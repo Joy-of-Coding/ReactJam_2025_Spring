@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import StartScreen from "./components/Screens/StartScreen.jsx";
 import GameScreen from "./components/Screens/GameScreen.jsx";
-
+import NegotiationScreen from "./components/Screens/NegotiationScreen.jsx";
 import selectSoundAudio from "./assets/select.wav";
 
 const selectSound = new Audio(selectSoundAudio);
@@ -16,9 +16,14 @@ function App() {
     console.log("The game has started");
     setGameStarted(true);
   };
+  const [negotiationStarted, setNegotiationStarted] = useState(false);
 
-  const handleEndGame = () => {
-    setGameStarted(false);
+  const handleStartNegotiation = () => {
+    console.log("The negotiation has started");
+    setNegotiationStarted(true);
+  };
+  const handleStopNegotiation = () => {
+    setNegotiationStarted(false);
   };
 
   /// jaypox
@@ -45,12 +50,14 @@ function App() {
 
   return (
     <>
-    	{!gameStarted && <StartScreen onStartGame={handleStartGame} />}
-      {gameStarted && <GameScreen onStartGame={handleStartGame} playerId={yourPlayerId} />}
+    	{!gameStarted && !negotiationStarted && <StartScreen onStartGame={handleStartGame} />}
+      {gameStarted && !negotiationStarted && <GameScreen onStartGame={handleStartGame} onNegotiation={handleStartNegotiation} playerId={yourPlayerId} />}
+      {/* {!negotiationStarted && <NegotiationScreen onStartGame={handleStartNegotiation} playerId={yourPlayerId} />} */}
+      {negotiationStarted && <NegotiationScreen offNegotiation={handleStopNegotiation} playerId={yourPlayerId} />}      
       {/* <StartScreen onStartGame={handleStartGame} /> */}
   
   
-      <ul id="playersSection">
+      <ul id="playersSection"> 
         {playerIds.map((playerId, index) => {
           const player = Rune.getPlayerInfo(playerId);
 
