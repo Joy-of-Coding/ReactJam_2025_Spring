@@ -7,7 +7,7 @@ import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
 import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
 
 
-const GameScreen = ({ onEndGame, playerId, game }) => {
+const GameScreen = ({ onEndGame, onNegotiation, playerId, game }) => {
   // State to track the player's role
   const [playerRole, setPlayerRole] = useState('buyer'); // Default to 'buyer'; can be 'salesperson'
 // Above on line 12 is a placeholder.  Needs Rune logic.
@@ -68,6 +68,10 @@ const GameScreen = ({ onEndGame, playerId, game }) => {
             <SignTheContractButton />
           </div>
         </div>
+      <button className="end-button" onClick={onNegotiation}>
+        
+        Start Negotiation
+      </button>
 
         {/* End Game Button */}
         <button className="end-button" onClick={onEndGame}>

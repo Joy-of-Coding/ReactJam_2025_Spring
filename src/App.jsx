@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 import StartScreen from "./components/Screens/StartScreen.jsx";
 import GameScreen from "./components/Screens/GameScreen.jsx";
-
-// import selectSoundAudio from "./assets/select.wav";
+import NegotiationScreen from "./components/Screens/NegotiationScreen.jsx";
+import selectSoundAudio from "./assets/select.wav";
 
 // const selectSound = new Audio(selectSoundAudio);
 
@@ -16,7 +16,18 @@ function App() {
     console.log("The game has started");
     setGameStarted(true);
   };
+  const [negotiationStarted, setNegotiationStarted] = useState(false);
 
+  const handleStartNegotiation = () => {
+    console.log("The negotiation has started");
+    setNegotiationStarted(true);
+  };
+  const handleStopNegotiation = () => {
+    setNegotiationStarted(false);
+    console.log("Current players:", game.playerIds);
+    console.log("Current roles:", game.roles); 
+  };
+  
   const handleEndGame = () => {
     setGameStarted(false);
     console.log("Current players:", game.playerIds);
@@ -47,11 +58,13 @@ function App() {
 
   return (
     <>
-    	{!gameStarted && <StartScreen onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
-      {gameStarted && <GameScreen onEndGame={handleEndGame} playerId={yourPlayerId} game={game}/>}
+    	{!gameStarted && !negotiationStarted && <StartScreen onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
+      {gameStarted && !negotiationStarted && <GameScreen onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} playerId={yourPlayerId} game={game}/>}
+      {/* {!negotiationStarted && <NegotiationScreen onStartGame={handleStartNegotiation} playerId={yourPlayerId} />} */}
+      {negotiationStarted && <NegotiationScreen offNegotiation={handleStopNegotiation} playerId={yourPlayerId} />}      
       {/* <StartScreen onStartGame={handleStartGame} /> */}
   
-      <ul id="playersSection">
+      <ul id="playersSection"> 
         {playerIds.map((playerId, index) => {
           const player = Rune.getPlayerInfo(playerId);
 
