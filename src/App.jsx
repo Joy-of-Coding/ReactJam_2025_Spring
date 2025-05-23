@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import StartScreen from "./components/Screens/StartScreen.jsx";
 import GameScreen from "./components/Screens/GameScreen.jsx";
 
-import selectSoundAudio from "./assets/select.wav";
+// import selectSoundAudio from "./assets/select.wav";
 
-const selectSound = new Audio(selectSoundAudio);
+// const selectSound = new Audio(selectSoundAudio);
 
 function App() {
   //   ///
@@ -19,6 +19,8 @@ function App() {
 
   const handleEndGame = () => {
     setGameStarted(false);
+    console.log("Current players:", game.playerIds);
+    console.log("Current roles:", game.roles); 
   };
 
   /// jaypox
@@ -45,10 +47,9 @@ function App() {
 
   return (
     <>
-    	{!gameStarted && <StartScreen onStartGame={handleStartGame} />}
-      {gameStarted && <GameScreen onStartGame={handleStartGame} playerId={yourPlayerId} />}
+    	{!gameStarted && <StartScreen onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
+      {gameStarted && <GameScreen onEndGame={handleEndGame} playerId={yourPlayerId} game={game}/>}
       {/* <StartScreen onStartGame={handleStartGame} /> */}
-  
   
       <ul id="playersSection">
         {playerIds.map((playerId, index) => {
