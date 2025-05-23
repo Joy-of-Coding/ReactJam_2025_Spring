@@ -88,6 +88,11 @@ Rune.initLogic({
       console.log("Current roles:", game.roles); 
 
     },
+    playerLeft: (playerId, {game}) => {
+      console.log("Player left:", playerId);
+      console.log("Current players:", game.playerIds);
+      console.log("Current roles:", game.roles); 
+    }
     
   
 }})

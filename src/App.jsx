@@ -18,6 +18,7 @@ function App() {
   };
 
   const handleEndGame = () => {
+    console.log("The game has ended");
     setGameStarted(false);
   };
 
@@ -46,7 +47,9 @@ function App() {
   return (
     <>
     	{!gameStarted && <StartScreen onStartGame={handleStartGame} />}
-      {gameStarted && <GameScreen onStartGame={handleStartGame} playerId={yourPlayerId} />}
+      {/*{gameStarted && <GameScreen onStartGame={handleStartGame} playerId={yourPlayerId} />} */}
+      {gameStarted && <GameScreen onEndGame={handleEndGame} playerId={yourPlayerId} />}
+      {/* <GameScreen onEndGame={handleEndGame} playerId={yourPlayerId
       {/* <StartScreen onStartGame={handleStartGame} /> */}
   
   
