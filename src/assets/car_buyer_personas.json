@@ -1,0 +1,182 @@
+[
+  {
+    "persona": 1,
+    "description_1": "likes fast car / fast lifestyle buyer",
+    "avatarUrl": "https://example.com/avatars/johndoe.jpg",
+    "nickName": "Alan Shepard",
+    "profile": {
+      "newCar": true,
+      "carType": "sports car",
+      "colorModel": "speedyRed",
+      "qualifyLargeBudget": true,
+      "technologyPackage": "theWorks",
+      "insights": "sports car brand is known to be 'not highest on safety or reliability'",
+      "availability": "today",
+      "marketDemand": "scarce",
+      "rarity": "high",
+      "msrp": "low range mark up"
+    }
+  },
+  {
+    "persona": 2,
+    "description_1": "family person with kids on the way",
+    "avatarUrl": "https://example.com/avatars/familybuyer.jpg",
+    "nickName": "Susan Miles",
+    "profile": {
+      "newCar": "either new or used",
+      "carType": "passenger car",
+      "colorModel": "white preferred, negotiable",
+      "qualifyLargeBudget": "lower mid range",
+      "technologyPackage": "standard radio system",
+      "insights": "economy brand known for reliability, low engine power",
+      "availability": "readily available",
+      "marketDemand": "common",
+      "rarity": "low",
+      "msrp": "mid-range markup (new), low-range markup (used)"
+    }
+  },
+  {
+    "persona": 3,
+    "description_1": "little old lady with a secret need for speed",
+    "avatarUrl": "https://example.com/avatars/oldladyracer.jpg",
+    "nickName": "Betty Speedwell",
+    "profile": {
+      "newCar": false,
+      "carType": "classic foreign car",
+      "colorModel": "British Racing Green",
+      "qualifyLargeBudget": "mid range",
+      "technologyPackage": "none, open to spiffs",
+      "insights": "frequent repairs, seat belts only, no airbags",
+      "availability": "not common",
+      "marketDemand": "diamond in the rough",
+      "rarity": "high",
+      "msrp": "high markup (used)"
+    }
+  },
+  {
+    "persona": 4,
+    "description_1": "High School Student getting first car with Mom&Dads help",
+    "avatarUrl": "https://example.com/avatars/teenbuyer.jpg",
+    "nickName": "Jake Wheeler",
+    "profile": {
+      "newCar": false,
+      "carType": "passenger car",
+      "colorModel": "odd color (butterscotch), reliable and fun",
+      "qualifyLargeBudget": "low",
+      "technologyPackage": "none, open to spiffs",
+      "insights": "fixer upper",
+      "availability": "readily available",
+      "marketDemand": "standard",
+      "rarity": "low",
+      "msrp": "mid-range markup (used)"
+    }
+  },
+  {
+    "persona": 5,
+    "description_1": "New career person wanting eco-friendly car on budget",
+    "avatarUrl": "https://example.com/avatars/ecoemployee.jpg",
+    "nickName": "Lena Greenway",
+    "profile": {
+      "newCar": true,
+      "carType": "passenger car",
+      "colorModel": "common, eco-friendly, high social score",
+      "qualifyLargeBudget": "med-high",
+      "technologyPackage": "lots of tech, open to spiffs",
+      "insights": "new, reliable, not fast",
+      "availability": "high demand",
+      "marketDemand": "high",
+      "rarity": "moderate",
+      "msrp": "high markup (new)"
+    }
+  },
+  {
+    "persona": 6,
+    "description_1": "long haired hippy dude with travel-ready van dreams",
+    "avatarUrl": "https://example.com/avatars/vanhippy.jpg",
+    "nickName": "Sky Roadman",
+    "profile": {
+      "newCar": false,
+      "carType": "passenger van",
+      "colorModel": "odd color (butterscotch), roomy and reliable",
+      "qualifyLargeBudget": "mid range",
+      "technologyPackage": "tech expected, open to spiffs",
+      "insights": "used, open to fixer upper",
+      "availability": "readily available",
+      "marketDemand": "moderate",
+      "rarity": "medium",
+      "msrp": "mid-range markup (used)"
+    }
+  },
+  {
+    "persona": 7,
+    "description_1": "construction worker needing truck for hauling",
+    "avatarUrl": "https://example.com/avatars/truckworker.jpg",
+    "nickName": "Mike Builder",
+    "profile": {
+      "newCar": true,
+      "carType": "heavy duty truck",
+      "colorModel": "neon green, large bed",
+      "qualifyLargeBudget": "mid range",
+      "technologyPackage": "tech expected, open to spiffs",
+      "insights": "reliable, heavy-duty",
+      "availability": "readily available",
+      "marketDemand": "moderate",
+      "rarity": "low",
+      "msrp": "mid-range markup (new)"
+    }
+  },
+  {
+    "persona": 8,
+    "description_1": "Uber driver making money with a car",
+    "avatarUrl": "https://example.com/avatars/uberdriver.jpg",
+    "nickName": "Carlos Shift",
+    "profile": {
+      "newCar": true,
+      "carType": "SUV",
+      "colorModel": "black luxury SUV",
+      "qualifyLargeBudget": "mid range",
+      "technologyPackage": "tech expected, open to spiffs",
+      "insights": "plenty of passenger/luggage space",
+      "availability": "readily available",
+      "marketDemand": "moderate",
+      "rarity": "low",
+      "msrp": "mid-range markup (new)"
+    }
+  },
+  {
+    "persona": 9,
+    "description_1": "buyer burned by lemon car, seeking redemption",
+    "avatarUrl": "https://example.com/avatars/secondchance.jpg",
+    "nickName": "Dan Cautious",
+    "profile": {
+      "newCar": false,
+      "carType": "reliable coupe",
+      "colorModel": "white 4-door coupe",
+      "qualifyLargeBudget": "low",
+      "technologyPackage": "none, open to spiffs",
+      "insights": "short term use, from school to job",
+      "availability": "readily available",
+      "marketDemand": "common",
+      "rarity": "low",
+      "msrp": "low markup (used)"
+    }
+  },
+  {
+    "persona": 10,
+    "description_1": "family needing SUV/van for events, kids, and dog",
+    "avatarUrl": "https://example.com/avatars/familyvan.jpg",
+    "nickName": "Tracy Together",
+    "profile": {
+      "newCar": true,
+      "carType": "SUV or minivan",
+      "colorModel": "sea foam green",
+      "qualifyLargeBudget": "mid range",
+      "technologyPackage": "tech expected, open to spiffs",
+      "insights": "roomy for people and gear",
+      "availability": "readily available",
+      "marketDemand": "moderate",
+      "rarity": "low",
+      "msrp": "mid-range markup (new)"
+    }
+  }
+]

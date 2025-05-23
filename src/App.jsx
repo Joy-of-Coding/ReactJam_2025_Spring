@@ -6,7 +6,7 @@ import GameScreen from "./components/Screens/GameScreen.jsx";
 import NegotiationScreen from "./components/Screens/NegotiationScreen.jsx";
 import selectSoundAudio from "./assets/select.wav";
 
-const selectSound = new Audio(selectSoundAudio);
+// const selectSound = new Audio(selectSoundAudio);
 
 function App() {
   //   ///
@@ -24,6 +24,14 @@ function App() {
   };
   const handleStopNegotiation = () => {
     setNegotiationStarted(false);
+    console.log("Current players:", game.playerIds);
+    console.log("Current roles:", game.roles); 
+  };
+  
+  const handleEndGame = () => {
+    setGameStarted(false);
+    console.log("Current players:", game.playerIds);
+    console.log("Current roles:", game.roles); 
   };
 
   /// jaypox
@@ -50,12 +58,11 @@ function App() {
 
   return (
     <>
-    	{!gameStarted && !negotiationStarted && <StartScreen onStartGame={handleStartGame} />}
-      {gameStarted && !negotiationStarted && <GameScreen onStartGame={handleStartGame} onNegotiation={handleStartNegotiation} playerId={yourPlayerId} />}
+    	{!gameStarted && !negotiationStarted && <StartScreen onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
+      {gameStarted && !negotiationStarted && <GameScreen onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} playerId={yourPlayerId} game={game}/>}
       {/* {!negotiationStarted && <NegotiationScreen onStartGame={handleStartNegotiation} playerId={yourPlayerId} />} */}
       {negotiationStarted && <NegotiationScreen offNegotiation={handleStopNegotiation} playerId={yourPlayerId} />}      
       {/* <StartScreen onStartGame={handleStartGame} /> */}
-  
   
       <ul id="playersSection"> 
         {playerIds.map((playerId, index) => {
