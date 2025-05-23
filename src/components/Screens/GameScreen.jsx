@@ -12,7 +12,7 @@ const GameScreen = ({ onEndGame, onNegotiation, playerId }) => {
   
   return (
     <div className="game-screen">
-      <h2>Welcome to the Lobby!</h2>
+      <h2>Welcome to the Showroom!</h2>
       
       <>
 

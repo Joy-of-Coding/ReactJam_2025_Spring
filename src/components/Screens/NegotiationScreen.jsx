@@ -59,7 +59,7 @@ const NegotiationScreen = ({ offNegotiation, playerId }) => {
 
       <button className="end-button" onClick={offNegotiation}>
         
-        Back to Lobby
+        Back to Showroom
       </button>
     </div>
   );
