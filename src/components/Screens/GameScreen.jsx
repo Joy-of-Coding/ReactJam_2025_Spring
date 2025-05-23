@@ -6,9 +6,11 @@ import CarList from "../CarList.jsx";
 import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
 import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
 
-const GameScreen = ({ onEndGame }) => {
+
+const GameScreen = ({ onEndGame, playerId }) => {
   // State to track the player's role
   const [playerRole, setPlayerRole] = useState('buyer'); // Default to 'buyer'; can be 'salesperson'
+// Above on line 12 is a placeholder.  Needs Rune logic.
 
   return (
     <div className="game-screen">
@@ -72,6 +74,7 @@ const GameScreen = ({ onEndGame }) => {
           End Game
         </button>
       </div>
+
     </div>
   );
 };
