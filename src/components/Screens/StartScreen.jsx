@@ -3,7 +3,7 @@ import "../styles/StartScreen.css";
 
 // import bg from '../assets/bg.jpg';
 
-const StartScreen = ({ onStartGame }) => {
+const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState("Loading...");
   const [isHtmlContent, setIsHtmlContent] = useState(false); // to determine if content is HTML or plain text
@@ -12,18 +12,24 @@ const StartScreen = ({ onStartGame }) => {
     console.log("Buyer button clicked");
     Rune.actions.assignRole("Buyer")
     console.log("Buyer role assigned");
+    console.log("Current players:", game.playerIds);
+    console.log("Current roles:", game.roles); 
     // Logic to open the buyer's screen
   };
   const openSalesperson = () => {
     console.log("Salesperson button clicked");
     Rune.actions.assignRole("Seller")
     console.log("Salesperson role assigned");
+    console.log("Current players:", game.playerIds);
+    console.log("Current roles:", game.roles); 
     // Logic to open the salesperson's screen
   };
   const handleSpectate = () => {
     console.log("Spectator button clicked");
     Rune.actions.assignRole("Spectator")
     console.log("Spectator role assigned");
+    console.log("Current players:", game.playerIds);
+    console.log("Current roles:", game.roles); 
     // Logic to open the spectator's screen
   };
 
@@ -68,6 +74,7 @@ const StartScreen = ({ onStartGame }) => {
         </button>
       </div>
     </div>
+    {/* {game.role[yourPlayerId] === "Seller" && <div>Seller</div>} */}
 
     <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
       <button
