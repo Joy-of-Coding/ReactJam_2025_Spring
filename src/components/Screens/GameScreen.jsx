@@ -8,7 +8,8 @@ import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
 import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
 
 
-const GameScreen = ({ onEndGame }) => {
+const GameScreen = ({ onEndGame, playerId }) => {
+  
   return (
     <div className="game-screen">
       <h2>The game has started!</h2>
@@ -47,7 +48,7 @@ const GameScreen = ({ onEndGame }) => {
       {/* Buyer buying component */}
         <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
           <span style={{ fontWeight: "bold" }}>Buyer:</span>
-          <WalkAwayButton />
+          <WalkAwayButton playerId = {playerId}></WalkAwayButton>
           <SignTheContractButton />
         </div>
 
@@ -57,6 +58,7 @@ const GameScreen = ({ onEndGame }) => {
        
 
       <button className="end-button" onClick={onEndGame}>
+        
         End Game
       </button>
     </div>
