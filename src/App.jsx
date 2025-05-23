@@ -53,8 +53,8 @@ console.log(roles)
         cars={cars}
       />}
       {/* <StartScreen onStartGame={handleStartGame} /> */}
-      
-
+  
+  
       <ul id="playersSection">
         {playerIds.map((playerId, index) => {
           const player = Rune.getPlayerInfo(playerId);
