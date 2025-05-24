@@ -75,11 +75,14 @@ Rune.initLogic({
   actions: {
     assignRole: (role, { game, playerId }) => {
       game.roles[playerId] = role;
-    }
+    },
+      //End game action
+      onEndGame: () => {
+        Rune.gameOver();
   },
   
-  // Click the 'Add player' button on the desktop version succesfully adds a new player
-  events: {
+// Click the 'Add player' button on the desktop version succesfully adds a new player
+events: {
     playerJoined: (playerId, {game}) => {
       //const player = self.getPlayerInfo(playerId);
       //console.log(playerId,  player)
@@ -92,7 +95,7 @@ Rune.initLogic({
       console.log("Player left:", playerId);
       console.log("Current players:", game.playerIds);
       console.log("Current roles:", game.roles); 
-    }
-    
-  
-}})
+    },
+  }
+}
+})

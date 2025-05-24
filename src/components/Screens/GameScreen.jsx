@@ -53,14 +53,15 @@ const GameScreen = ({ onEndGame, playerId }) => {
         </div>
 
 
-      {/* End game button */}
-
-       
-
-      <button className="end-button" onClick={onEndGame}>
-        
-        End Game
+      {/* End game button logic */}
+      <button className="end-button" 
+        onClick={() => {
+          console.log("End game clicked");
+          Rune.actions.onEndGame();
+        }}>
+          End Game
       </button>
+      
     </div>
   );
 };
