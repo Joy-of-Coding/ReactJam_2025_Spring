@@ -10,26 +10,26 @@ const BuyerChoice = ({ onStartGame, yourPlayerId, game }) => {
   // const StartScreen = () => {
   const openBuyer = () => {
     console.log("Buyer button clicked");
-    Rune.actions.assignRole("Buyer")
-    console.log("Buyer role assigned");
+    Rune.actions.assignPersona("Moe")
+    console.log("Buyer persona assigned");
     console.log("Current players:", game.playerIds);
-    console.log("Current roles:", game.roles); 
+    console.log("Current personas:", game.personas); 
     // Logic to open the buyer's screen
   };
   const openSalesperson = () => {
     console.log("Salesperson button clicked");
-    Rune.actions.assignRole("Seller")
-    console.log("Salesperson role assigned");
+    Rune.actions.assignPersona("Curly")
+    console.log("Salesperson persona assigned");
     console.log("Current players:", game.playerIds);
-    console.log("Current roles:", game.roles); 
+    console.log("Current personas:", game.personas); 
     // Logic to open the salesperson's screen
   };
   const handleSpectate = () => {
     console.log("Spectator button clicked");
-    Rune.actions.assignRole("Spectator")
-    console.log("Spectator role assigned");
+    Rune.actions.assignPersona("Larry")
+    console.log("Spectator persona assigned");
     console.log("Current players:", game.playerIds);
-    console.log("Current roles:", game.roles); 
+    console.log("Current personas:", game.personas); 
     // Logic to open the spectator's screen
   };
 
@@ -74,7 +74,7 @@ const BuyerChoice = ({ onStartGame, yourPlayerId, game }) => {
         </button>
       </div>
     </div>
-    {/* {game.role[yourPlayerId] === "Seller" && <div>Seller</div>} */}
+    {/* {game.persona[yourPlayerId] === "Seller" && <div>Seller</div>} */}
 
     <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
       <button

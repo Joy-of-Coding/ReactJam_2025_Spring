@@ -5,6 +5,7 @@ Rune.initLogic({
   maxPlayers: 4, //Buyer, Salesperson, Spectator, Additional Player joining mid game
   setup: (allPlayerIds) => ({
     roles: Object.fromEntries(allPlayerIds.map(playerId => [playerId, null])),
+    personas: Object.fromEntries(allPlayerIds.map(playerId => [playerId, null])),
     playerIds: allPlayerIds,
     cars: cars
   }),
@@ -12,6 +13,9 @@ Rune.initLogic({
   actions: {
     assignRole: (role, { game, playerId }) => {
       game.roles[playerId] = role;
+    },
+      assignPersona: (persona, { game, playerId }) => {
+      game.personas[playerId] = persona;
     }
   },
   

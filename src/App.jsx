@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import StartScreen from "./components/Screens/StartScreen.jsx";
 import GameScreen from "./components/Screens/GameScreen.jsx";
+import BuyerChoice from "./components/Screens/BuyerChoice.jsx";
 import NegotiationScreen from "./components/Screens/NegotiationScreen.jsx";
 import selectSoundAudio from "./assets/select.wav";
 
@@ -58,7 +59,7 @@ function App() {
 
   return (
     <>
-    	{!gameStarted && !negotiationStarted && <StartScreen onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
+    	{!gameStarted && !negotiationStarted && <BuyerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
       {gameStarted && !negotiationStarted && <GameScreen onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} playerId={yourPlayerId} game={game}/>}
       {/* {!negotiationStarted && <NegotiationScreen onStartGame={handleStartNegotiation} playerId={yourPlayerId} />} */}
       {negotiationStarted && <NegotiationScreen offNegotiation={handleStopNegotiation} playerId={yourPlayerId} />}      
