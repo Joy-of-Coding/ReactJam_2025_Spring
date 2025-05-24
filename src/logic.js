@@ -88,6 +88,16 @@ Rune.initLogic({
       console.log("Current roles:", game.roles); 
 
     },
+    playerLeft: (playerId, {game}) => {
+      console.log("Player left:", playerId);
+      // Remove the player from the roles
+      delete game.roles[playerId];
+      // Remove the player from the playerIds
+      // Stole this line from tick-tac-toe and soduku
+      game.playerIds = game.playerIds.filter(id => id !== playerId);
+      console.log("Updated players:", game.playerIds);
+      console.log("Updated roles:", game.roles);
+    }
     
   
 }})
