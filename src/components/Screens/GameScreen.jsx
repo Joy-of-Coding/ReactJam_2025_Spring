@@ -59,7 +59,7 @@ const GameScreen = ({ onEndGame, playerId }) => {
           console.log("End game clicked");
           Rune.actions.onEndGame();
         }}>
-          End Game
+          End Game.
       </button>
       
     </div>
