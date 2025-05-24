@@ -16,7 +16,7 @@ const BuyerChoice = ({ onStartGame, yourPlayerId, game }) => {
   };
   const openSalesperson = () => {
     console.log("Salesperson button clicked");
-    Rune.actions.assignPersona("Curly")
+    Rune.actions.assignPersona("Larry")
     console.log("Salesperson persona assigned");
     console.log("Current players:", game.playerIds);
     console.log("Current personas:", game.personas); 
@@ -24,7 +24,7 @@ const BuyerChoice = ({ onStartGame, yourPlayerId, game }) => {
   };
   const handleSpectate = () => {
     console.log("Spectator button clicked");
-    Rune.actions.assignPersona("Larry")
+    Rune.actions.assignPersona("Curly")
     console.log("Spectator persona assigned");
     console.log("Current players:", game.playerIds);
     console.log("Current personas:", game.personas); 
@@ -37,14 +37,14 @@ const BuyerChoice = ({ onStartGame, yourPlayerId, game }) => {
       <div>
         <h1>Buyer Game</h1>
         <div className="flex">
-          <button onClick={handleSpectate}>Spectate</button>
+          <button onClick={handleSpectate}>I'm Curly</button>
         </div>
         <div className="flex">
           <button className="buyer-button" onClick={openBuyer}>
-            I'm the Buyer
+            I'm Moe
           </button>
           <button className="seller-button" onClick={openSalesperson}>
-            I'm the Salesperson
+            I'm Larry
           </button>
         </div>
         <button className="start-button" onClick={onStartGame}>
