@@ -4,9 +4,6 @@ import "../styles/StartScreen.css";
 // import bg from '../assets/bg.jpg';
 
 const SellerChoice = ({ onStartGame, yourPlayerId, game }) => {
-  const [showPopup, setShowPopup] = useState(false);
-  const [popupContent, setPopupContent] = useState("Loading...");
-  const [isHtmlContent, setIsHtmlContent] = useState(false); // to determine if content is HTML or plain text
   // const StartScreen = () => {
   const openBuyer = () => {
     console.log("Buyer button clicked");
@@ -33,31 +30,11 @@ const SellerChoice = ({ onStartGame, yourPlayerId, game }) => {
     // Logic to open the spectator's screen
   };
 
-  const handleShowInstructions = () => {
-  setShowPopup(true);
-  setIsHtmlContent(true);
-  fetch("../src/assets/instructions.txt")
-    .then((res) => res.text())
-    .then((text) => setPopupContent(text))
-    .catch(() => setPopupContent("Failed to load instructions."));
-  };
-  const handleShowCredits = () => {
-    setShowPopup(true);
-    setIsHtmlContent(false);
-    fetch("../src/assets/credits.txt")
-      .then((res) => res.text())
-      .then((text) => setPopupContent(text))
-      .catch(() => setPopupContent("Failed to load credits."));
-  };
-
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
   return (
   <>
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
       <div>
-        <h1>Online Used Car Sales Game</h1>
+        <h1>Seller Game</h1>
         <div className="flex">
           <button onClick={handleSpectate}>Spectate</button>
         </div>

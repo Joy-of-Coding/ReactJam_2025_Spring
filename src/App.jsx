@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import StartScreen from "./components/Screens/StartScreen.jsx";
 import GameScreen from "./components/Screens/GameScreen.jsx";
 import BuyerChoice from "./components/Screens/BuyerChoice.jsx";
+import SellerChoice from "./components/Screens/SellerChoice.jsx";
+import Showroom from "./components/Screens/Showroom.jsx";
 import NegotiationScreen from "./components/Screens/NegotiationScreen.jsx";
 import selectSoundAudio from "./assets/select.wav";
 
@@ -59,7 +61,7 @@ function App() {
 
   return (
     <>
-    	{!gameStarted && !negotiationStarted && <BuyerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
+    	{!gameStarted && !negotiationStarted && <StartScreen onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
       {gameStarted && !negotiationStarted && <GameScreen onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} playerId={yourPlayerId} game={game}/>}
       {/* {!negotiationStarted && <NegotiationScreen onStartGame={handleStartNegotiation} playerId={yourPlayerId} />} */}
       {negotiationStarted && <NegotiationScreen offNegotiation={handleStopNegotiation} playerId={yourPlayerId} />}      
@@ -88,10 +90,13 @@ function App() {
                 )}
               </span>
             </li>
+
           );
         })}
       </ul>
-
+      {<SellerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
+      {<BuyerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
+      {<Showroom onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
       
     </>
   );
