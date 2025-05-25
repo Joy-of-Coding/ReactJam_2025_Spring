@@ -1,4 +1,5 @@
 import React from 'react';
+import "../styles/GameScreen.css"
 import "../styles/NegotiationScreen.css"
 import Buyer from "../Buyer.jsx";
 import Salesperson from "../Salesperson.jsx";
@@ -12,47 +13,62 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
   
   return (
     <div className="game-screen">
-      <h2>The negotiation has started!</h2>
-      
-      <>
-      <Salesperson />
-      <Buyer />
-      </>
-      {/* <Car
-        year={1982}
-        model={"DeLorean"}
-        condition={"Used"}
-        mileage={185000}
-        price={39999.99}
-        features={["Gull-Wing Doors", "Apple Carplay", "LED Headlights"]}
-      />
-       */}
+      <h2>Negotiations</h2>
 
-      <CarList />
+      <div className="player-component">
+        <div className="player-info">
+          <h3>Player</h3>
+          <div className="player-name">Barbara Smith</div>
+          {/* <p>{playerRole === "buyer" ? "Buyer" : "Salesperson"}</p> */}
+        </div>
 
-      {/* Beginning contract component */}
-      {/* Spits and Features component */}
-        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-          <span style={{ fontWeight: "bold" }}>Splits and Features:</span>
-          <input type="text" placeholder="Splits and Features textbox!" />
+        <div className="roles-section">
+          {playerRole === "buyer" ? (
+            <div className="buyer-section">
+              <Buyer />
+            </div>
+          ) : (
+            <div className="salesperson-section">
+              <Salesperson />
+              <div className="secret-info">
+                <p>Secret info and goals go here</p>
+              </div>
+            </div>
+          )}
         </div>
-      
-      {/* Price component next to Car component*/}
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
-            <label htmlFor="price-input" style={{ fontWeight: "bold" }}>Price:</label>
-            <input id="price-input" type="text" placeholder="Enter your price" />
-            <span style={{ fontWeight: "bold" }}>Car:</span>
-            <input id="car-input" type="text" placeholder="Enter car name" />
+      </div>
+
+      <div className="car-list-section">
+        <h3>Car List</h3>
+        <div className="car-info">
+          <CarList />
         </div>
-  
-      {/* Buyer buying component */}
-        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-          <span style={{ fontWeight: "bold" }}>Buyer:</span>
-          <WalkAwayButton playerId = {yourPlayerId}></WalkAwayButton>
+      </div>
+
+      <div className="contract-component">
+        <h3>Contract</h3>
+
+        <div className="input-row">
+          <span>Car:</span>
+          <input id="car-input" type="text" placeholder="Enter car name" />
+        </div>
+
+        <div className="input-row">
+          <label htmlFor="price-input">Price:</label>
+          <input id="price-input" type="text" placeholder="Enter your price" />
+        </div>
+
+        <div className="input-row">
+          <span>Splits and Features:</span>
+          <input type="text" placeholder="Splits and Features textbox" />
+        </div>
+
+        <div className="input-row">
+          <span>Buyer:</span>
+          <WalkAwayButton yourPlayerId={yourPlayerId} />
           <SignTheContractButton yourPlayerId={yourPlayerId}  game={game} />
         </div>
-
-
+      </div>
       {/* End game button */}
 
        
