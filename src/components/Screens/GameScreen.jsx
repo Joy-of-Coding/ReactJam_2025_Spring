@@ -13,7 +13,7 @@ const GameScreen = ({ onEndGame, onNegotiation, playerId, game }) => {
 // Above on line 12 is a placeholder.  Needs Rune logic.
 
   return (
-    <div className="game-screen">
+<>
       {/* Negotiation Screen */}
       <div className="negotiation-screen">
         <h2>Negotiations</h2>
@@ -74,7 +74,7 @@ const GameScreen = ({ onEndGame, onNegotiation, playerId, game }) => {
       <button className="end-button" 
         onClick={() => {
           console.log("End game clicked");
-          Rune.actions.onEndGame();
+          Rune.actions.myAction();
         }}>
           End Game.
       </button>
@@ -83,6 +83,7 @@ const GameScreen = ({ onEndGame, onNegotiation, playerId, game }) => {
         Start Negotiation
       </button>
     </div>
+    </>
   );
 };
 

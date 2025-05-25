@@ -8,7 +8,7 @@ import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
 import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
 
 
-const NegotiationScreen = ({ offNegotiation, playerId }) => {
+const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
   
   return (
     <div className="game-screen">
@@ -48,8 +48,8 @@ const NegotiationScreen = ({ offNegotiation, playerId }) => {
       {/* Buyer buying component */}
         <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
           <span style={{ fontWeight: "bold" }}>Buyer:</span>
-          <WalkAwayButton playerId = {playerId}></WalkAwayButton>
-          <SignTheContractButton />
+          <WalkAwayButton playerId = {yourPlayerId}></WalkAwayButton>
+          <SignTheContractButton yourPlayerId={yourPlayerId}  game={game} />
         </div>
 
 
