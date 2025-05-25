@@ -89,6 +89,7 @@ function App() {
   />
 )}
 
+ {/* game HAS started, Negotiations NOT started, Choices NOT ended */}
 {gameStarted && !negotiationStarted && !ChoiceEnded && (
   game.roles[yourPlayerId] === "Buyer" ? (
     <BuyerChoice 
