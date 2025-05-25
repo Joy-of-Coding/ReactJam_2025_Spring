@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/NegotiationScreen.css"; // Custom styling for this page
+// import "../styles/NegotiationScreen.css"; // Custom styling for this page
 
 import Buyer from "../Buyer.jsx";
 import Salesperson from "../Salesperson.jsx";
