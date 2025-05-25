@@ -35,7 +35,7 @@ const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
             <p>{persona.description}</p>
             <button
               onClick={() => handleChoosePersona(persona)}
-              disabled={selectedPersonaId !== null}
+              // disabled={selectedPersonaId !== null}
             >
               I'm {persona.nickName}
             </button>
