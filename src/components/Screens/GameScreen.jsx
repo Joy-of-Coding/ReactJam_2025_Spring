@@ -3,7 +3,7 @@ import "../styles/NegotiationScreen.css"; // Custom styling for this page
 
 import Buyer from "../Buyer.jsx";
 import Salesperson from "../Salesperson.jsx";
-import CarList from "../CarList.jsx";
+import CarList from "../Cars/CarList.jsx";
 import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
 import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
 

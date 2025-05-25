@@ -1,4 +1,4 @@
-import cars from "./components/CarInfo";
+import cars from "./components/Cars/CarInfo";
 
 const isGameOver = (game) => {
   // Game over if catHappiness reaches 2000 or drops to 0
