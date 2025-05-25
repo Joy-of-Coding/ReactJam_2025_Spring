@@ -2,8 +2,7 @@ import React from 'react';
 import "../styles/NegotiationScreen.css"
 import Buyer from "../Buyer.jsx";
 import Salesperson from "../Salesperson.jsx";
-import Car from "../Car.jsx";
-import CarList from "../CarList.jsx";
+import CarList from "../Cars/CarList.jsx";
 import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
 import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
 

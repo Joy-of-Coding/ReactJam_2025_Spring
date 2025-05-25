@@ -1,62 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/StartScreen.css";
+import personas from "../../assets/car_buyer_personas.json";
 
-// import bg from '../assets/bg.jpg';
+const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
+  const [selectedPersonaId, setSelectedPersonaId] = useState(null);
+  const [hasConfirmed, setHasConfirmed] = useState(false);
 
-const BuyerChoice = ({ onStartGame, yourPlayerId, game }) => {
+  const handleChoosePersona = (persona) => {
+    if (selectedPersonaId !== null) return;
+    setSelectedPersonaId(persona.id);
+    Rune.actions.assignPersona(persona);
+    console.log(`${persona.nickName} persona assigned`);
+  };
 
-  // const StartScreen = () => {
-  const openBuyer = () => {
-    console.log("Buyer button clicked");
-    Rune.actions.assignPersona("Moe")
-    console.log("Buyer persona assigned");
-    console.log("Current players:", game.playerIds);
-    console.log("Current personas:", game.personas); 
-    // Logic to open the buyer's screen
-  };
-  const openSalesperson = () => {
-    console.log("Salesperson button clicked");
-    Rune.actions.assignPersona("Larry")
-    console.log("Salesperson persona assigned");
-    console.log("Current players:", game.playerIds);
-    console.log("Current personas:", game.personas); 
-    // Logic to open the salesperson's screen
-  };
-  const handleSpectate = () => {
-    console.log("Spectator button clicked");
-    Rune.actions.assignPersona("Curly")
-    console.log("Spectator persona assigned");
-    console.log("Current players:", game.playerIds);
-    console.log("Current personas:", game.personas); 
-    // Logic to open the spectator's screen
-  };
+  // ✅ Wait until the game state actually updates with the persona
+  useEffect(() => {
+    if (
+      hasConfirmed &&
+      game?.personas?.[yourPlayerId] &&
+      game.personas[yourPlayerId].id === selectedPersonaId
+    ) {
+      console.log("Persona sync confirmed in game state!");
+      onEndChoice();
+    }
+  }, [game.personas, hasConfirmed]);
 
   return (
-  <>
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
-      <div>
-        <h1>Buyer Game</h1>
-        <div className="flex">
-          <button onClick={handleSpectate}>I'm Curly</button>
-        </div>
-        <div className="flex">
-          <button className="buyer-button" onClick={openBuyer}>
-            I'm Moe
-          </button>
-          <button className="seller-button" onClick={openSalesperson}>
-            I'm Larry
-          </button>
-        </div>
-        <button className="start-button" onClick={onStartGame}>
-          Start Game
-        </button>
+      <h1>Buyer Game</h1>
+      <div className="persona-choice-list">
+        {personas.map((persona) => (
+          <div key={persona.id} className="persona-card">
+            <p><strong>{persona.nickName}</strong></p>
+            <p>{persona.description}</p>
+            <button
+              onClick={() => handleChoosePersona(persona)}
+              // disabled={selectedPersonaId !== null}
+            >
+              I'm {persona.nickName}
+            </button>
+          </div>
+        ))}
       </div>
-    </div>
-    {/* {game.persona[yourPlayerId] === "Seller" && <div>Seller</div>} */}
 
-  
-    
-  </>
-);
-}
+      <button
+        className="start-button"
+        onClick={() => setHasConfirmed(true)}
+        disabled={selectedPersonaId === null}
+      >
+        Confirm Choice
+      </button>
+    </div>
+  );
+};
+
 export default BuyerChoice;
