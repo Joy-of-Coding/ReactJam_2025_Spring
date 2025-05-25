@@ -61,6 +61,13 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
         <div className="flex">
           <button onClick={handleSpectate}>Spectate</button>
         </div>
+    <div style={{ textAlign: "center" }}>
+  <img 
+    src="./src/assets/img/Car-Sales-7.png" 
+    alt="Car Sales" 
+    style={{ width: "300px", height: "auto" }}
+  />
+  </div>
         <div className="flex">
           <button className="buyer-button" onClick={openBuyer}>
             I'm the Buyer
@@ -76,7 +83,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
     </div>
     {/* {game.role[yourPlayerId] === "Seller" && <div>Seller</div>} */}
 
-    <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+   <div className="flex" style={{ marginTop: "1rem" }}>
       <button
         style={{
           backgroundColor: "blue",
