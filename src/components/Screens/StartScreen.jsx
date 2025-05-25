@@ -11,7 +11,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const openBuyer = () => {
     console.log("Buyer button clicked");
     Rune.actions.assignRole("Buyer")
-    console.log("Buyer role assigned");
+    console.log(yourPlayerId, game.roles[yourPlayerId]);
     console.log("Current players:", game.playerIds);
     console.log("Current roles:", game.roles); 
     // Logic to open the buyer's screen

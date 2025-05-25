@@ -1,0 +1,52 @@
+/* src/styles/Showroom.css */
+.showroom-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    padding: 20px; /* Add some padding */
+  }
+  
+  .buyers-container {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    align-items: center;
+    width: 50%; /* Adjust width as needed */
+  }
+  
+  .buyer-placeholder {
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    border-radius: 50%;
+    background-color: lightgray; /* Placeholder color */
+    margin: 10px; /* Space between placeholders */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .sellers-container {
+    display: flex;
+    justify-content: right;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start */
+    width: 50%; /* Adjust width as needed */
+  }
+  
+  button {
+    width: 100%; /* Make buttons take full width */
+    padding: 15px; /* Add padding for a desk-like appearance */
+    margin: 10px 0; /* Space between buttons */
+    background-color: #4CAF50; /* Green background for desks */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Slightly rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  }
+  
+  button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
