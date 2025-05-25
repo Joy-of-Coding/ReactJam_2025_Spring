@@ -3,27 +3,28 @@ import cars from "./components/Cars/CarInfo";
 const isGameOver = (game) => {
   // Game over if catHappiness reaches 2000 or drops to 0
   // return game.catHappiness >= 1000 || game.catHappiness <= 0;
-  return game.scores[0] != 1
-}
+  return game.scores[0] != 1;
+};
 
 const finalizeScores = (game) => {
-  game.playerIds.forEach(playerId => {
+  game.playerIds.forEach((playerId) => {
     if (game.scores[playerId] < 0) {
       game.scores[playerId] = 0;
     }
   });
 };
 
-
 Rune.initLogic({
   minPlayers: 2,
   maxPlayers: 4, //Buyer, Salesperson, Spectator, Additional Player joining mid game
   setup: (allPlayerIds) => ({
-    roles: Object.fromEntries(allPlayerIds.map(playerId => [playerId, null])),
-    personas: Object.fromEntries(allPlayerIds.map(playerId => [playerId, null])),
-    scores: Object.fromEntries(allPlayerIds.map(playerId => [playerId, 1])),
+    roles: Object.fromEntries(allPlayerIds.map((playerId) => [playerId, null])),
+    personas: Object.fromEntries(
+      allPlayerIds.map((playerId) => [playerId, null]),
+    ),
+    scores: Object.fromEntries(allPlayerIds.map((playerId) => [playerId, 1])),
     playerIds: allPlayerIds,
-    cars: cars
+    cars: cars,
   }),
   // Assigns roles to players
   actions: {
@@ -33,13 +34,13 @@ Rune.initLogic({
     assignPersona: (personaObj, { game, playerId }) => {
       game.personas[playerId] = personaObj;
     },
-      //End game action
-    onEndGame: () => {
-        Rune.gameOver({
-        players: getScores(game.players),
-        delayPopUp: true,
-      })
-    },
+    //End game action
+    // onEndGame: () => {
+    //   Rune.gameOver({
+    //     players: getScores(game.players),
+    //     delayPopUp: true,
+    //   });
+    // },
     updateScore: ({ yourPlayerId, amount }, { game }) => {
       if (!game.playerIds.includes(yourPlayerId)) {
         throw Rune.invalidAction();
@@ -50,11 +51,13 @@ Rune.initLogic({
       }
 
       game.scores[yourPlayerId] += amount;
-      // game.catHappiness += amount; 
+      // game.catHappiness += amount;
       if (isGameOver(game)) {
-        // finalizeScores(game);
+        finalizeScores(game);
         Rune.gameOver({
-          players: Object.fromEntries(game.playerIds.map(id => [id, game.scores[id]]))
+          players: Object.fromEntries(
+            game.playerIds.map((id) => [id, game.scores[id]]),
+          ),
         });
       }
     },
@@ -66,25 +69,23 @@ Rune.initLogic({
           // [allPlayerIds[2]]: 20109,
           // [allPlayerIds[3]]: 323,
         },
-      })
+      });
     },
   },
-  
-// Click the 'Add player' button on the desktop version succesfully adds a new player
-events: {
-    playerJoined: (playerId, {game}) => {
+
+  // Click the 'Add player' button on the desktop version succesfully adds a new player
+  events: {
+    playerJoined: (playerId) => {
+      // playerJoined: (playerId, { game }) => {
       //const player = self.getPlayerInfo(playerId);
       //console.log(playerId,  player)
       console.log("Player joined:", playerId);
-
     },
-      playerLeft: (playerId, {game}) => {
-        console.log("Player left:", playerId);
-        // Remove the player from roles and personas
-        delete game.roles[playerId];
-        delete game.personas[playerId];
-    }
-    
-  
-}})
-    
+    playerLeft: (playerId, { game }) => {
+      console.log("Player left:", playerId);
+      // Remove the player from roles and personas
+      delete game.roles[playerId];
+      delete game.personas[playerId];
+    },
+  },
+});
