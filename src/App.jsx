@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 
 
 import StartScreen from "./components/Screens/StartScreen.jsx";
-import GameScreen from "./components/Screens/GameScreen.jsx";
+// import GameScreen from "./components/Screens/NegotiationScreen.jsx";
 import BuyerChoice from "./components/Screens/BuyerChoice.jsx";
 import SellerChoice from "./components/Screens/SellerChoice.jsx";
 import Showroom from "./components/Screens/Showroom.jsx";
 import NegotiationScreen from "./components/Screens/NegotiationScreen.jsx";
+import ChoicesScreen from "./components/Screens/ChoicesScreen.jsx";
 import selectSoundAudio from "./assets/select.wav";
 
 // const selectSound = new Audio(selectSoundAudio);
@@ -14,12 +15,18 @@ import selectSoundAudio from "./assets/select.wav";
 function App() {
   //   ///
   const [gameStarted, setGameStarted] = useState(false);
+  const [negotiationStarted, setNegotiationStarted] = useState(false);
 
   const handleStartGame = () => {
     console.log("The game has started");
     setGameStarted(true);
   };
-  const [negotiationStarted, setNegotiationStarted] = useState(false);
+    
+  const handleEndGame = () => {
+    setGameStarted(false);
+    console.log("Current players:", game.playerIds);
+    console.log("Current roles:", game.roles); 
+  };
 
   const handleStartNegotiation = () => {
     console.log("The negotiation has started");
@@ -30,12 +37,7 @@ function App() {
     console.log("Current players:", game.playerIds);
     console.log("Current roles:", game.roles); 
   };
-  
-  const handleEndGame = () => {
-    setGameStarted(false);
-    console.log("Current players:", game.playerIds);
-    console.log("Current roles:", game.roles); 
-  };
+
 
   /// jaypox
   const [game, setGame] = useState();
@@ -62,9 +64,9 @@ function App() {
   return (
     <>
     	{!gameStarted && !negotiationStarted && <StartScreen onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
-      {gameStarted && !negotiationStarted && <GameScreen onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} playerId={yourPlayerId} game={game}/>}
+      {gameStarted && !negotiationStarted && <ChoicesScreen onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} playerId={yourPlayerId} game={game}/>}
       {/* {!negotiationStarted && <NegotiationScreen onStartGame={handleStartNegotiation} playerId={yourPlayerId} />} */}
-      {negotiationStarted && <NegotiationScreen offNegotiation={handleStopNegotiation} playerId={yourPlayerId} />}      
+      {negotiationStarted && <NegotiationScreen onEndGame={handleEndGame} offNegotiation={handleStopNegotiation} playerId={yourPlayerId} game={game} />}      
       {/* <StartScreen onStartGame={handleStartGame} /> */}
   
       <ul id="playersSection"> 
@@ -74,11 +76,7 @@ function App() {
           return (
             <li
               key={playerId}
-              data-player={index.toString()}
-              // data-your-turn={String(
-              //   playerIds[index] !== lastMovePlayerId && !winCombo && freeCells
-              // )}
-            >
+              data-player={index.toString()}>
               <img src={player.avatarUrl} />
               <span>
                 {player.displayName}
@@ -96,7 +94,7 @@ function App() {
       </ul>
       {<SellerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
       {<BuyerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
-      {<Showroom onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
+      {<Showroom onNegotiation={handleStartNegotiation} yourPlayerId={yourPlayerId} game={game} />}
       
     </>
   );
