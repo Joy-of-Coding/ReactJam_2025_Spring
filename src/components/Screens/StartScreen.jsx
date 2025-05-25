@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/StartScreen.css";
+import car_image from "../../assets/img/car_sales7.svg";
 
 // import bg from '../assets/bg.jpg';
 
@@ -63,8 +64,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
         </div>
     <div style={{ textAlign: "center" }}>
   <img 
-    src="./src/assets/img/Car-Sales-7.png" 
-    alt="Car Sales" 
+    src= {car_image} alt = "image of buyer and seller. Buyer on the left and Seller on the right"
     style={{ width: "300px", height: "auto" }}
   />
   </div>
