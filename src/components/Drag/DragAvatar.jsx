@@ -1,20 +1,29 @@
     import React, { useState } from "react";
 
     const DragAvatar = ({ yourPlayerId, game }) => {
-    const handleMouseDown = () => {
-        console.log("avatar start drag");
-        Rune.actions.startDrag();
-    };
 
-    const handleMouseMove = (e) => {
-        console.log("dragging avatar");
-        Rune.actions.dragTo({ x: e.clientX, y: e.clientY });
-    };
+        // const objects[yourPlayerId] = {
+        //     id: playerId,
+        //     x: 100 + index * 100,
+        //     y: 100,
+        //     draggable: true,
+        //     heldBy: null,
+        // };
+        
+        const handleMouseDown = () => {
+            console.log("avatar start drag");
+            Rune.actions.startDrag();
+        };
 
-    const handleMouseUp = () => {
-        console.log("avatar stop drag");
-        Rune.actions.endDrag();
-    };
+        const handleMouseMove = (e) => {
+            console.log("dragging avatar");
+            Rune.actions.dragTo({ x: e.clientX, y: e.clientY });
+        };
+
+        const handleMouseUp = () => {
+            console.log("avatar stop drag");
+            Rune.actions.endDrag();
+        };
 
     return (
         <div>
@@ -36,7 +45,7 @@
                 zIndex: 10,
             }}
             >
-            <img src={Rune.getPlayerInfo(id).avatarUrl} alt="avatar" width="50" height="50" />
+            {/* <img src={Rune.getPlayerInfo(id).avatarUrl} alt="avatar" width="50" height="50" /> */}
             </div>
         ))}
         </div>
