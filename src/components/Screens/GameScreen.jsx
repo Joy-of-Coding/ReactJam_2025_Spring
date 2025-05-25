@@ -72,10 +72,6 @@ const GameScreen = ({ onEndGame, onNegotiation, playerId, game }) => {
       <button className="end-button" onClick={onNegotiation}>
         Start Negotiation
       </button>
-
-      <button className="end-button" onClick={onEndGame}>
-        End Game
-      </button>
     </div>
   );
 };
