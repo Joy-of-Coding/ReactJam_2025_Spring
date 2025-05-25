@@ -27,6 +27,13 @@ Rune.initLogic({
       console.log("Player joined:", playerId);
 
     },
+      playerLeft: (playerId, {game}) => {
+        console.log("Player left:", playerId);
+        // Remove the player from roles and personas
+        delete game.roles[playerId];
+        delete game.personas[playerId];
+    }
     
   
 }})
+    
