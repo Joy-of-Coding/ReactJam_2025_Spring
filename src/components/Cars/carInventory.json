@@ -1,0 +1,155 @@
+[
+  { "comment": "Update car description Family mid-size sedan",
+    "make": "Accel",
+    "model": "Avenger",
+    "year": "2015",
+    "mileage": 20000,
+    "price": 18500,
+    "condition": "excellent",
+    "doors": 4,
+    "fuel economy": "14 mpg",
+    "fuel type": "regular gas",
+    "capacity": "5 seats",
+    "preferences": [
+      "{buyerChoiceColor}",
+      "{engine size}",
+      "{reliability}",
+      "{safety features}",
+      "{AvailabilityCar}"
+    ],
+    "features": [
+      "Backup Camera",
+      "Bluetooth",
+      "Cruise Control",
+      "Power Windows",
+      "Hi Quality Audiophile package"
+    ]
+  },
+  {
+    "comment": "eco conscious",
+    "make": "Dynamo",
+    "models": "Fusion",
+    "year": "2022",
+    "mileage": 5000,
+    "price": 30500,
+    "condition": "excellent",
+    "doors": 4,
+    "fuel economy": "300 mi range on a full charge",
+    "fuel type": "electric",
+    "capacity": "5 seats",
+    "preferences": [
+      "{buyerChoiceColor}",
+      "{engine size}",
+      "{reliability}",
+      "{safety features}",
+      "{AvailabilityCar}"
+    ],
+    "features": [
+      "Backup Camera",
+      "Bluetooth",
+      "Cruise Control",
+      "Power Windows",
+      "Basic Stereo/Audio setup"
+    ]
+  },
+  {
+    "comment": "Truck",
+    "make": "Meridian",
+    "model": "M-150",
+    "year": 2020,
+    "mileage": 25000,
+    "price": 35000,
+    "condition": "Excellent",
+    "fuel economy": "28 mpg",
+    "fuel type": "premium",
+    "capacity": "5 seats",
+    "preferences": [
+      "{buyerChoiceColor}",
+      "{engine size}",
+      "{reliability}",
+      "{safety features}",
+      "{AvailabilityCar}"
+    ],
+    "features": [
+      "4WD",
+      "Backup Camera",
+      "Bluetooth",
+      "Cruise Control",
+      "Leather Seats",
+      "Navigation"
+    ]
+  },
+  {
+    "comment": "SUV",
+    "make": "Meridian",
+    "models": "Blazer",
+    "year": 2024,
+    "mileage": 100,
+    "price": 50000,
+    "condition": "Excellent",
+    "fuel economy": "28 mpg",
+    "fuel type": "premium",
+    "capacity": "8 seats",
+    "preferences": [
+      "{buyerChoiceColor}",
+      "{engine size}",
+      "{reliability}",
+      "{safety features}",
+      "{AvailabilityCar}"
+    ],
+    "features": [
+      "Front Wheel Drive",
+      "Backup Camera",
+      "Bluetooth",
+      "Cruise Control",
+      "Leather Seats",
+      "Navigation",
+      "Premium AV Sound System"
+    ]
+  },
+  {
+    "comment": "Van",
+    "make": "Eclipse",
+    "models": "EcoVan",
+    "year": 2010,
+    "mileage": 100000,
+    "price": 12000,
+    "condition": "Fair",
+    "fuel economy": "10 mpg",
+    "fuel type": "regular",
+    "capacity": "8 seats",
+    "preferences": [
+      "{buyerChoiceColor}",
+      "{engine size}",
+      "{reliability}",
+      "{safety features}",
+      "{AvailabilityCar}"
+    ],
+    "features": [
+      "Front Wheel Drive",
+      "Backup Camera",
+      "Premium AV Sound System"
+    ]
+  },
+  { "comment": "Student starter coupe",
+    "make": "Accel",
+    "model": "Crest",
+    "year": "2001",
+    "mileage": 70000,
+    "price": 12500,
+    "condition": "fair",
+    "doors": 4,
+    "fuel economy": "8 mpg",
+    "fuel type": "regular gas",
+    "capacity": "4 seats",
+    "preferences": [
+      "{buyerChoiceColor}",
+      "{engine size}",
+      "{reliability}",
+      "{safety features}",
+      "{AvailabilityCar}"
+    ],
+    "features": [
+    ]
+  }
+]

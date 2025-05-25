@@ -1,0 +1,149 @@
+/* Specific styles for GameScreen component */
+.game-screen {
+  padding: 20px;
+}
+
+.negotiation-screen {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.negotiation-screen h2 {
+  text-align: center;
+  margin-bottom: 20px;
+
+}
+
+/* Player Component Section */
+.player-component {
+  margin-bottom: 20px;
+  background-color: #400c3b;
+  border-radius: 15px; /* Rounded corners */
+  border: 2px solid #cccccc;
+  padding: 20px;
+}
+
+.player-info {
+  
+  border-radius: 15px; /* Rounded corners */
+  border: 2px solid #cccccc;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  margin: 20px;
+  background-color: rgb(65, 63, 63);
+}
+
+.player-name {
+  border-radius: 15px; /* Rounded corners */
+  border: 2px solid #cccccc;
+  padding: 20px;
+  background-color: #400c3b;
+}
+
+/* Car List Section */
+.car-list-section {
+  border: 2px solid #cccccc; /* Explicit border color and width */
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #400c3b;
+  border-radius: 15px; /* Rounded corners */
+}
+
+.car-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between car items */
+}
+
+.car-item {
+  border: 1px solid #cccccc; /* Border for individual car containers */
+  padding: 10px;
+  border-radius: 10px; /* Slightly smaller rounded corners for nested containers */
+  background-color: rgb(65, 63, 63); /* Slightly darker background for contrast */
+}
+
+/* Contract Component Section */
+.contract-component {
+  border: 2px solid #cccccc; /* Explicit border color and width */
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #400c3b;
+  border-radius: 15px; /* Rounded corners */
+}
+
+/* .player-component h3, */
+.car-list-section h3,
+.contract-component h3 {
+  margin-top: 0;
+}
+
+.roles-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.salesperson-section,
+.buyer-section {
+  padding: 20px;
+  border-radius: 15px; /* Rounded corners */
+  border: 2px solid #cccccc;
+  margin: 20px;
+
+  background-color: rgb(65, 63, 63);
+}
+
+.or-divider {
+  text-align: center;
+  font-weight: bold;
+}
+
+.secret-info {
+  margin-top: 10px;
+  padding: 10px;
+  font-style: italic;
+}
+
+.splits-features,
+.price-car-inputs,
+.buyer-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.car-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.splits-features input,
+.price-car-inputs input {
+  padding: 5px;
+  background-color: #444;
+  border: 1px solid white;
+  color: var(--primary-text-color);
+  border-radius: 5px;
+}
+
+/* End Game Button */
+.end-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #400c3b;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.end-button:hover {
+  background-color: red;
+}

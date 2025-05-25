@@ -1,0 +1,75 @@
+/* .start-screen {
+  height: 50%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: rgb(12, 12, 12);
+}
+
+/* .overlay {
+  background-color: rgba(0, 0, 0, 0.65);
+  height: 100%;
+  padding: 2rem;
+  overflow-y: auto;
+} */
+
+/* h1 {
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+.start-button {
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  background-color: #ffd700;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #000;
+  width: 100%
+}
+
+.start-button:hover {
+  background-color: #ffcf33;
+}
+
+.buyer-button,
+.seller-button {
+  width: 130px;
+  padding: 10px 10px;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #fff;
+  margin: 0;
+}
+
+/* Unique styles for buyer button */
+/* .buyer-button {
+  background-color: #4caf50;
+}
+
+.buyer-button:hover {
+  background-color: #45a049;
+} */
+
+/* Unique styles for seller button */
+/* .seller-button {
+  background-color: #2196f3;
+}
+
+.seller-button:hover {
+  background-color: #0b7dda;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+} */ 

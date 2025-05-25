@@ -2,8 +2,9 @@ body,
 html {
   padding: 0;
   margin: 0;
-  background: #333;
-  color: #e6e6e6;
+  background: linear-gradient(135deg, #87CEEB 0%, #E0F6FF 50%, #B8E6B8 100%);
+  min-height: 100vh;
+  color: #2C3E50;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
@@ -11,160 +12,232 @@ html {
 main {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   align-items: center;
   justify-content: space-around;
+  background: linear-gradient(135deg, #87CEEB 0%, #E0F6FF 50%, #B8E6B8 100%);
 }
 
-#board {
-  width: 90vw;
-  max-width: min(90vh, 600px);
-  aspect-ratio: 1;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-@keyframes right {
-  0%,
-  100% {
-    transform: translate(-20px);
-  }
-  50% {
-    transform: translate(20px);
-  }
-}
-
-@keyframes left {
-  0%,
-  100% {
-    transform: translate(20px);
-  }
-  50% {
-    transform: translate(-20px);
-  }
-}
-
-button {
-  position: relative;
-  background: transparent;
-  border: 1.3vw solid #e6e6e620;
-  border-left: 0;
-  border-top: 0;
-  width: 100%;
-  aspect-ratio: 1;
-  padding: 0;
-  margin: 0;
-}
-
-button:before {
-  position: absolute;
-  top: max(8%, 8px);
-  left: max(8%, 8px);
-  bottom: max(8%, 8px);
-  right: max(8%, 8px);
-  content: "";
-  display: block;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  transition: opacity 1s ease-out;
-}
-
-button[data-dim="true"]:before {
-  opacity: 0.2;
-  scale: 0.8;
-}
-
-@keyframes scale-in {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-button[data-player="0"]:before {
-  background-image: url(./assets/t-shirt.svg);
-  animation: scale-in 0.2s ease-in-out;
-}
-
-button[data-player="1"]:before {
-  background-image: url(./assets/invoice.svg);
-  animation: scale-in 0.2s ease-in-out;
-}
-
-button:nth-child(3n) {
-  border-right: 0;
-}
-
-button:nth-child(7),
-button:nth-child(8),
-button:nth-child(9) {
-  border-bottom: 0;
-}
-
-button:not([data-disabled]) {
-  cursor: pointer;
-}
-
-@keyframes tap-to-play {
-  0% {
-    transform: scale(0.7);
-  }
-  50% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0.7);
-  }
-}
-
-#board.initial button:nth-child(5)::before {
-  opacity: 1;
-  content: "tap to play";
+/* Start Screen Specific Styles */
+.start-screen {
+  background: linear-gradient(135deg, #87CEEB 0%, #E0F6FF 50%, #B8E6B8 100%) !important;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
+}
+
+.start-screen h1 {
+  color: #D32F2F;
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Button Styles */
+button {
+  font-family: inherit;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Role Selection Buttons */
+.buyer-button {
+  background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+  color: white;
+  width: 150px;
+  height: 45px; /* Fixed height to ensure both buttons are same size */
+  padding: 0 15px;
+  font-size: 1.1rem;
+  margin: 5px;
+  border: 2px solid #2E7D32;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buyer-button:hover {
+  background: linear-gradient(135deg, #45a049 0%, #5cb85c 100%);
+}
+
+.seller-button {
+  background: linear-gradient(135deg, #2196F3 0%, #42A5F5 100%);
+  color: white;
+  width: 150px;
+  height: 45px; /* Fixed height to ensure both buttons are same size */
+  padding: 0 15px;
+  font-size: 1.1rem;
+  margin: 5px;
+  border: 2px solid #1565C0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seller-button:hover {
+  background: linear-gradient(135deg, #0b7dda 0%, #1e88e5 100%);
+}
+
+/* Spectate Button */
+button[onClick*="handleSpectate"] {
+  background: linear-gradient(135deg, #FF9800 0%, #FFB74D 100%);
+  color: white;
+  padding: 12px 25px;
+  font-size: 1rem;
+  margin: 10px;
+  border: 2px solid #F57C00;
+}
+
+/* Start Game Button */
+.start-button {
+  background: linear-gradient(135deg, #FFD700 0%, #FFC107 100%);
+  color: #2C3E50;
+  width: 310px; /* Match combined width of buyer + seller buttons + gap */
+  padding: 15px 25px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 15px auto; /* Changed to auto for centering */
+  border: 2px solid #FF8F00;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+  display: block; /* Make it a block element so margin auto works */
+}
+
+.start-button:hover {
+  background: linear-gradient(135deg, #ffcf33 0%, #ffb300 100%);
+}
+
+/* How to Play and Credits Buttons */
+button[style*="blue"] {
+  background: linear-gradient(135deg, #3F51B5 0%, #5C6BC0 100%) !important;
+  border: 2px solid #283593 !important;
+  border-radius: 8px !important;
+}
+
+button[style*="magenta"] {
+  background: linear-gradient(135deg, #E91E63 0%, #F06292 100%) !important;
+  border: 2px solid #AD1457 !important;
+  border-radius: 8px !important;
+}
+
+/* Flex containers */
+.flex {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Popup Styles */
+div[style*="position: fixed"][style*="backgroundColor: \"rgba(0,0,0,0.5)\""] {
+  background-color: rgba(0,0,0,0.6) !important;
+}
+
+div[style*="position: fixed"][style*="backgroundColor: \"#fff\""] {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%) !important;
+  border: 3px solid #2196F3 !important;
+  color: #2C3E50 !important;
+}
+
+/* Image centering utility */
+.centered-image {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.centered-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Decorative elements */
+.car-dealership-theme {
+  position: relative;
+}
+
+.car-dealership-theme::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-
-  text-align: center;
-  font-size: 8vw;
-  font-weight: 700;
-  line-height: 11vw;
-  letter-spacing: 0vw;
-
-  background: linear-gradient(90deg, #cb89fc 0.24%, #fea9ab 96.17%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  animation: tap-to-play 1.5s ease-in-out infinite;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(33, 150, 243, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
 }
 
-@media (hover: hover) {
-  button:not([data-disabled]):after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -10%;
-    margin-left: -10%;
-    width: 20%;
-    border-radius: 50%;
-    background: #e6e6e6;
-    aspect-ratio: 1;
-    transition: all 0.15s ease-in-out;
-    scale: 0;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .start-screen h1 {
+    font-size: 2.5rem;
   }
+  
+  .buyer-button,
+  .seller-button {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+  
+  .start-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+  }
+  
+  /* Keep buyer/seller buttons side by side, but make spectate button stack */
+  .flex:has(.buyer-button, .seller-button) {
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .flex:not(:has(.buyer-button, .seller-button)) {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
 
-  button:hover:after {
-    scale: 1;
+@media (max-width: 480px) {
+  .start-screen h1 {
+    font-size: 2rem;
+  }
+  
+  .buyer-button,
+  .seller-button {
+    flex: 1;
+    min-width: 120px;
+  }
+  
+  /* Keep buyer/seller buttons side by side even on mobile */
+  .flex:has(.buyer-button, .seller-button) {
+    flex-direction: row;
+    gap: 8px;
+  }
+  
+  .start-button {
+    width: 100%;
+    max-width: 300px;
   }
 }
 
@@ -179,7 +252,6 @@ ul {
 }
 
 li {
-  /* opacity: 0.5; */
   line-height: 1.7;
   display: flex;
   flex-direction: column;
@@ -216,4 +288,22 @@ li[data-player="0"]:before {
 
 li[data-player="1"]:before {
   background-image: url(./assets/invoice.svg);
+}
+
+.car-features-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  font-size: 1rem;
+  font-weight: normal;
+  display: block;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.car-features-list li {
+  display: list-item;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4;
 }
