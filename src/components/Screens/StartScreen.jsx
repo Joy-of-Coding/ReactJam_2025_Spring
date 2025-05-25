@@ -57,7 +57,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   <>
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
       <div>
-        <h1>Online Used Car Sales Game</h1>
+        <h1>Lot O Lemons</h1>
         <div className="flex">
           <button onClick={handleSpectate}>Spectate</button>
         </div>
