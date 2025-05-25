@@ -3,28 +3,28 @@ import "../styles/NegotiationScreen.css"; // Custom styling for this page
 
 import Buyer from "../Buyer.jsx";
 import Salesperson from "../Salesperson.jsx";
-import CarList from "../CarList.jsx";
+import CarList from "../Cars/CarList.jsx";
 import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
 import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
 
-const GameScreen = ({ onEndGame, onNegotiation, playerId, game }) => {
-  const [playerRole, setPlayerRole] = useState("buyer"); // Placeholder – should be set via Rune or game logic
+const GameScreen = ({ onEndChoice, onEndGame, onNegotiation, yourPlayerId, game }) => {
+  // const [playerRole, setPlayerRole] = useState("buyer"); // Placeholder – should be set via Rune or game logic
 
   return (
     <div className="game-screen">
-      <h2>Negotiations</h2>
+      <h2>LOBBY</h2>
 
       <div className="player-component">
         <div className="player-info">
-          <h3>Player</h3>
-          <div className="player-name">Barbara Smith</div>
-          <p>{playerRole === "buyer" ? "Buyer" : "Salesperson"}</p>
-        </div>
-
-        <div className="roles-section">
-          {playerRole === "buyer" ? (
+          <div className="roles-section">
             <div className="buyer-section">
-              <Buyer />
+              <h3>Buyer View</h3>
+              <pre>{JSON.stringify(game.personas[yourPlayerId], null, 2)}</pre>
+              <Buyer yourPlayerId={yourPlayerId} game={game} />
+              </div>
+            {/* {playerRole === "buyer" ? (
+            <div className="buyer-section">
+              <Buyer yourPlayerId={yourPlayerId} game={game}/>
             </div>
           ) : (
             <div className="salesperson-section">
@@ -32,8 +32,8 @@ const GameScreen = ({ onEndGame, onNegotiation, playerId, game }) => {
               <div className="secret-info">
                 <p>Secret info and goals go here</p>
               </div>
-            </div>
-          )}
+            </div> */}
+          </div>
         </div>
       </div>
 
@@ -64,7 +64,7 @@ const GameScreen = ({ onEndGame, onNegotiation, playerId, game }) => {
 
         <div className="input-row">
           <span>Buyer:</span>
-          <WalkAwayButton playerId={playerId} />
+          <WalkAwayButton yourPlayerId={yourPlayerId} />
           <SignTheContractButton />
         </div>
       </div>
