@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/StartScreen.css";
+import DragAvatar from "../Drag/DragAvatar";
 
 // import bg from '../assets/bg.jpg';
 
@@ -35,20 +36,7 @@ const Showroom = ({ onStartGame, yourPlayerId, game }) => {
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
       <div>
         <h1>Lots O Lemons Showroom</h1>
-        <div className="flex">
-          <button onClick={handleSpectate}>Spectate</button>
-        </div>
-        <div className="flex">
-          <button className="buyer-button" onClick={openBuyer}>
-            I'm the Buyer
-          </button>
-          <button className="seller-button" onClick={openSalesperson}>
-            I'm the Salesperson
-          </button>
-        </div>
-        <button className="start-button" onClick={onStartGame}>
-          Start Game
-        </button>
+        <DragAvatar yourPlayerId={yourPlayerId} game={game} />
       </div>
     </div>
     {/* {game.role[yourPlayerId] === "Seller" && <div>Seller</div>} */}
