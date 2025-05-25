@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import "../styles/StartScreen.css";
+import useCountdown from "../hooks/useCountdown";
+
 
 // import bg from '../assets/bg.jpg';
 
@@ -7,7 +9,8 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState("Loading...");
   const [isHtmlContent, setIsHtmlContent] = useState(false); // to determine if content is HTML or plain text
-  // const StartScreen = () => {
+  const remainingTime = useCountdown(game);
+  
   const openBuyer = () => {
     console.log("Buyer button clicked");
     Rune.actions.assignRole("Buyer")
@@ -32,14 +35,19 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
     console.log("Current roles:", game.roles); 
     // Logic to open the spectator's screen
   };
-
+  const handleStartgame = () => {
+    Rune.actions.startCountdown();
+    onStartGame();
+  };
+   // adding countdow timed) / 1000))
+  
   const handleShowInstructions = () => {
-  setShowPopup(true);
-  setIsHtmlContent(true);
-  fetch("../src/assets/instructions.txt")
-    .then((res) => res.text())
-    .then((text) => setPopupContent(text))
-    .catch(() => setPopupContent("Failed to load instructions."));
+    setShowPopup(true);
+    setIsHtmlContent(true);
+    fetch("../src/assets/instructions.txt")
+      .then((res) => res.text())
+      .then((text) => setPopupContent(text))
+      .catch(() => setPopupContent("Failed to load instructions."));
   };
   const handleShowCredits = () => {
     setShowPopup(true);
@@ -53,8 +61,15 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const handleClosePopup = () => {
     setShowPopup(false);
   };
+     
   return (
   <>
+     {/* Countdown Timer */}
+      {remainingTime !== null && (
+        <div className="countdown-timer">
+          Game starting in: {remainingTime} second{remainingTime !== 1 ? "s" : ""}
+        </div>
+      )}
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
       <div>
         <h1>Online Used Car Sales Game</h1>
@@ -69,7 +84,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
             I'm the Salesperson
           </button>
         </div>
-        <button className="start-button" onClick={onStartGame}>
+        <button className="start-button" onClick={handleStartgame}>
           Start Game
         </button>
       </div>
@@ -172,5 +187,5 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
     )}
   </>
 );
-}
+  }
 export default StartScreen;

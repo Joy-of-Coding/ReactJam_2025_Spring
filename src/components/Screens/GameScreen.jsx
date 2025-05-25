@@ -5,21 +5,31 @@ import Salesperson from "../Salesperson.jsx";
 import CarList from "../CarList.jsx";
 import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
 import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
-
+import useCountdown from "../hooks/useCountdown";
 
 const GameScreen = ({ onEndGame, onNegotiation, playerId, game }) => {
   // State to track the player's role
   const [playerRole, setPlayerRole] = useState('buyer'); // Default to 'buyer'; can be 'salesperson'
 // Above on line 12 is a placeholder.  Needs Rune logic.
-
+  // state to show timer
+  const remainingTime = useCountdown(game); // using counttimer hook
+  
   return (
     <div className="game-screen">
-      {/* Negotiation Screen */}
-      <div className="negotiation-screen">
-        <h2>Negotiations</h2>
+      <h1>Game Screen</h1>
+        {/*countdown timer*/}
+      {remainingTime !== null && (
+         <div className="countdown-timer">
+            Game starting in: {remainingTime} second{remainingTime !== 1 ? 's' : ''}
+         </div>
+        )}
+
+        {/* Negotiation Screen */}
+        <div className="negotiation-screen">
+          <h2>Negotiations</h2>
 
         {/* Player Component */}
-        <div className="player-component">
+          <div className="player-component">
           <div className="player-info">
             <h3>Player</h3>
             <div className="player-name">Barbara Smith</div>
@@ -78,7 +88,6 @@ const GameScreen = ({ onEndGame, onNegotiation, playerId, game }) => {
           End Game
         </button>
       </div>
-
     </div>
   );
 };
