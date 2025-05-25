@@ -1,4 +1,4 @@
-.start-screen {
+/* .start-screen {
   height: 50%;
   background-size: cover;
   background-position: center;
@@ -13,7 +13,7 @@
   overflow-y: auto;
 } */
 
-h1 {
+/* h1 {
   margin-bottom: 1rem;
   font-size: 2.5rem;
 }
@@ -50,16 +50,16 @@ section {
 }
 
 /* Unique styles for buyer button */
-.buyer-button {
+/* .buyer-button {
   background-color: #4caf50;
 }
 
 .buyer-button:hover {
   background-color: #45a049;
-}
+} */
 
 /* Unique styles for seller button */
-.seller-button {
+/* .seller-button {
   background-color: #2196f3;
 }
 
@@ -72,4 +72,4 @@ section {
   justify-content: center;
   gap: 1rem;
   margin-bottom: 0.5rem;
-}
+} */ */
