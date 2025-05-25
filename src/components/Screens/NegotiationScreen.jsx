@@ -7,11 +7,8 @@ import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
 import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
 
 
-const NegotiationScreen = ({ onEndGame, offNegotiation, playerId, game }) => {
-  // State to track the player's role
-  const [playerRole, setPlayerRole] = useState('buyer'); // Default to 'buyer'; can be 'salesperson'
-// Above on line 12 is a placeholder.  Needs Rune logic.
-
+const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
+  
   return (
     <div className="game-screen">
       {/* Negotiation Screen */}
@@ -64,8 +61,8 @@ const NegotiationScreen = ({ onEndGame, offNegotiation, playerId, game }) => {
           </div>
           <div className="buyer-actions">
             <span style={{ fontWeight: "bold" }}>Buyer:</span>
-            <WalkAwayButton offNegotiation={offNegotiation} playerId={playerId}/>
-            <SignTheContractButton />
+            <WalkAwayButton offNegotiation={offNegotiation} playerId={yourPlayerId}/>
+            <SignTheContractButton yourPlayerId={yourPlayerId}  game={game} />
           </div>
         </div>
 
