@@ -37,6 +37,11 @@ function App() {
     console.log("Current roles:", game.roles); 
   };
 
+  //Testing handling assignment of roles, yamahacello(Andre)
+  const handleAssignRole = (playerId, role) => {
+    Rune.actions.assignRole({ playerId, role });
+  };
+
   /// jaypox
   const [game, setGame] = useState();
   const [yourPlayerId, setYourPlayerId] = useState();
@@ -94,9 +99,10 @@ function App() {
           );
         })}
       </ul>
-      {<SellerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
-      {<BuyerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
-      {<Showroom onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
+      {/* Adding handle assignment role below */}
+      {<SellerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} onAssignRole={handleAssignRole}/>}
+      {<BuyerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} onAssignRole={handleAssignRole}/>}
+      {<Showroom onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} onAssignRole={handleAssignRole}/>}
       
     </>
   );

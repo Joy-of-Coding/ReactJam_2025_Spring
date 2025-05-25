@@ -8,7 +8,7 @@ import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
 import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
 
 
-const NegotiationScreen = ({ offNegotiation, playerId }) => {
+const NegotiationScreen = ({ offNegotiation, playerId, role }) => {
   
   return (
     <div className="game-screen">
