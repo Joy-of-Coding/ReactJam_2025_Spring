@@ -14,12 +14,21 @@ import selectSoundAudio from "./assets/select.wav";
 function App() {
   //   ///
   const [gameStarted, setGameStarted] = useState(false);
+  const [negotiationStarted, setNegotiationStarted] = useState(false);
+  const [ChoiceEnded, setChoiceEnded] = useState(false);
 
   const handleStartGame = () => {
     console.log("The game has started");
     setGameStarted(true);
   };
-  const [negotiationStarted, setNegotiationStarted] = useState(false);
+
+  const handleEndGame = () => {
+    console.log("The game has ended");
+    setGameStarted(false);
+    console.log("Current players:", game.playerIds);
+    console.log("Current roles:", game.roles); 
+  };
+  
 
   const handleStartNegotiation = () => {
     console.log("The negotiation has started");
@@ -31,12 +40,17 @@ function App() {
     console.log("Current roles:", game.roles); 
   };
   
-  const handleEndGame = () => {
-    console.log("The game has ended");
-    setGameStarted(false);
-    console.log("Current players:", game.playerIds);
-    console.log("Current roles:", game.roles); 
+  const handleChoiceEnded = () => {
+    console.log("Choice made!");
+    setChoiceEnded(true);
   };
+
+  // const handleEndGame = () => {
+  //   console.log("The game has ended");
+  //   setGameStarted(false);
+  //   console.log("Current players:", game.playerIds);
+  //   console.log("Current roles:", game.roles); 
+  // };
 
   /// jaypox
   const [game, setGame] = useState();
@@ -62,11 +76,62 @@ function App() {
 
   return (
     <>
-    	{!gameStarted && !negotiationStarted && <StartScreen onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
-      {gameStarted && !negotiationStarted && <GameScreen onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} playerId={yourPlayerId} game={game}/>}
-      {/* {!negotiationStarted && <NegotiationScreen onStartGame={handleStartNegotiation} playerId={yourPlayerId} />} */}
+    	{/* {!gameStarted && !negotiationStarted && !ChoiceEnded && <StartScreen onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
+      {gameStarted && !negotiationStarted && !ChoiceEnded && <Showroom onEndChoice={handleChoiceEnded} onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} yourPlayerId={yourPlayerId} game={game}/>}
+      {gameStarted && !negotiationStarted && ChoiceEnded && <GameScreen onEndChoice={handleChoiceEnded} onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} playerId={yourPlayerId} game={game}/>}
       {negotiationStarted && <NegotiationScreen offNegotiation={handleStopNegotiation} yourPlayerId={yourPlayerId} game={game}/>}      
-      {/* <StartScreen onStartGame={handleStartGame} /> */}
+       */}
+
+       {/* game has not started, choices have not finished, and negotiations have not finished === StartScreen */}
+      {!gameStarted && !negotiationStarted && !ChoiceEnded && (
+  <StartScreen 
+    onStartGame={handleStartGame} 
+    yourPlayerId={yourPlayerId} 
+    game={game} 
+  />
+)}
+
+{gameStarted && !negotiationStarted && !ChoiceEnded && (
+  game.roles[yourPlayerId] === "Buyer" ? (
+    <BuyerChoice 
+      onEndChoice={handleChoiceEnded} 
+      yourPlayerId={yourPlayerId} 
+      game={game} 
+    />
+  ) : game.roles[yourPlayerId] === "Seller" ? (
+    <SellerChoice 
+      onEndChoice={handleChoiceEnded} 
+      yourPlayerId={yourPlayerId} 
+      game={game} 
+    />
+  ) : (
+    <GameScreen 
+      onEndChoice={handleChoiceEnded} 
+      onEndGame={handleEndGame} 
+      onNegotiation={handleStartNegotiation} 
+      yourPlayerId={yourPlayerId} 
+      game={game} 
+    />
+  )
+)}
+{gameStarted && !negotiationStarted && ChoiceEnded && (
+  <GameScreen 
+    onEndChoice={handleChoiceEnded} 
+    onEndGame={handleEndGame} 
+    onNegotiation={handleStartNegotiation} 
+    yourPlayerId={yourPlayerId} 
+    game={game} 
+  />
+)}
+
+{negotiationStarted && (
+  <NegotiationScreen 
+    offNegotiation={handleStopNegotiation} 
+    yourPlayerId={yourPlayerId} 
+    game={game} 
+  />
+)}
+
   
       <ul id="playersSection"> 
         {playerIds.map((playerId, index) => {
@@ -95,10 +160,10 @@ function App() {
           );
         })}
       </ul>
-      {<SellerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
+      {/* {<SellerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
       {<BuyerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
       {<Showroom onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
-      
+       */}
     </>
   );
 }

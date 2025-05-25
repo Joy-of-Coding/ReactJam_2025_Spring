@@ -30,8 +30,8 @@ Rune.initLogic({
     assignRole: (role, { game, playerId }) => {
       game.roles[playerId] = role;
     },
-    assignPersona: (persona, { game, playerId }) => {
-      game.personas[playerId] = persona;
+    assignPersona: (personaObj, { game, playerId }) => {
+      game.personas[playerId] = personaObj;
     },
       //End game action
     onEndGame: () => {

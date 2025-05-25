@@ -1,7 +1,7 @@
 [
   {
-    "persona": 1,
-    "description_1": "likes fast car / fast lifestyle buyer",
+    "id": 1,
+    "description": "likes fast car / fast lifestyle buyer",
     "avatarUrl": "https://example.com/avatars/johndoe.jpg",
     "nickName": "Alan Shepard",
     "profile": {
@@ -18,8 +18,8 @@
     }
   },
   {
-    "persona": 2,
-    "description_1": "family person with kids on the way",
+    "id": 2,
+    "description": "family person with kids on the way",
     "avatarUrl": "https://example.com/avatars/familybuyer.jpg",
     "nickName": "Susan Miles",
     "profile": {
@@ -36,8 +36,8 @@
     }
   },
   {
-    "persona": 3,
-    "description_1": "little old lady with a secret need for speed",
+    "id": 3,
+    "description": "little old lady with a secret need for speed",
     "avatarUrl": "https://example.com/avatars/oldladyracer.jpg",
     "nickName": "Betty Speedwell",
     "profile": {
@@ -54,8 +54,8 @@
     }
   },
   {
-    "persona": 4,
-    "description_1": "High School Student getting first car with Mom&Dads help",
+    "id": 4,
+    "description": "High School Student getting first car with Mom&Dads help",
     "avatarUrl": "https://example.com/avatars/teenbuyer.jpg",
     "nickName": "Jake Wheeler",
     "profile": {
@@ -72,8 +72,8 @@
     }
   },
   {
-    "persona": 5,
-    "description_1": "New career person wanting eco-friendly car on budget",
+    "id": 5,
+    "description": "New career person wanting eco-friendly car on budget",
     "avatarUrl": "https://example.com/avatars/ecoemployee.jpg",
     "nickName": "Lena Greenway",
     "profile": {
@@ -90,8 +90,8 @@
     }
   },
   {
-    "persona": 6,
-    "description_1": "long haired hippy dude with travel-ready van dreams",
+    "id": 6,
+    "description": "long haired hippy dude with travel-ready van dreams",
     "avatarUrl": "https://example.com/avatars/vanhippy.jpg",
     "nickName": "Sky Roadman",
     "profile": {
@@ -108,8 +108,8 @@
     }
   },
   {
-    "persona": 7,
-    "description_1": "construction worker needing truck for hauling",
+    "id": 7,
+    "description": "construction worker needing truck for hauling",
     "avatarUrl": "https://example.com/avatars/truckworker.jpg",
     "nickName": "Mike Builder",
     "profile": {
@@ -126,8 +126,8 @@
     }
   },
   {
-    "persona": 8,
-    "description_1": "Uber driver making money with a car",
+    "id": 8,
+    "description": "Uber driver making money with a car",
     "avatarUrl": "https://example.com/avatars/uberdriver.jpg",
     "nickName": "Carlos Shift",
     "profile": {
@@ -144,8 +144,8 @@
     }
   },
   {
-    "persona": 9,
-    "description_1": "buyer burned by lemon car, seeking redemption",
+    "id": 9,
+    "description": "buyer burned by lemon car, seeking redemption",
     "avatarUrl": "https://example.com/avatars/secondchance.jpg",
     "nickName": "Dan Cautious",
     "profile": {
@@ -162,8 +162,8 @@
     }
   },
   {
-    "persona": 10,
-    "description_1": "family needing SUV/van for events, kids, and dog",
+    "id": 10,
+    "description": "family needing SUV/van for events, kids, and dog",
     "avatarUrl": "https://example.com/avatars/familyvan.jpg",
     "nickName": "Tracy Together",
     "profile": {

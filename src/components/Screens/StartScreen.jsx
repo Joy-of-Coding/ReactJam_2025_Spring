@@ -56,7 +56,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   return (
   <>
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
-      <div>
+      <div className="start-roles" style={{maxHeight: "80vh"}}>
         <h1>Lot O Lemons</h1>
         <div className="flex">
           <button onClick={handleSpectate}>Spectate</button>
@@ -69,11 +69,11 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   />
   </div>
         <div className="flex">
-          <button className="buyer-button" onClick={openBuyer}>
-            I'm the Buyer
+          <button className="buyer-button" onClick={openSalesperson}>
+            I'm the Seller
           </button>
-          <button className="seller-button" onClick={openSalesperson}>
-            I'm the Salesperson
+          <button className="seller-button" onClick={openBuyer}>
+            I'm the Buyer
           </button>
         </div>
         <button className="start-button" onClick={onStartGame}>
@@ -81,7 +81,6 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
         </button>
       </div>
     </div>
-    {/* {game.role[yourPlayerId] === "Seller" && <div>Seller</div>} */}
 
    <div className="flex" style={{ marginTop: "1rem" }}>
       <button
