@@ -7,9 +7,7 @@ import BuyerChoice from "./components/Screens/BuyerChoice.jsx";
 import SellerChoice from "./components/Screens/SellerChoice.jsx";
 import Showroom from "./components/Screens/Showroom.jsx";
 import NegotiationScreen from "./components/Screens/NegotiationScreen.jsx";
-import selectSoundAudio from "./assets/select.wav";
 
-// const selectSound = new Audio(selectSoundAudio);
 
 function App() {
   //   ///
