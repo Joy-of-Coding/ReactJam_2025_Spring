@@ -25,6 +25,7 @@ Rune.initLogic({
       playerIds: allPlayerIds,
       cars,
       scores: Object.fromEntries(allPlayerIds.map((playerId) => [playerId, 1])),
+      matches: Object.fromEntries(allPlayerIds.map((playerId) => [playerId, ["looked for a car"]])),
       objects: Object.fromEntries(
         allPlayerIds.map((playerId, index) => [
           playerId,

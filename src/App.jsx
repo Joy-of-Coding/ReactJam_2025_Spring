@@ -5,7 +5,7 @@ import StartScreen from "./components/Screens/StartScreen.jsx";
 import GameScreen from "./components/Screens/GameScreen.jsx";
 import BuyerChoice from "./components/Screens/BuyerChoice.jsx";
 import SellerChoice from "./components/Screens/SellerChoice.jsx";
-import Showroom from "./components/Screens/Showroom.jsx";
+import TallyScores from "./components/Screens/TallyScores.jsx";
 import NegotiationScreen from "./components/Screens/NegotiationScreen.jsx";
 
 
@@ -81,7 +81,7 @@ function App() {
        */}
 
        {/* game has not started, choices have not finished, and negotiations have not finished === StartScreen */}
-      {!gameStarted && !negotiationStarted && !ChoiceEnded && (
+      {gameStarted && !negotiationStarted && !ChoiceEnded && (
   <StartScreen 
     onStartGame={handleStartGame} 
     yourPlayerId={yourPlayerId} 
@@ -123,7 +123,7 @@ function App() {
   />
 )}
 
-{negotiationStarted && (
+{negotiationStarted && gameStarted && (
   <NegotiationScreen 
     offNegotiation={handleStopNegotiation} 
     yourPlayerId={yourPlayerId} 
@@ -131,7 +131,16 @@ function App() {
   />
 )}
 
-  
+{/* //logic here to go here when game ends */}
+{ !gameStarted &&
+  <TallyScores
+    // onEndChoice={onEndChoice}
+    // onEndGame={onEndGame}
+    // onNegotiation={onNegotiation}
+    yourPlayerId={yourPlayerId} 
+    game={game} 
+  />
+}
       
       {/* {<SellerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
       {<BuyerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
