@@ -2,21 +2,22 @@ import React, { useState, useEffect } from "react";
 import "../styles/StartScreen.css";
 import personas from "../../assets/car_buyer_personas_final_enriched.json";
 
- function BuyerChoice() {
-  const [displayedPersonas, setDisplayedPersonas] = useState([]); 
-
-   useEffect(() => {
-    randomizePersonas();
+ /* function PersonaDisplay() {
+  const [displayedPersonas, setDisplayedPersonas] = useState([]);  */
+  
+  const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
+  const [selectedPersonaId, setSelectedPersonaId] = useState(null);
+  const [hasConfirmed, setHasConfirmed] = useState(false);
+  
+  useEffect(() => {
+    randomizePersonas(personas);
   }, []);
 
   const randomizePersonas = () => {
     const shuffledPersonas = [...personas].sort(() => Math.random() - 0.5);
     setDisplayedPersonas(shuffledPersonas.slice(0, 3));
   }; 
-  
-  const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
-  const [selectedPersonaId, setSelectedPersonaId] = useState(null);
-  const [hasConfirmed, setHasConfirmed] = useState(false);
+  }
 
   const handleChoosePersona = (persona) => {
     if (selectedPersonaId !== null) return;
@@ -46,6 +47,7 @@ import personas from "../../assets/car_buyer_personas_final_enriched.json";
           <div key={persona.id} className="persona-card">
             <p><strong>{persona.nickName}</strong></p>
             <p>{persona.description}</p>
+            <p>{persona.budgetAmount}</p>
             <button
               onClick={() => handleChoosePersona(persona)}
               // disabled={selectedPersonaId !== null}
@@ -65,7 +67,6 @@ import personas from "../../assets/car_buyer_personas_final_enriched.json";
       </button>
     </div>
   );
-};
-}
+
 
 export default BuyerChoice;
