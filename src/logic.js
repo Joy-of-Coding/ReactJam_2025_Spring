@@ -87,8 +87,7 @@ Rune.initLogic({
       game.countdownActive = true; 
       /*onStartGame();*/
     
-    }
-  },
+    },
     update: ({ game }) => {
       if (game.countdownActive) {
         const elapsed = Rune.gameTime() - game.countdownStart;
@@ -96,10 +95,9 @@ Rune.initLogic({
             game.countdownActive = false;
             game.started = true; //set game as started
             console.log("countdown completed let the game begin");
-      }
-    }
-  },
-
+          }
+      }   
+    },
     updateScore: ({ yourPlayerId, amount }, { game }) => {
       if (!game.playerIds.includes(yourPlayerId)) {
         throw Rune.invalidAction();
@@ -152,4 +150,5 @@ Rune.initLogic({
       game.playerIds = game.playerIds.filter(id => id !== playerId);
     }
   },
+
 });

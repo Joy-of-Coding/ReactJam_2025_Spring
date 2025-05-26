@@ -16,74 +16,19 @@ const GameScreen = ({ onEndChoice, onEndGame, onNegotiation, yourPlayerId, game 
   const remainingTime = useCountdown(game); // using counttimer hook
     
   return (
+    <>
     <div className="game-screen">
       <h1>Game Screen</h1>
         {/*countdown timer*/}
       {remainingTime !== null && (
-         <div className="countdown-timer">
+        <div className="countdown-timer">
             Game starting in: {remainingTime} second{remainingTime !== 1 ? 's' : ''}
-         </div>
+        </div>
         )}
 
         {/* Negotiation Screen */}
-        <div className="negotiation-screen">
-          <h2>Negotiations</h2>
-      <h2>LOBBY</h2>
-
-      <div className="player-component">
-        <div className="player-info">
-          <div className="roles-section">
-            <div className="buyer-section">
-              <h3>Buyer View</h3>
-              <pre>{JSON.stringify(game.personas[yourPlayerId], null, 2)}</pre>
-              <Buyer yourPlayerId={yourPlayerId} game={game} />
-              </div>
-            {/* {playerRole === "buyer" ? (
-            <div className="buyer-section">
-              <Buyer yourPlayerId={yourPlayerId} game={game}/>
-            </div>
-          ) : (
-            <div className="salesperson-section">
-              <Salesperson />
-              <div className="secret-info">
-                <p>Secret info and goals go here</p>
-              </div>
-            </div> */}
-          </div>
-        </div>
-      </div>
-
-      <div className="car-list-section">
-        <h3>Car List</h3>
-        <div className="car-info">
-          <CarList />
-        </div>
-      </div>
-
-      <div className="contract-component">
-        <h3>Contract</h3>
-
-        <div className="input-row">
-          <span>Car:</span>
-          <input id="car-input" type="text" placeholder="Enter car name" />
-        </div>
-
-        <div className="input-row">
-          <label htmlFor="price-input">Price:</label>
-          <input id="price-input" type="text" placeholder="Enter your price" />
-        </div>
-
-        <div className="input-row">
-          <span>Splits and Features:</span>
-          <input type="text" placeholder="Splits and Features textbox" />
-        </div>
-
-        <div className="input-row">
-          <span>Buyer:</span>
-          <WalkAwayButton yourPlayerId={yourPlayerId} />
-          <SignTheContractButton />
-        </div>
-      </div>
+           <h2>Negotiations</h2>
+            <h2>LOBBY</h2>  
 
       <button className="end-button" onClick={onNegotiation}>
         Start Negotiation
@@ -98,6 +43,7 @@ const GameScreen = ({ onEndChoice, onEndGame, onNegotiation, yourPlayerId, game 
       />
       
     </div>
+  </>
   );
 };
 
