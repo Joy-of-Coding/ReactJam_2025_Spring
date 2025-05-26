@@ -37,3 +37,29 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+.car-list-section {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.car-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.car-container {
+  background-color: blue;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 240px;
+  color: white;
+}
