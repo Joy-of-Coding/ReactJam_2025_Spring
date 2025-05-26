@@ -63,3 +63,14 @@
   width: 240px;
   color: white;
 }
+
+.fullscreen-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;      
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+}

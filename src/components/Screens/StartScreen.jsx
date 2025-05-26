@@ -82,7 +82,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
       </div>
     </div>
 
-   <div className="flex" style={{ marginTop: "1rem" }}>
+   {/* <div className="flex" style={{ marginTop: "1rem" }}>
       <button
         style={{
           backgroundColor: "blue",
@@ -119,7 +119,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
       >
         Credits
       </button>
-    </div>
+    </div> */}
 
     {showPopup && (
       <>
