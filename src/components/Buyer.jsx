@@ -1,23 +1,27 @@
-
-
-
-
 const Buyer = ({ yourPlayerId, game }) => {
-  const persona = game.personas?.[yourPlayerId];
-  console.log("Rendering Buyer.jsx for", yourPlayerId);
-  console.log("Persona for player:", game.personas?.[yourPlayerId]);
+  if (!game || !game.personas || !yourPlayerId) {
+    console.warn("Buyer.jsx: Game or player data is not yet available.");
+    return null;
+  }
 
-    if (!persona) return <p>Loading persona...</p>;
+  const persona = game.personas[yourPlayerId];
 
-    return (
-        <div>
-            {console.log("Buyer Persona:", game.personas[yourPlayerId])}
+  console.log("Buyer Persona:", persona);
 
-            <h2>{persona.nickName} (Buyer)</h2>
-            <p>{persona.description}</p>
-        </div>
-    )
-}
+  return (
+    <div>
+      <h2>Buyer</h2>
+      {persona ? (
+        <>
+          <p><strong>Role:</strong> {persona.nickName}</p>
+          <p>{persona.description}</p>
+        </>
+      ) : (
+        <p>No persona assigned yet.</p>
+      )}
+    </div>
+  );
+};
 
 
 export default Buyer

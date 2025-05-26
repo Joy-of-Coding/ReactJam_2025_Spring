@@ -2,13 +2,29 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .persona-card {
   border: 1px solid #ccc;
   padding: 1rem;
   border-radius: 8px;
-  width: 200px;
+  width: 150px;
   background: #fff;
+}
+.carousel-track-up {
+  display: flex;
+  gap: 1.5rem;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  padding-bottom: 1rem;
+  scroll-padding: 40px;
+  padding-top: 40vw; /* left and right padding so first/last can center */
+  padding-bottom: 40vw;
+}
+.confirm-button {
+  display: flex;
+  gap: 1.5rem;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
 }

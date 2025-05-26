@@ -3,7 +3,7 @@ import "../styles/StartScreen.css";
 import car_image from "../../assets/img/car_sales7.svg";
 
 // import bg from '../assets/bg.jpg';
-
+// game NOT started, choices NOT finished, Negotiations NOT started === startScreen
 const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState("Loading...");
