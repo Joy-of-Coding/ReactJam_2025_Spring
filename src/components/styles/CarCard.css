@@ -1,0 +1,16 @@
+.car-card {
+  width: 180px;
+  margin: 0 -40px;
+  padding: 1rem;
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  transform: rotateY(0deg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+.car-card:hover {
+  transform: scale(1.05) rotateY(-2deg);
+}
