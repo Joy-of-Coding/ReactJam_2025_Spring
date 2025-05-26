@@ -1,24 +1,65 @@
-.game-screen {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  background-color: #1a1a1a;
-  color: white;
+/* Container for each main section */
+.section-box {
+  border: 2px solid white;
+  background: rgba(255, 255, 255, 0.08); /* translucent white */
+  padding: 1rem;
+  margin: 1rem auto;
+  border-radius: 12px;
+  max-width: 700px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
 }
+
+/* Keep previous styles */
+.player-component,
+.car-list-container,
+.contract-component {
+  width: 100%;
+}
+
+/* Background and layout retained */
+.start-screen {
+  background: linear-gradient(135deg, #87CEEB 0%, #E0F6FF 50%, #B8E6B8 100%) !important;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
 
 .end-button {
   margin-top: 2rem;
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  background-color: crimson;
-  color: white;
+  padding: 0.75rem 1.5rem;
+  background-color: green;
   border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
   cursor: pointer;
-  border-radius: 6px;
 }
 
-.end-button:hover {
-  background-color: darkred;
+.car-list-section {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.car-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.car-container {
+  background-color: blue;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 240px;
+  color: white;
 }
