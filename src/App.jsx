@@ -18,6 +18,7 @@ function App() {
   const [ChoiceEnded, setChoiceEnded] = useState(false);
 
   const handleStartGame = () => {
+    Rune.actions.startCountdown();
     console.log("The game has started");
     setGameStarted(true);
   };

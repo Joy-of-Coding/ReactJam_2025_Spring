@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import "../styles/StartScreen.css";
+import useCountdown from "../hooks/useCountdown";
+
 import car_image from "../../assets/img/car_sales7.svg";
 import DragAvatar from "../Drag/DragAvatar";
 
@@ -9,7 +11,8 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState("Loading...");
   const [isHtmlContent, setIsHtmlContent] = useState(false); // to determine if content is HTML or plain text
-  // const StartScreen = () => {
+  const remainingTime = useCountdown(game);
+  
   const openBuyer = () => {
     console.log("Buyer button clicked");
     Rune.actions.assignRole("Buyer")
@@ -34,14 +37,19 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
     console.log("Current roles:", game.roles); 
     // Logic to open the spectator's screen
   };
-
+  const handleStartgame = () => {
+    Rune.actions.startCountdown();
+    onStartGame();
+  };
+   // adding countdow timed) / 1000))
+  
   const handleShowInstructions = () => {
-  setShowPopup(true);
-  setIsHtmlContent(true);
-  fetch("../src/assets/instructions.txt")
-    .then((res) => res.text())
-    .then((text) => setPopupContent(text))
-    .catch(() => setPopupContent("Failed to load instructions."));
+    setShowPopup(true);
+    setIsHtmlContent(true);
+    fetch("../src/assets/instructions.txt")
+      .then((res) => res.text())
+      .then((text) => setPopupContent(text))
+      .catch(() => setPopupContent("Failed to load instructions."));
   };
   const handleShowCredits = () => {
     setShowPopup(true);
@@ -55,8 +63,15 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const handleClosePopup = () => {
     setShowPopup(false);
   };
+     
   return (
   <>
+     {/* Countdown Timer */}
+      {remainingTime !== null && (
+        <div className="countdown-timer">
+          Game starting in: {remainingTime} second{remainingTime !== 1 ? "s" : ""}
+        </div>
+      )}
     <DragAvatar yourPlayerId={yourPlayerId} game={game} />
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
       <div className="start-roles" style={{maxHeight: "80vh"}}>
@@ -78,7 +93,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
             I'm the Buyer
           </button>
         </div>
-        <button className="start-button" onClick={onStartGame}>
+        <button className="start-button" onClick={handleStartgame}>
           Start Game
         </button>
       </div>
@@ -180,5 +195,5 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
     )}
   </>
 );
-}
+  }
 export default StartScreen;

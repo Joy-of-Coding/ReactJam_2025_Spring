@@ -23,10 +23,11 @@ Rune.initLogic({
       gameStarted: false,
       negotiationStarted: false,
       ChoiceEnded: false,
+    //added timer for coundown
+      countdownStart:null,
+      countdownDuration: 5000,  //5 seconds
+      countdownActive: false,
 
-      // onBoardTime: 30,
-      // playTime: 120,
-      // gameTimer: 30,
       // timeElapsed: 0,
       // stopTimer: false,
       // setBombs: 9,
@@ -118,8 +119,24 @@ Rune.initLogic({
         },
       });
     },
-  },
-
+    //adding a countdown timer
+    startCountdown: (_, { game }) => {
+      game.countdownStart = Rune.gameTime();
+      game.countdownActive = true; 
+      /*onStartGame();*/
+    
+    },
+    update: ({ game }) => {
+      if (game.countdownActive) {
+        const elapsed = Rune.gameTime() - game.countdownStart;
+        if (elapsed >= game.countdownDuration) {
+          game.countdownActive = false;
+          console.log("countdown completed let the game begin");
+        }
+      }
+    },
+  }, 
+  // Click the 'Add player' button on the desktop version succesfully adds a new player
   events: {
   //   playerJoined: (playerId, { game }) => {
   //     console.log("Player joined:", playerId);

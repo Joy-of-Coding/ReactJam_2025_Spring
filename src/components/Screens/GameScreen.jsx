@@ -10,7 +10,9 @@ import Showroom from "./Showroom.jsx";
 
 const GameScreen = ({ onEndChoice, onEndGame, onNegotiation, yourPlayerId, game }) => {
   // const [playerRole, setPlayerRole] = useState("buyer"); // Placeholder – should be set via Rune or game logic
-
+import useCountdown from "../hooks/useCountdown";
+    // state to show timer
+  const remainingTime = useCountdown(game); // using counttimer hook
   
   return (
     <div className="game-screen">
