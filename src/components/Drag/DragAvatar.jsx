@@ -72,9 +72,10 @@
     // }, []);
 
     import React, { useEffect, useRef } from "react";
-
+    const player = Rune.getPlayerInfo(playerId);
     const DragAvatar = ({ yourPlayerId, game }) => {
     const draggingRef = useRef(false);
+    
 
     // Get the (x, y) from mouse or touch event
     const getEventPosition = (e) => {
@@ -149,3 +150,4 @@
     };
 
 export default DragAvatar;
+<img src={player.avatarUrl} />
