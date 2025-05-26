@@ -85,6 +85,7 @@ Rune.initLogic({
     startCountdown: (_, { game }) => {
       game.countdownStart = Rune.gameTime();
       game.countdownActive = true; 
+      //game.started = true;
       /*onStartGame();*/
     
     },
@@ -93,9 +94,9 @@ Rune.initLogic({
         const elapsed = Rune.gameTime() - game.countdownStart;
           if (elapsed >= game.countdownDuration) {
             game.countdownActive = false;
-            game.started = true; //set game as started
             console.log("countdown completed let the game begin");
           }
+          game.started = true; //set game as started
       }   
     },
     updateScore: ({ yourPlayerId, amount }, { game }) => {

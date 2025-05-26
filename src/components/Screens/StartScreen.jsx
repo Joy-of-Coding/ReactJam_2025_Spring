@@ -77,6 +77,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
         <div className="countdown-timer">
           Game starting in: {remainingTime} second{remainingTime !== 1 ? "s" : ""}
         </div>
+      
       )}
     <DragAvatar yourPlayerId={yourPlayerId} game={game} />
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>

@@ -13,7 +13,7 @@ const GameScreen = ({ onEndChoice, onEndGame, onNegotiation, yourPlayerId, game 
   // const [playerRole, setPlayerRole] = useState("buyer"); // Placeholder – should be set via Rune or game logic
 
   // state to show timer
-  const remainingTime = useCountdown(game); // using counttimer hook
+  const remainingTime = useCountdown(game); // using count timer hook
     
   return (
     <>

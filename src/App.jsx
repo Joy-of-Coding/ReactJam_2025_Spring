@@ -11,14 +11,14 @@ import NegotiationScreen from "./components/Screens/NegotiationScreen.jsx";
 
 function App() {
   //   ///
-  const [gameStarted, setGameStarted] = useState(false);
+  /*const [gameStarted, setGameStarted] = useState(false);*/
   const [negotiationStarted, setNegotiationStarted] = useState(false);
   const [ChoiceEnded, setChoiceEnded] = useState(false);
 
   const handleStartGame = () => {
     Rune.actions.startCountdown();
     console.log("The game has started");
-    setGameStarted(true);
+    /*setGameStarted(true);*/
   };
 
   const handleEndGame = () => {
@@ -71,7 +71,7 @@ function App() {
     return;
   }
 
-  const { winCombo, cells, lastMovePlayerId, playerIds, freeCells } = game;
+  const { winCombo, cells, lastMovePlayerId, playerIds, freeCells, started } = game;
 
   return (
     <>
@@ -82,7 +82,7 @@ function App() {
        */}
 
        {/* game has not started, choices have not finished, and negotiations have not finished === StartScreen */}
-      {!gameStarted && !negotiationStarted && !ChoiceEnded && (
+      {!started && !negotiationStarted && !ChoiceEnded && (
   <StartScreen 
     onStartGame={handleStartGame} 
     yourPlayerId={yourPlayerId} 
@@ -91,12 +91,13 @@ function App() {
 )}
 
  {/* game HAS started, Negotiations NOT started, Choices NOT ended */}
-{gameStarted && !negotiationStarted && !ChoiceEnded && (
+{started && !negotiationStarted && !ChoiceEnded && (
   game.roles[yourPlayerId] === "Buyer" ? (
     <BuyerChoice 
       onEndChoice={handleChoiceEnded} 
       yourPlayerId={yourPlayerId} 
-      game={game} 
+      game={game
+      } 
     />
   ) : game.roles[yourPlayerId] === "Seller" ? (
     <SellerChoice 
@@ -114,7 +115,7 @@ function App() {
     />
   )
 )}
-{gameStarted && !negotiationStarted && ChoiceEnded && (
+{started && !negotiationStarted && ChoiceEnded && (
   <GameScreen 
     onEndChoice={handleChoiceEnded} 
     onEndGame={handleEndGame} 
