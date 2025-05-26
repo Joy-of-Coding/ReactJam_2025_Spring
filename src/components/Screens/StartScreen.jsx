@@ -103,7 +103,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
       </button>
       <button
         style={{
-          backgroundColor: "magenta",
+          backgroundColor:"#dc242c",
           color: "#fff",
           boxShadow:
             "rgba(218, 25, 225, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0",

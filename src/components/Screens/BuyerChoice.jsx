@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/StartScreen.css";
-import personas from "../../assets/car_buyer_personas.json";
+import personas from "../../assets/car_buyer_personas_final_enriched.json";
 
 const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
   const [selectedPersonaId, setSelectedPersonaId] = useState(null);
@@ -33,6 +33,7 @@ const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
           <div key={persona.id} className="persona-card">
             <p><strong>{persona.nickName}</strong></p>
             <p>{persona.description}</p>
+            <p>{persona.budgetAmount}</p>
             <button
               onClick={() => handleChoosePersona(persona)}
               // disabled={selectedPersonaId !== null}

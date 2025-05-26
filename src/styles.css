@@ -110,7 +110,7 @@ button[onClick*="handleSpectate"] {
   background: linear-gradient(135deg, #FFD700 0%, #FFC107 100%);
   color: #2C3E50;
   width: 310px; /* Match combined width of buyer + seller buttons + gap */
-  padding: 15px 25px;
+  padding: 15px 15px;
   font-size: 1.4rem;
   font-weight: bold;
   margin: 15px auto; /* Changed to auto for centering */
