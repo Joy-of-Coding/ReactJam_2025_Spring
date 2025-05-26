@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import "../styles/StartScreen.css";
 import personas from "../../assets/car_buyer_personas_final_enriched.json";
 
-/* function PersonaDisplay() {
+ function PersonaDisplay() {
   const [displayedPersonas, setDisplayedPersonas] = useState([]); */
 
-/*   useEffect(() => {
+   useEffect(() => {
     randomizePersonas();
   }, []);
 
   const randomizePersonas = () => {
     const shuffledPersonas = [...personas].sort(() => Math.random() - 0.5);
     setDisplayedPersonas(shuffledPersonas.slice(0, 3));
-  }; */
+  }; 
   
   const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
   const [selectedPersonaId, setSelectedPersonaId] = useState(null);
@@ -40,6 +40,7 @@ import personas from "../../assets/car_buyer_personas_final_enriched.json";
   return (
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
       <h1>Buyer Game</h1>
+      <button onClick={randomizePersonas}>Refresh Personas</button>
       <div className="persona-choice-list">
         {personas.map((persona) => (
           <div key={persona.id} className="persona-card">
