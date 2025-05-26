@@ -27,14 +27,21 @@ const CreditsContent = () => {
 		<div className="container">
 			{/* <h2> */}
 				<ReadMore>
-				How To Play: 
-				Get rid of all of your dice to win!
-                Click the green "roll dice" button on your turn & tap the dice:
-                1. Pop balloons to remove them 
-                2. Gifts have a random amount of dice, choose who gets them 
-                3. Share the cake with everyone else! 
-                When only confetti is left, click the red "end turn" button
-                ** inspired by “Pass the Pandas” and built by Joy of Coding Academy students
+				  John Walter Kowal, Product owner
+				  Linda Frank-Seriously, Project Admin
+					Katrina Wright, Project Manager
+					Shelly
+					Abu H Kamal
+					Mindi Briese, Developer
+					Lisa D ass officerjinxter
+					Hope Barnett, Assistant Designer
+					Rebecca Beckstone, Project Admin
+					Jay Prox
+					Anna
+					Sam Crowe
+					John Serwatka
+					Tonia Ellers, Tester
+
 				</ReadMore>
 			{/* </h2> */}
 		</div>

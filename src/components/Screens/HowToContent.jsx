@@ -27,14 +27,32 @@ const HowToContent = () => {
 		<div className="container">
 			{/* <h2> */}
 				<ReadMore>
-				How To Play: 
-				Get rid of all of your dice to win!
-                Click the green "roll dice" button on your turn & tap the dice:
-                1. Pop balloons to remove them 
-                2. Gifts have a random amount of dice, choose who gets them 
-                3. Share the cake with everyone else! 
-                When only confetti is left, click the red "end turn" button
-                ** inspired by “Pass the Pandas” and built by Joy of Coding Academy students
+				How To Play:
+				Outwit the salesperson and get your dream car to win!
+                Click  "I am the Buyer" button:
+                1. Click the "START GAME" button
+                2. Choose your persona/charcter and hit that button
+                3. Click "Confirm Choice" button
+								4. Choose a car:
+										click car
+										click car price
+										select features
+								5. Click "Enter Contract" button if you have what your want.
+								   Fill out fields
+					         Click "Sign Contract" button.  ENDS game.
+								6. Otherwise Click "Negotiate" button.
+
+
+					OR
+
+								Click  "I am the Seller" button:
+                1. Click the "START GAME" button
+                2. Choose cars you want to sell
+								3. Set price
+                3. Click "Confirm and Continue" button
+
+                ** inspired by “Rune 'Tic-Tac-Toe” and built by Joy of Coding Academy students
+
 				</ReadMore>
 			{/* </h2> */}
 		</div>
