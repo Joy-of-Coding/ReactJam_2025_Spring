@@ -12,7 +12,9 @@ const Showroom = ({ onEndChoice, onEndGame, onNegotiation, yourPlayerId, game })
     {game.roles[yourPlayerId] === "buyer" && <BuyerChoice onEndChoice={onEndChoice}/>}
     {game.roles[yourPlayerId] === "seller" && <SellerChoice onEndChoice={onEndChoice}/>}
 
+
   </>
 );
 }
 export default Showroom;
+  

@@ -3,6 +3,7 @@
     const DragAvatar = ({ yourPlayerId, game }) => {
     const draggingRef = useRef(false);
     
+    
     const handleMouseDown = (e) => {
         Rune.actions.startDrag();
         draggingRef.current = true;

@@ -11,6 +11,7 @@ import Showroom from "./Showroom.jsx";
 const GameScreen = ({ onEndChoice, onEndGame, onNegotiation, yourPlayerId, game }) => {
   // const [playerRole, setPlayerRole] = useState("buyer"); // Placeholder – should be set via Rune or game logic
 
+  
   return (
     <div className="game-screen">
       <h2>LOBBY</h2>
@@ -87,3 +88,4 @@ const GameScreen = ({ onEndChoice, onEndGame, onNegotiation, yourPlayerId, game 
 };
 
 export default GameScreen;
+ 
