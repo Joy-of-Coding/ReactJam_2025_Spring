@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/StartScreen.css";
 import car_image from "../../assets/img/car_sales7.svg";
+import DragAvatar from "../Drag/DragAvatar";
 
 // import bg from '../assets/bg.jpg';
 // game NOT started, choices NOT finished, Negotiations NOT started === startScreen
@@ -8,6 +9,9 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState("Loading...");
   const [isHtmlContent, setIsHtmlContent] = useState(false); // to determine if content is HTML or plain text
+
+  const isSpectator = game.roles[yourPlayerId] === "Spectator";
+
   // const StartScreen = () => {
   const openBuyer = () => {
     console.log("Buyer button clicked");
@@ -56,6 +60,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   };
   return (
   <>
+    <DragAvatar yourPlayerId={yourPlayerId} game={game} />
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
       <div className="start-roles" style={{maxHeight: "80vh"}}>
         <h1>Lot O Lemons</h1>
@@ -76,7 +81,8 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
             I'm the Buyer
           </button>
         </div>
-        <button className="start-button" onClick={onStartGame}>
+        <button className="start-button" onClick={onStartGame}
+          style={isSpectator ? { opacity: 0.5, cursor: "not-allowed" } : {}}>
           Start Game
         </button>
       </div>

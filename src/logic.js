@@ -20,8 +20,8 @@ Rune.initLogic({
 
   setup: (allPlayerIds) => {
     return {
-      roles: Object.fromEntries(allPlayerIds.map(id => [id, null])),
-      personas: Object.fromEntries(allPlayerIds.map(id => [id, null])),
+      roles: Object.fromEntries(allPlayerIds.map((id) => [id, null])),
+      personas: Object.fromEntries(allPlayerIds.map((id) => [id, null])),
       playerIds: allPlayerIds,
       cars,
       scores: Object.fromEntries(allPlayerIds.map((playerId) => [playerId, 1])),
@@ -35,7 +35,7 @@ Rune.initLogic({
             draggable: true,
             heldBy: null,
           },
-        ])
+        ]),
       ),
     };
   },
@@ -92,7 +92,7 @@ Rune.initLogic({
         finalizeScores(game);
         Rune.gameOver({
           players: Object.fromEntries(
-            game.playerIds.map((id) => [id, game.scores[id]])
+            game.playerIds.map((id) => [id, game.scores[id]]),
           ),
         });
       }
@@ -109,13 +109,24 @@ Rune.initLogic({
   },
 
   events: {
+  //   playerJoined: (playerId, { game }) => {
+  //     console.log("Player joined:", playerId);
+  //   },
+  //   playerLeft: (playerId, { game }) => {
+  //     console.log("Player left:", playerId);
+  //     delete game.roles[playerId];
+  //     delete game.personas[playerId];
+  //   },
     playerJoined: (playerId, { game }) => {
-      console.log("Player joined:", playerId);
+      game.scores[playerId] = 0;
+      if (!game.playerIds.includes(playerId)) {
+        game.playerIds.push(playerId);
+      }
     },
     playerLeft: (playerId, { game }) => {
-      console.log("Player left:", playerId);
-      delete game.roles[playerId];
-      delete game.personas[playerId];
-    },
+      // game.scores[playerId] = 0;
+      // game.roles[playerId] = null;
+      game.playerIds = game.playerIds.filter(id => id !== playerId);
+    }
   },
 });
