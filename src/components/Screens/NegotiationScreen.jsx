@@ -13,8 +13,8 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
       <h2 style={{ fontSize: '1.1rem', margin: '0.3rem 0' }}>The negotiation has started!</h2>
 
       {/* Section 1: Player & Role */}
-      <div className="section-box" style={{ width: '95%', maxWidth: '360px', padding: '0.3rem', backgroundColor: 'green', borderRadius: '6px', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
-        <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Player Role</h3>
+      <div className="section-box" style={{ width: '95%', maxWidth: '360px', padding: '0.3rem', backgroundColor: '#45a049', borderRadius: '6px', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+        <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Player</h3>
 
         {/* Player Info Container */}
         <div style={{ backgroundColor: '#f0f0f0', padding: '0.3rem', borderRadius: '6px' }}>
@@ -48,7 +48,7 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
       </div>
 
       {/* Section 2: Car List */}
-      <div className="section-box" style={{ width: '95%', maxWidth: '360px', padding: '0.3rem', backgroundColor: 'yellow', borderRadius: '6px' }}>
+      <div className="section-box" style={{ width: '95%', maxWidth: '360px', padding: '0.3rem', backgroundColor: '#FFD700', borderRadius: '6px' }}>
         <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Car List</h3>
         <div className="car-list" style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
           {Array.from({ length: 3 }).map((_, index) => (
@@ -57,7 +57,7 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
               className="car-container"
               style={{
                 padding: '0.2rem',
-                backgroundColor: 'blue',
+                backgroundColor: '#1565C0',
                 border: '1px solid #ccc',
                 borderRadius: '4px'
               }}
