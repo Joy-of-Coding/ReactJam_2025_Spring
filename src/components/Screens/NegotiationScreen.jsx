@@ -14,11 +14,11 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
       <h2 style={{ fontSize: '1.1rem', margin: '0.3rem 0' }}>The negotiation has started!</h2>
 
       {/* Section 1: Player & Role */}
-      <div className="section-box" style={{ width: '95%', maxWidth: '360px', padding: '0.3rem', backgroundColor: '#45a049', borderRadius: '6px', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+      <div className="section-box" style={{ width: '95%', maxWidth: '360px', padding: '0.3rem', color: 'white', backgroundColor: '#45a049', borderRadius: '6px', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
         <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Player</h3>
 
         {/* Player Info Container */}
-        <div style={{ backgroundColor: '#f0f0f0', padding: '0.3rem', borderRadius: '6px' }}>
+        <div style={{ backgroundColor: '#1565C0', padding: '0.3rem', borderRadius: '6px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
             <div className="avatar-placeholder" style={{ fontSize: '0.9rem' }}>◉</div>
             <div>
@@ -36,11 +36,11 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
         {/* Buyer/Seller Container Wrapper */}
         <div style={{ backgroundColor: '#e8e8e8', padding: '0.3rem', borderRadius: '6px' }}>
           <div style={{ display: 'flex', gap: '0.3rem' }}>
-            <div style={{ flex: 1, backgroundColor: '#ddd', padding: '0.3rem', borderRadius: '6px', minHeight: '50px' }}>
+            <div style={{ flex: 1, backgroundColor: '#45a049', padding: '0.3rem', borderRadius: '6px', minHeight: '50px' }}>
               <h4 style={{ fontSize: '0.85rem', margin: '0.2rem 0' }}>Buyer</h4>
               {/* Future content goes here */}
             </div>
-            <div style={{ flex: 1, backgroundColor: '#ddd', padding: '0.3rem', borderRadius: '6px', minHeight: '50px' }}>
+            <div style={{ flex: 1, backgroundColor: '#D32F2F', padding: '0.3rem', borderRadius: '6px', minHeight: '50px' }}>
               <h4 style={{ fontSize: '0.85rem', margin: '0.2rem 0' }}>Seller</h4>
               {/* Future content goes here */}
             </div>
@@ -49,7 +49,7 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
       </div>
 
       {/* Section 2: Car List */}
-      <div className="section-box" style={{ width: '95%', maxWidth: '360px', padding: '0.3rem', backgroundColor: '#FFD700', borderRadius: '6px' }}>
+      <div className="section-box" style={{ width: '95%', maxWidth: '360px', padding: '0.3rem', color: 'white', backgroundColor: '#D32F2F', borderRadius: '6px' }}>
         <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Car List</h3>
         <div className="car-list" style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
           {Array.from({ length: 3 }).map((_, index) => (
@@ -58,7 +58,8 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
               className="car-container"
               style={{
                 padding: '0.2rem',
-                backgroundColor: '#1565C0',
+                backgroundColor: '#FFD700',
+                color: '#2C3E50',
                 border: '1px solid #ccc',
                 borderRadius: '4px'
               }}
@@ -71,7 +72,7 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
       </div>
 
       {/* Section 3: Contract */}
-      <div className="section-box" style={{ width: '95%', maxWidth: '360px', padding: '0.3rem', backgroundColor: 'red', borderRadius: '6px' }}>
+      <div className="section-box" style={{ width: '95%', maxWidth: '360px', padding: '0.3rem', color: 'white', backgroundColor: '#1565C0', borderRadius: '6px' }}>
         <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Contract</h3>
         <div className="contract-component" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           <div className="price-row" style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>

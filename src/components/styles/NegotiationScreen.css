@@ -56,14 +56,12 @@
 }
 
 .car-container {
-  background-color: blue;
   border: 1px solid white;
   border-radius: 8px;
   padding: 1rem;
   width: 240px;
-  color: white;
-}
 
+}
 .fullscreen-centered {
   display: flex;
   flex-direction: column;
