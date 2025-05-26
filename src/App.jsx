@@ -7,11 +7,13 @@ import BuyerChoice from "./components/Screens/BuyerChoice.jsx";
 import SellerChoice from "./components/Screens/SellerChoice.jsx";
 import Showroom from "./components/Screens/Showroom.jsx";
 import NegotiationScreen from "./components/Screens/NegotiationScreen.jsx";
+import oldHornAudio from "./assets/sound/old-car-horn-153262.mp3"
 
 
 function App() {
   //   ///
-  const [gameStarted, setGameStarted] = useState(false);
+  const oldHorn = new Audio(oldHornAudio)
+  // const [gameStarted, setGameStarted] = useState(false);
   const [negotiationStarted, setNegotiationStarted] = useState(false);
   const [ChoiceEnded, setChoiceEnded] = useState(false);
 
@@ -51,6 +53,7 @@ function App() {
   // };
 
   /// jaypox
+  
   const [game, setGame] = useState();
   const [yourPlayerId, setYourPlayerId] = useState();
 
@@ -60,7 +63,7 @@ function App() {
         setGame(game);
         setYourPlayerId(yourPlayerId);
 
-        if (action && action.name === "claimCell") selectSound.play();
+        if (action && action.name === "assignRole") oldHorn.play();
       },
     });
   }, []);
@@ -70,7 +73,7 @@ function App() {
     return;
   }
 
-  const { winCombo, cells, lastMovePlayerId, playerIds, freeCells } = game;
+  const { roles, personas, cars, scroes, objects, gameStarted } = game;
 
   return (
     <>

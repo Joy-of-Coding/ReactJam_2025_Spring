@@ -20,6 +20,18 @@ Rune.initLogic({
 
   setup: (allPlayerIds) => {
     return {
+      gameStarted: false,
+      negotiationStarted: false,
+      ChoiceEnded: false,
+
+      // onBoardTime: 30,
+      // playTime: 120,
+      // gameTimer: 30,
+      // timeElapsed: 0,
+      // stopTimer: false,
+      // setBombs: 9,
+      // baselineScore: 100,
+
       roles: Object.fromEntries(allPlayerIds.map((id) => [id, null])),
       personas: Object.fromEntries(allPlayerIds.map((id) => [id, null])),
       playerIds: allPlayerIds,
