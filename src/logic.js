@@ -13,6 +13,7 @@ Rune.initLogic({
       countdownStart:null,
       countdownDuration: 5000,  //5 seconds
       countdownActive: false,
+      started: false //added game status
     };
   },
   // Assigns roles to players
@@ -34,6 +35,7 @@ Rune.initLogic({
       const elapsed = Rune.gameTime() - game.countdownStart;
       if (elapsed >= game.countdownDuration) {
         game.countdownActive = false;
+        game.started = true; //set game as started
         console.log("countdown completed let the game begin");
       }
     }

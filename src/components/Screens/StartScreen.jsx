@@ -10,7 +10,13 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const [popupContent, setPopupContent] = useState("Loading...");
   const [isHtmlContent, setIsHtmlContent] = useState(false); // to determine if content is HTML or plain text
   const remainingTime = useCountdown(game);
-  
+    //add this use effect to detect game start
+    useEffect(() => {
+      if (game.started) {
+        console.log("Game started - navigating to negotiation screen");
+      onStartGame(); // ✅ triggers screen switch
+  }
+}, [game.started]);
   const openBuyer = () => {
     console.log("Buyer button clicked");
     Rune.actions.assignRole("Buyer")
@@ -44,7 +50,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const handleShowInstructions = () => {
     setShowPopup(true);
     setIsHtmlContent(true);
-    fetch("../src/assets/instructions.txt")
+    fetch("/assets/instructions.txt")
       .then((res) => res.text())
       .then((text) => setPopupContent(text))
       .catch(() => setPopupContent("Failed to load instructions."));
@@ -52,7 +58,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const handleShowCredits = () => {
     setShowPopup(true);
     setIsHtmlContent(false);
-    fetch("../src/assets/credits.txt")
+    fetch("/assets/credits.txt")
       .then((res) => res.text())
       .then((text) => setPopupContent(text))
       .catch(() => setPopupContent("Failed to load credits."));
