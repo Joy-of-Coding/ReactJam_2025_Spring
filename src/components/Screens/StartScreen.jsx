@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "../styles/StartScreen.css";
+import car_image from "../../assets/img/car_sales7.svg";
 
 // import bg from '../assets/bg.jpg';
-
+// game NOT started, choices NOT finished, Negotiations NOT started === startScreen
 const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState("Loading...");
@@ -56,17 +57,23 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   return (
   <>
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
-      <div>
+      <div className="start-roles" style={{maxHeight: "80vh"}}>
         <h1>Lot O Lemons</h1>
         <div className="flex">
           <button onClick={handleSpectate}>Spectate</button>
         </div>
+    <div style={{ textAlign: "center" }}>
+  <img 
+    src= {car_image} alt = "image of buyer and seller. Buyer on the left and Seller on the right"
+    style={{ width: "300px", height: "auto" }}
+  />
+  </div>
         <div className="flex">
-          <button className="buyer-button" onClick={openBuyer}>
-            I'm the Buyer
+          <button className="buyer-button" onClick={openSalesperson}>
+            I'm the Seller
           </button>
-          <button className="seller-button" onClick={openSalesperson}>
-            I'm the Salesperson
+          <button className="seller-button" onClick={openBuyer}>
+            I'm the Buyer
           </button>
         </div>
         <button className="start-button" onClick={onStartGame}>
@@ -74,9 +81,8 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
         </button>
       </div>
     </div>
-    {/* {game.role[yourPlayerId] === "Seller" && <div>Seller</div>} */}
 
-    <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
+   <div className="flex" style={{ marginTop: "1rem" }}>
       <button
         style={{
           backgroundColor: "blue",

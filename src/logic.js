@@ -1,4 +1,18 @@
-import cars from "./components/CarInfo";
+import cars from "./components/Cars/CarInfo";
+
+const isGameOver = (game) => {
+  // Game over if catHappiness reaches 2000 or drops to 0
+  // return game.catHappiness >= 1000 || game.catHappiness <= 0;
+  return game.scores[0] != 1;
+};
+
+const finalizeScores = (game) => {
+  game.playerIds.forEach((playerId) => {
+    if (game.scores[playerId] < 0) {
+      game.scores[playerId] = 0;
+    }
+  });
+};
 
 Rune.initLogic({
   minPlayers: 2,
@@ -10,6 +24,7 @@ Rune.initLogic({
       personas: Object.fromEntries(allPlayerIds.map(id => [id, null])),
       playerIds: allPlayerIds,
       cars,
+      scores: Object.fromEntries(allPlayerIds.map((playerId) => [playerId, 1])),
       objects: Object.fromEntries(
         allPlayerIds.map((playerId, index) => [
           playerId,
@@ -65,9 +80,58 @@ Rune.initLogic({
   },
 
   // ✅ Correctly placed outside `actions`
+    assignPersona: (personaObj, { game, playerId }) => {
+      game.personas[playerId] = personaObj;
+    },
+    //End game action
+    // onEndGame: () => {
+    //   Rune.gameOver({
+    //     players: getScores(game.players),
+    //     delayPopUp: true,
+    //   });
+    // },
+    updateScore: ({ yourPlayerId, amount }, { game }) => {
+      if (!game.playerIds.includes(yourPlayerId)) {
+        throw Rune.invalidAction();
+      }
+
+      if (game.scores[yourPlayerId] === undefined) {
+        game.scores[yourPlayerId] = 0;
+      }
+
+      game.scores[yourPlayerId] += amount;
+      // game.catHappiness += amount;
+      if (isGameOver(game)) {
+        finalizeScores(game);
+        Rune.gameOver({
+          players: Object.fromEntries(
+            game.playerIds.map((id) => [id, game.scores[id]]),
+          ),
+        });
+      }
+    },
+    myAction: (allPlayerIds) => {
+      Rune.gameOver({
+        players: {
+          [allPlayerIds[0]]: 21981, //game.scores[allPlayerIds[0]]
+          // [allPlayerIds[1]]: 8911,
+          // [allPlayerIds[2]]: 20109,
+          // [allPlayerIds[3]]: 323,
+        },
+      });
+    },
+  },
+
+  // Click the 'Add player' button on the desktop version succesfully adds a new player
   events: {
     playerJoined: (playerId, { game }) => {
       console.log("Player joined:", playerId);
-    }
-  }
+    },
+    playerLeft: (playerId, { game }) => {
+      console.log("Player left:", playerId);
+      // Remove the player from roles and personas
+      delete game.roles[playerId];
+      delete game.personas[playerId];
+    },
+  },
 });
