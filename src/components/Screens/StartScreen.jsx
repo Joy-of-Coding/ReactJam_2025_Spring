@@ -9,6 +9,9 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState("Loading...");
   const [isHtmlContent, setIsHtmlContent] = useState(false); // to determine if content is HTML or plain text
+
+  const isSpectator = game.roles[yourPlayerId] === "Spectator";
+
   // const StartScreen = () => {
   const openBuyer = () => {
     console.log("Buyer button clicked");
@@ -78,13 +81,14 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
             I'm the Buyer
           </button>
         </div>
-        <button className="start-button" onClick={onStartGame}>
+        <button className="start-button" onClick={onStartGame}
+          style={isSpectator ? { opacity: 0.5, cursor: "not-allowed" } : {}}>
           Start Game
         </button>
       </div>
     </div>
 
-   <div className="flex" style={{ marginTop: "1rem" }}>
+    <div className="flex" style={{ marginTop: "1rem" }}>
       <button
         style={{
           backgroundColor: "blue",
