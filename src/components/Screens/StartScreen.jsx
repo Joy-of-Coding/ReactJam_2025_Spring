@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/StartScreen.css";
 import car_image from "../../assets/img/car_sales7.svg";
+import DragAvatar from "../Drag/DragAvatar";
 
 // import bg from '../assets/bg.jpg';
 // game NOT started, choices NOT finished, Negotiations NOT started === startScreen
@@ -56,6 +57,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   };
   return (
   <>
+    <DragAvatar yourPlayerId={yourPlayerId} game={game} />
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
       <div className="start-roles" style={{maxHeight: "80vh"}}>
         <h1>Lot O Lemons</h1>
