@@ -9,6 +9,9 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState("Loading...");
   const [isHtmlContent, setIsHtmlContent] = useState(false); // to determine if content is HTML or plain text
+
+  const isSpectator = game.roles[yourPlayerId] === "Spectator";
+
   // const StartScreen = () => {
   const openBuyer = () => {
     console.log("Buyer button clicked");
