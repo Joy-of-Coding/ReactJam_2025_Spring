@@ -1,51 +1,82 @@
 .carousel-outer {
+  width: 100%;
   overflow: hidden;
-  margin: 1rem 0;
   position: relative;
-  padding: 1rem;
-  cursor: grab;
-  border-top: 2px solid #ddd;
-  border-bottom: 2px solid #ddd;
 }
 
 .carousel-track {
   display: flex;
-  gap: 1.5rem;
+  gap: 24px;
+  width: 100%;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 1rem;
-  scroll-padding: 40px;
-  padding-left: 40vw; /* left and right padding so first/last can center */
-  padding-right: 40vw;
+  scroll-behavior: smooth;
+  padding: 20px 10px;
+  scrollbar-width: none;  /* For Firefox */
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
 }
 
 .carousel-track::-webkit-scrollbar {
-  display: none;
+  display: none;  /* For Chrome, Safari, and Opera */
 }
 
 .car-card {
-  scroll-snap-align: center;
-  flex: 0 0 160px;
-  border: 2px solid #0a5201;
-  background: rgb(212, 197, 56);
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
-  margin-left: -40px;
-  z-index: 1;
-  transition: transform 0.3s ease;
+  min-width: 160px;
+  width: 160px;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .car-card:hover {
-  transform: scale(1.1) rotateY(-2deg);
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
-.car-card {
-  scroll-snap-align: center;
-  flex: 0 0 160px;
-  max-width: 180px;
-  min-width: 140px;
-  margin-left: -40px;
-  z-index: 1;
-  transition: transform 0.3s ease;
-  box-sizing: border-box;
+
+.car-card-image {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  overflow: hidden;
+}
+
+.car-card-image img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.car-card-content {
+  padding: 12px;
+}
+
+.car-card-content h3 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #212529;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.car-card-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #dc3545;
+  margin: 0 0 6px;
+}
+
+.car-card-details {
+  font-size: 11px;
+  color: #6c757d;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -37,6 +37,13 @@ Rune.initLogic({
           },
         ]),
       ),
+      sellerCars: {}, // To store cars selected by sellers
+      gameState: { // For game flow persistence
+        gameStarted: false,
+        choiceCompleted: false,
+        negotiationStarted: false
+      },
+      contracts: [], // To store signed contracts
     };
   },
 
@@ -47,6 +54,41 @@ Rune.initLogic({
 
     assignPersona: (persona, { game, playerId }) => {
       game.personas[playerId] = persona;
+    },
+
+    updateSellerCars: ({ cars, prices }, { game, playerId }) => {
+      if (game.roles[playerId] !== "Seller") {
+        throw Rune.invalidAction();
+      }
+      
+      // Store the seller's selected cars with prices
+      game.sellerCars[playerId] = cars.map((car, index) => ({
+        ...car,
+        price: prices[index]
+      }));
+    },
+
+    updateGameState: (newState, { game }) => {
+      // Update game state properties for persistence
+      game.gameState = {
+        ...game.gameState,
+        ...newState
+      };
+    },
+
+    signContract: ({ buyerId, sellerId, carDetails }, { game }) => {
+      // Create a new contract
+      const contract = {
+        buyerId,
+        sellerId,
+        carDetails,
+        timestamp: Date.now()
+      };
+      
+      // Add to contracts list
+      game.contracts.push(contract);
+      
+      // Could trigger game end or other events here
     },
 
     startDrag: (_, { playerId, game }) => {
@@ -109,24 +151,32 @@ Rune.initLogic({
   },
 
   events: {
-  //   playerJoined: (playerId, { game }) => {
-  //     console.log("Player joined:", playerId);
-  //   },
-  //   playerLeft: (playerId, { game }) => {
-  //     console.log("Player left:", playerId);
-  //     delete game.roles[playerId];
-  //     delete game.personas[playerId];
-  //   },
     playerJoined: (playerId, { game }) => {
       game.scores[playerId] = 0;
       if (!game.playerIds.includes(playerId)) {
         game.playerIds.push(playerId);
       }
+      
+      // Initialize new player objects
+      game.roles[playerId] = null;
+      game.personas[playerId] = null;
+      game.objects[playerId] = {
+        id: playerId,
+        x: 50 + game.playerIds.length * 50,
+        y: 50,
+        draggable: true,
+        heldBy: null,
+      };
     },
+    
     playerLeft: (playerId, { game }) => {
-      // game.scores[playerId] = 0;
-      // game.roles[playerId] = null;
+      // Remove player but keep the game state
       game.playerIds = game.playerIds.filter(id => id !== playerId);
+      
+      // Cleanup
+      if (game.sellerCars[playerId]) {
+        delete game.sellerCars[playerId];
+      }
     }
   },
 });

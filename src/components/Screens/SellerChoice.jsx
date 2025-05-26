@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import carData from "../../assets/car_buyer_personas_final_enriched.json";
+import carData from "../Cars/CarInfo";
 import CarCarousel from "../Cars/CarCarousel";
 import "../styles/StartScreen.css";
 
@@ -24,11 +24,21 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
   };
 
   const handleConfirm = () => {
+    // Assign the seller role
     Rune.actions.assignRole("Seller");
+    
+    // Save the selected cars and prices
+    Rune.actions.updateSellerCars({
+      cars: slots,
+      prices: prices.map(p => parseInt(p, 10) || 0)
+    });
+    
+    // Proceed to the next screen
     onEndChoice();
   };
 
-  const idealCars = carData.map(p => ({ ...p.idealCar, owner: p.nickName }));
+  // Use our predefined car data
+  const availableCars = carData;
 
   return (
     <div className="seller-choice-wrapper" style={{
@@ -66,21 +76,34 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
               width: "30%",
               minWidth: "140px",
               maxWidth: "180px",
-              boxSizing: "border-box"
+              boxSizing: "border-box",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center"
             }}>
               {car ? (
                 <>
+                  <div style={{ height: "80px", marginBottom: "10px" }}>
+                    <img 
+                      src={car.image} 
+                      alt={car.name} 
+                      style={{ maxHeight: "100%", maxWidth: "100%" }}
+                    />
+                  </div>
                   <strong>{car.name}</strong>
+                  <p style={{ fontSize: "0.8rem", margin: "5px 0" }}>
+                    Base: ${car.basePrice}
+                  </p>
                   <input
                     type="number"
                     value={prices[idx]}
-                    placeholder="Set Price"
+                    placeholder="Your Price"
                     onChange={(e) => handlePriceChange(idx, e.target.value)}
                     style={{ width: "100%", marginTop: "0.5rem" }}
                   />
                 </>
               ) : (
-                <em>Drop or select a car</em>
+                <em>Select a car</em>
               )}
             </div>
           ))}
@@ -94,7 +117,7 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
         overflow: "hidden",
         maxWidth: "100vw"
       }}>
-        <CarCarousel cars={idealCars} onSelect={handleSelect} />
+        <CarCarousel cars={availableCars} onSelect={handleSelect} />
       </div>
 
       {/* Bottom 1/6: Confirm Button */}

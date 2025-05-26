@@ -1,106 +1,185 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "../styles/NegotiationScreen.css";
 import Buyer from "../Buyer.jsx";
 import Salesperson from "../Salesperson.jsx";
-import CarList from "../Cars/CarList.jsx";
 import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
 import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
-import carData from '../Cars/CarInfo';
 
 const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
+  const [price, setPrice] = useState('');
+  const [selectedCar, setSelectedCar] = useState('');
+  const [spiffs, setSpiffs] = useState('');
+  
+  // Find buyer and seller involved in negotiation
+  const buyerPlayer = Object.keys(game.roles).find(id => game.roles[id] === "Buyer");
+  const sellerPlayer = Object.keys(game.roles).find(id => game.roles[id] === "Seller");
+  
+  const buyerName = Rune.getPlayerInfo(buyerPlayer)?.displayName || "Buyer";
+  const sellerName = Rune.getPlayerInfo(sellerPlayer)?.displayName || "Seller";
+  
+  const buyerPersona = game.personas[buyerPlayer] || { nickName: "Unknown Buyer" };
+  const sellerCars = game.sellerCars ? game.sellerCars[sellerPlayer] : [];
+  
+  const isYouBuyer = yourPlayerId === buyerPlayer;
+  const isYouSeller = yourPlayerId === sellerPlayer;
+
+  // Get car images based on the car name
+  const getCarImage = (carName) => {
+    const carNameLower = carName?.toLowerCase() || "";
+    
+    if (carNameLower.includes("suv")) return "/src/assets/img/suv.svg";
+    if (carNameLower.includes("van")) return "/src/assets/img/van.svg";
+    if (carNameLower.includes("coupe")) return "/src/assets/img/white_coupe.svg";
+    if (carNameLower.includes("sports")) return "/src/assets/img/sports_car.svg";
+    if (carNameLower.includes("eco")) return "/src/assets/img/leafluxe_eco.svg";
+    if (carNameLower.includes("comet")) return "/src/assets/img/red_comet_zr.svg";
+    if (carNameLower.includes("grunt")) return "/src/assets/img/gruntxl_v8.svg";
+    if (carNameLower.includes("bullet")) return "/src/assets/img/green_bullet_mk2.svg";
+    if (carNameLower.includes("dream")) return "/src/assets/img/dreamstreamer.svg";
+    
+    // Default image if no match
+    return "/src/assets/img/white_coupe.svg";
+  };
+
   return (
-    <div className="game-screen" style={{ padding: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'center' }}>
-      <h2 style={{ fontSize: '1.1rem', margin: '0.3rem 0' }}>The negotiation has started!</h2>
-
-      {/* Section 1: Player & Role */}
-      <div className="section-box" style={{ width: '95%', maxWidth: '360px', padding: '0.3rem', backgroundColor: '#45a049', borderRadius: '6px', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
-        <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Player</h3>
-
-        {/* Player Info Container */}
-        <div style={{ backgroundColor: '#f0f0f0', padding: '0.3rem', borderRadius: '6px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-            <div className="avatar-placeholder" style={{ fontSize: '0.9rem' }}>◉</div>
-            <div>
-              <div className="player-name" style={{ fontSize: '0.85rem' }}><strong>Barbara Player</strong></div>
-              <div className="player-status" style={{ fontSize: '0.75rem' }}>Role</div>
+    <div className="negotiation-screen">
+      <div className="desk-background">
+        {/* Top Bar with Names */}
+        <div className="top-bar">
+          {/* Buyer's phone */}
+          <div className="buyer-phone">
+            <div className="phone-screen">
+              <div className="phone-content">
+                <span className="phone-name">{buyerName}</span>
+                <span className="phone-role">{buyerPersona.nickName}</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Seller's nameplate */}
+          <div className="seller-nameplate">
+            <span className="nameplate-name">{sellerName}</span>
+            <span className="nameplate-role">Salesperson</span>
+          </div>
+        </div>
+        
+        {/* Secret Details Section */}
+        <div className="secret-details">
+          {isYouBuyer && (
+            <div className="buyer-details">
+              <h4>Your Secret Details</h4>
+              <p>{buyerPersona.description}</p>
+              <p><strong>Budget:</strong> {buyerPersona.budget}</p>
+              <p><strong>Ideal Car:</strong> {buyerPersona.idealCar?.name}</p>
+            </div>
+          )}
+          
+          {isYouSeller && (
+            <div className="seller-details">
+              <h4>Your Secret Details</h4>
+              <p><strong>Goal:</strong> Sell cars for the highest price possible</p>
+              <p><strong>Commission:</strong> 10% of sale price</p>
+            </div>
+          )}
+        </div>
+        
+        {/* Car List Section */}
+        <div className="car-list-section">
+          <h3>Available Cars</h3>
+          <div className="car-list">
+            {sellerCars && sellerCars.length > 0 ? (
+              sellerCars.map((car, index) => (
+                <div 
+                  key={index} 
+                  className={`car-item ${selectedCar === car.name ? 'selected' : ''}`}
+                  onClick={() => setSelectedCar(car.name)}
+                >
+                  <div className="car-image">
+                    <img src={getCarImage(car.name)} alt={car.name} />
+                  </div>
+                  <div className="car-details">
+                    <h4>{car.name}</h4>
+                    <p>{car.description}</p>
+                    <p className="car-price">Price: ${car.price}</p>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="no-cars">
+                <p>No cars available from this seller</p>
+              </div>
+            )}
+          </div>
+        </div>
+        
+        {/* Contract Section */}
+        <div className="contract-section">
+          <div className="paper-contract">
+            <h3>Sales Contract</h3>
+            
+            <div className="contract-field">
+              <label>Selected Car:</label>
+              <input 
+                type="text" 
+                value={selectedCar}
+                onChange={(e) => setSelectedCar(e.target.value)}
+                disabled={!isYouSeller}
+                placeholder="Enter car name"
+              />
+            </div>
+            
+            <div className="contract-field">
+              <label>Price:</label>
+              <input 
+                type="text" 
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                disabled={!isYouSeller}
+                placeholder="Enter price"
+              />
+            </div>
+            
+            <div className="contract-field">
+              <label>Additional Features:</label>
+              <textarea 
+                value={spiffs}
+                onChange={(e) => setSpiffs(e.target.value)}
+                disabled={!isYouSeller}
+                placeholder="List additional features, warranties, etc."
+              />
+            </div>
+            
+            <div className="contract-signatures">
+              <div className="seller-signature">
+                <span>Seller: {sellerName}</span>
+              </div>
+              
+              <div className="buyer-actions">
+                <span>Buyer: {buyerName}</span>
+                {isYouBuyer && (
+                  <div className="buyer-buttons">
+                    <WalkAwayButton playerId={yourPlayerId} />
+                    <SignTheContractButton 
+                      yourPlayerId={yourPlayerId} 
+                      game={game} 
+                      contractDetails={{
+                        car: selectedCar,
+                        price: price,
+                        spiffs: spiffs
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Secret Info */}
-        <div className="secret-info" style={{ fontSize: '0.75rem', padding: '0.2rem' }}>
-          *secret info and goals here*
-        </div>
-
-        {/* Buyer/Seller Container Wrapper */}
-        <div style={{ backgroundColor: '#e8e8e8', padding: '0.3rem', borderRadius: '6px' }}>
-          <div style={{ display: 'flex', gap: '0.3rem' }}>
-            <div style={{ flex: 1, backgroundColor: '#ddd', padding: '0.3rem', borderRadius: '6px', minHeight: '50px' }}>
-              <h4 style={{ fontSize: '0.85rem', margin: '0.2rem 0' }}>Buyer</h4>
-              {/* Future content goes here */}
-            </div>
-            <div style={{ flex: 1, backgroundColor: '#ddd', padding: '0.3rem', borderRadius: '6px', minHeight: '50px' }}>
-              <h4 style={{ fontSize: '0.85rem', margin: '0.2rem 0' }}>Seller</h4>
-              {/* Future content goes here */}
-            </div>
-          </div>
-        </div>
+        
+        {/* Exit Button */}
+        <button className="exit-button" onClick={offNegotiation}>
+          Back to Showroom
+        </button>
       </div>
-
-      {/* Section 2: Car List */}
-      <div className="section-box" style={{ width: '95%', maxWidth: '360px', padding: '0.3rem', backgroundColor: '#FFD700', borderRadius: '6px' }}>
-        <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Car List</h3>
-        <div className="car-list" style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
-          {Array.from({ length: 3 }).map((_, index) => (
-            <div
-              key={index}
-              className="car-container"
-              style={{
-                padding: '0.2rem',
-                backgroundColor: '#1565C0',
-                border: '1px solid #ccc',
-                borderRadius: '4px'
-              }}
-            >
-              <h4 style={{ fontSize: '0.85rem', margin: '0.1rem 0' }}>Car {index + 1}</h4>
-              <p style={{ fontSize: '0.75rem', margin: '0.1rem 0' }}>Details coming soon...</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Section 3: Contract */}
-      <div className="section-box" style={{ width: '95%', maxWidth: '360px', padding: '0.3rem', backgroundColor: 'red', borderRadius: '6px' }}>
-        <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Contract</h3>
-        <div className="contract-component" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          <div className="price-row" style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
-              <label htmlFor="price-input" style={{ minWidth: '50px', fontSize: '0.75rem' }}><strong>Price:</strong></label>
-              <input id="price-input" type="text" placeholder="Enter price" style={{ flex: 1, fontSize: '0.75rem', padding: '0.2rem' }} />
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
-              <label htmlFor="car-input" style={{ minWidth: '50px', fontSize: '0.75rem' }}><strong>Car #:</strong></label>
-              <input id="car-input" type="text" placeholder="Car number" style={{ flex: 1, fontSize: '0.75rem', padding: '0.2rem' }} />
-            </div>
-          </div>
-
-          <div className="spiffs-row" style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
-            <strong style={{ minWidth: '50px', fontSize: '0.75rem' }}>Spiffs:</strong>
-            <input type="text" placeholder="Spiffs textbox!" style={{ flex: 1, fontSize: '0.75rem', padding: '0.2rem' }} />
-          </div>
-
-          <div className="buyer-actions" style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-            <span style={{ minWidth: '50px', fontSize: '0.75rem' }}><strong>Buyer:</strong></span>
-            <WalkAwayButton playerId={yourPlayerId} />
-            <SignTheContractButton yourPlayerId={yourPlayerId} game={game} />
-          </div>
-        </div>
-      </div>
-
-      {/* Exit Button */}
-      <button className="end-button" style={{ fontSize: '0.85rem', padding: '0.3rem 0.6rem', marginTop: '0.3rem' }} onClick={offNegotiation}>
-        Back to Showroom
-      </button>
     </div>
   );
 };

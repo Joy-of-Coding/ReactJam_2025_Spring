@@ -29,15 +29,20 @@ const CarCarousel = ({ cars, onSelect }) => {
       <div className="carousel-track" ref={trackRef} onScroll={handleScroll}>
         {fullList.map((car, idx) => (
           <div
-            key={`${car.name}-${idx}`}
+            key={`${car.id}-${idx}`}
             className="car-card"
             onClick={() => onSelect(car)}
           >
-            <p>{car.name}</p>
-            <p style={{ fontSize: "0.8rem" }}>{car.description}</p>
-            <p style={{ fontSize: "0.7rem", color: "#888" }}>
-              Ideal Owner: {car.owner}
-            </p>
+            <div className="car-card-image">
+              <img src={car.image} alt={car.name} />
+            </div>
+            <div className="car-card-content">
+              <h3>{car.name}</h3>
+              <p className="car-card-price">${car.basePrice.toLocaleString()}</p>
+              <p className="car-card-details">
+                {car.year} · {car.condition} · {car.fuelType}
+              </p>
+            </div>
           </div>
         ))}
       </div>

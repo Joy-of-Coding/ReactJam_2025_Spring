@@ -1,18 +1,32 @@
-import React from "react"
+import React from 'react';
 
-function WalkAwayButton(yourPlayerId) {
-    const handleClick = () => {
-        // When the button is clicked display an console! 
-        console.log("Player has walked away from the deal!")
-        const player = Rune.getPlayerInfo(yourPlayerId);
-        console.log(yourPlayerId,  player)
+const WalkAwayButton = ({ playerId, offNegotiation }) => {
+  const handleWalkAway = () => {
+    console.log("Buyer decided to walk away");
+    
+    // If offNegotiation function is provided, call it to exit negotiation
+    if (typeof offNegotiation === 'function') {
+      offNegotiation();
     }
+  };
 
-    return (
-        <button onClick={handleClick}>
-            Walk away
-        </button>
-    )
-}
+  return (
+    <button 
+      className="walk-away-button" 
+      onClick={handleWalkAway}
+      style={{
+        backgroundColor: '#dc3545',
+        color: 'white',
+        border: 'none',
+        borderRadius: '4px',
+        padding: '8px 12px',
+        fontSize: '14px',
+        cursor: 'pointer'
+      }}
+    >
+      Walk Away
+    </button>
+  );
+};
 
-export default WalkAwayButton
+export default WalkAwayButton;

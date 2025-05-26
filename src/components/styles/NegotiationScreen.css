@@ -63,3 +63,328 @@
   width: 240px;
   color: white;
 }
+
+.negotiation-screen {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  overflow: hidden;
+}
+
+.desk-background {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+  max-height: 800px;
+  background-color: #8B4513;
+  background-image: 
+    linear-gradient(30deg, #7A3B11 12%, transparent 12.5%, transparent 87%, #7A3B11 87.5%, #7A3B11),
+    linear-gradient(150deg, #7A3B11 12%, transparent 12.5%, transparent 87%, #7A3B11 87.5%, #7A3B11),
+    linear-gradient(30deg, #7A3B11 12%, transparent 12.5%, transparent 87%, #7A3B11 87.5%, #7A3B11),
+    linear-gradient(150deg, #7A3B11 12%, transparent 12.5%, transparent 87%, #7A3B11 87.5%, #7A3B11),
+    linear-gradient(60deg, #9D542F 25%, transparent 25.5%, transparent 75%, #9D542F 75%, #9D542F),
+    linear-gradient(60deg, #9D542F 25%, transparent 25.5%, transparent 75%, #9D542F 75%, #9D542F);
+  background-size: 40px 70px;
+  background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: auto;
+}
+
+/* Top Bar Styles */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+/* Buyer Phone Styles */
+.buyer-phone {
+  width: 150px;
+  height: 80px;
+  background-color: #2c3e50;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background-color: #ecf0f1;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.phone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.phone-name {
+  font-weight: bold;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.phone-role {
+  font-size: 12px;
+  color: #7f8c8d;
+}
+
+/* Seller Nameplate Styles */
+.seller-nameplate {
+  width: 200px;
+  height: 70px;
+  background-color: #c0c0c0;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  padding: 5px;
+}
+
+.nameplate-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+.nameplate-role {
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+/* Secret Details Styles */
+.secret-details {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 0 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.buyer-details, .seller-details {
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  padding: 10px;
+  border-left: 4px solid #007bff;
+}
+
+.secret-details h4 {
+  margin-top: 0;
+  color: #343a40;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 5px;
+}
+
+/* Car List Styles */
+.car-list-section {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 0 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.car-list-section h3 {
+  margin-top: 0;
+  color: #343a40;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 10px;
+}
+
+.car-list {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+.car-item {
+  width: 220px;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.car-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.car-item.selected {
+  border-color: #28a745;
+}
+
+.car-image {
+  height: 120px;
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.car-image img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.car-details {
+  padding: 10px;
+}
+
+.car-details h4 {
+  margin: 0 0 5px;
+  font-size: 16px;
+  color: #343a40;
+}
+
+.car-details p {
+  margin: 0 0 5px;
+  font-size: 13px;
+  color: #6c757d;
+}
+
+.car-price {
+  font-weight: bold;
+  color: #dc3545 !important;
+}
+
+.no-cars {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  color: #6c757d;
+}
+
+/* Contract Styles */
+.contract-section {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.paper-contract {
+  width: 100%;
+  max-width: 600px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  position: relative;
+  /* Paper texture */
+  background-image: repeating-linear-gradient(#f8f9fa 0px, #f8f9fa 24px, #e9ecef 25px);
+  background-size: 100% 25px;
+}
+
+.paper-contract::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: #dc3545;
+}
+
+.paper-contract h3 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #343a40;
+  text-decoration: underline;
+}
+
+.contract-field {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contract-field label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #343a40;
+}
+
+.contract-field input, .contract-field textarea {
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.contract-field textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.contract-signatures {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px dashed #6c757d;
+}
+
+.seller-signature, .buyer-actions {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.seller-signature {
+  border-right: 1px solid #dee2e6;
+}
+
+.buyer-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Exit Button */
+.exit-button {
+  align-self: center;
+  padding: 10px 20px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.exit-button:hover {
+  background-color: #5a6268;
+}
