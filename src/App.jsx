@@ -20,12 +20,13 @@ function App() {
   const handleStartGame = () => {
     Rune.actions.startCountdown();
     console.log("The game has started");
-    setGameStarted(true);
+    Rune.actions.startGame();
+    // setGameStarted(true);
   };
 
   const handleEndGame = () => {
     console.log("The game has ended");
-    setGameStarted(false);
+    //setGameStarted(false);
     console.log("Current players:", game.playerIds);
     console.log("Current roles:", game.roles); 
   };
@@ -65,6 +66,7 @@ function App() {
         setYourPlayerId(yourPlayerId);
 
         if (action && action.name === "assignRole") oldHorn.play();
+        if (action && action.name === "resetStart" && noNegotiations) setNegotiationStarted(false);
       },
     });
   }, []);
@@ -74,7 +76,9 @@ function App() {
     return;
   }
 
-  const { roles, personas, cars, scroes, objects, gameStarted } = game;
+  const { roles, personas, cars, scores, objects, gameStarted, noNegotiations } = game;
+  // if (noNegotiations) setNegotiationStarted(false);
+  // if (ChoiceEnded) rune.noNegotiations == false;
 
   return (
     <>
@@ -83,8 +87,8 @@ function App() {
       {gameStarted && !negotiationStarted && ChoiceEnded && <GameScreen onEndChoice={handleChoiceEnded} onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} playerId={yourPlayerId} game={game}/>}
       {negotiationStarted && <NegotiationScreen offNegotiation={handleStopNegotiation} yourPlayerId={yourPlayerId} game={game}/>}      
        */}
-
        {/* game has not started, choices have not finished, and negotiations have not finished === StartScreen */}
+
       {!gameStarted && !negotiationStarted && !ChoiceEnded && (
   <StartScreen 
     onStartGame={handleStartGame} 
@@ -127,7 +131,7 @@ function App() {
   />
 )}
 
-{negotiationStarted && (
+{gameStarted && negotiationStarted && ChoiceEnded && (
   <NegotiationScreen 
     offNegotiation={handleStopNegotiation} 
     yourPlayerId={yourPlayerId} 
