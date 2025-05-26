@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import "../styles/StartScreen.css";
 import personas from "../../assets/car_buyer_personas_final_enriched.json";
 
-function PersonaDisplay() {
-  const [displayedPersonas, setDisplayedPersonas] = useState([]);
+/* function PersonaDisplay() {
+  const [displayedPersonas, setDisplayedPersonas] = useState([]); */
 
-  useEffect(() => {
+/*   useEffect(() => {
     randomizePersonas();
   }, []);
 
   const randomizePersonas = () => {
     const shuffledPersonas = [...personas].sort(() => Math.random() - 0.5);
     setDisplayedPersonas(shuffledPersonas.slice(0, 3));
-  };
+  }; */
   
-  //const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
+  const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
   const [selectedPersonaId, setSelectedPersonaId] = useState(null);
   const [hasConfirmed, setHasConfirmed] = useState(false);
 
