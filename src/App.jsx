@@ -132,33 +132,7 @@ function App() {
 )}
 
   
-      <ul id="playersSection"> 
-        {playerIds.map((playerId, index) => {
-          const player = Rune.getPlayerInfo(playerId);
-
-          return (
-            <li
-              key={playerId}
-              data-player={index.toString()}
-              // data-your-turn={String(
-              //   playerIds[index] !== lastMovePlayerId && !winCombo && freeCells
-              // )}
-            >
-              <img src={player.avatarUrl} />
-              <span>
-                {player.displayName}
-                {player.playerId === yourPlayerId && (
-                  <span>
-                    <br />
-                    (You)
-                  </span>
-                )}
-              </span>
-            </li>
-
-          );
-        })}
-      </ul>
+      
       {/* {<SellerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
       {<BuyerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
       {<Showroom onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
