@@ -1,9 +1,8 @@
     import React, { useState,  useEffect, useRef } from "react";
-    
+
     const DragAvatar = ({ yourPlayerId, game }) => {
-
     const draggingRef = useRef(false);
-
+    
     const handleMouseDown = (e) => {
         Rune.actions.startDrag();
         draggingRef.current = true;
@@ -44,7 +43,7 @@
                 width: 50,
                 height: 50,
                 borderRadius: "50%",
-                backgroundColor: "lightblue",
+                backgroundColor: "purple",
                 cursor: yourPlayerId === id ? "grab" : "default",
                 zIndex: 10,
             }}
