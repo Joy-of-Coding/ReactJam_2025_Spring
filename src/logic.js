@@ -10,7 +10,18 @@ Rune.initLogic({
       personas: Object.fromEntries(allPlayerIds.map(id => [id, null])),
       playerIds: allPlayerIds,
       cars,
-      objects: Object.fromEntries(allPlayerIds.map(id => [id, null])),
+      objects: Object.fromEntries(
+        allPlayerIds.map((playerId, index) => [
+          playerId,
+          {
+            id: playerId,
+            x: 50 + index * 50,
+            y: 50,
+            draggable: true,
+            heldBy: null,
+          },
+        ])
+      ),
     };
   },
 
@@ -25,29 +36,35 @@ Rune.initLogic({
     },
 
     startDrag: (_, { playerId, game }) => {
-      const object = game.objects[playerId];
-      if (object && object.draggable && !object.heldBy) {
-        object.heldBy = playerId;
+      const obj = game.objects[playerId];
+      if (obj && obj.draggable && obj.heldBy === null) {
+        obj.heldBy = playerId;
+      } else {
+        throw Rune.invalidAction();
       }
     },
 
     dragTo: ({ x, y }, { playerId, game }) => {
-      const object = game.objects[playerId];
-      if (object?.heldBy === playerId) {
-        object.x = x;
-        object.y = y;
+      const obj = game.objects[playerId];
+      if (obj && obj.heldBy === playerId) {
+        obj.x = x;
+        obj.y = y;
+      } else {
+        throw Rune.invalidAction();
       }
     },
 
     endDrag: (_, { playerId, game }) => {
-      const object = game.objects[playerId];
-      if (object?.heldBy === playerId) {
-        object.heldBy = null;
+      const obj = game.objects[playerId];
+      if (obj && obj.heldBy === playerId) {
+        obj.heldBy = null;
+      } else {
+        throw Rune.invalidAction();
       }
-    }
+    },
   },
 
-  // Click the 'Add player' button on the desktop version successfully adds a new player
+  // ✅ Correctly placed outside `actions`
   events: {
     playerJoined: (playerId, { game }) => {
       console.log("Player joined:", playerId);
