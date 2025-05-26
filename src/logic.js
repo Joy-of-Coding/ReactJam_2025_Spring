@@ -85,7 +85,7 @@ Rune.initLogic({
     startCountdown: (_, { game }) => {
       game.countdownStart = Rune.gameTime();
       game.countdownActive = true; 
-      //game.started = true;
+      game.started = true;
       /*onStartGame();*/
     
     },

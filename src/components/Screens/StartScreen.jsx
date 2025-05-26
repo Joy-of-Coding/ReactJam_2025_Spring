@@ -16,7 +16,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
     useEffect(() => {
       if (game.started) {
         console.log("Game started - navigating to negotiation screen");
-      onStartGame(); // ✅ triggers screen switch
+        onStartGame(); // ✅ triggers screen switch
   }
 }, [game.started]);
   const openBuyer = () => {
@@ -45,7 +45,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   };
   const handleStartgame = () => {
     Rune.actions.startCountdown();
-    onStartGame();
+    //onStartGame();
   };
    // adding countdow timed) / 1000))
   
