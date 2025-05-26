@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../styles/StartScreen.css";
 import personas from "../../assets/car_buyer_personas_final_enriched.json";
 
- function PersonaDisplay() {
-  const [displayedPersonas, setDisplayedPersonas] = useState([]); */
+ function BuyerChoice() {
+  const [displayedPersonas, setDisplayedPersonas] = useState([]); 
 
    useEffect(() => {
     randomizePersonas();
@@ -66,5 +66,6 @@ import personas from "../../assets/car_buyer_personas_final_enriched.json";
     </div>
   );
 };
+}
 
 export default BuyerChoice;
