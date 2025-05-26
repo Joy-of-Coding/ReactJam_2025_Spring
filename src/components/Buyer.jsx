@@ -15,6 +15,7 @@ const Buyer = ({ yourPlayerId, game }) => {
         <>
           <p><strong>Role:</strong> {persona.nickName}</p>
           <p>{persona.description}</p>
+          <p>{persona.budgetAmount}</p>
         </>
       ) : (
         <p>No persona assigned yet.</p>

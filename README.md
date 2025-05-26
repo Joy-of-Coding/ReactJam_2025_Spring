@@ -28,7 +28,7 @@ See the [Rune docs](https://developers.rune.ai/docs/quick-start) for more info. 
 
 ---------------------------------
 little change
-Game Title: Sell the Car
+Game Title: Lot O Lemons
 Game opens with a Start Screen.
 
 Minimum Number of Players: 2
