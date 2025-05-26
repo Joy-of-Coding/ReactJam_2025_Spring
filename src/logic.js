@@ -40,7 +40,6 @@ Rune.initLogic({
     };
   },
 
-  // Assigns roles to players
   actions: {
     assignRole: (role, { game, playerId }) => {
       game.roles[playerId] = role;
@@ -77,19 +76,7 @@ Rune.initLogic({
         throw Rune.invalidAction();
       }
     },
-  },
 
-  // ✅ Correctly placed outside `actions`
-    assignPersona: (personaObj, { game, playerId }) => {
-      game.personas[playerId] = personaObj;
-    },
-    //End game action
-    // onEndGame: () => {
-    //   Rune.gameOver({
-    //     players: getScores(game.players),
-    //     delayPopUp: true,
-    //   });
-    // },
     updateScore: ({ yourPlayerId, amount }, { game }) => {
       if (!game.playerIds.includes(yourPlayerId)) {
         throw Rune.invalidAction();
@@ -100,36 +87,33 @@ Rune.initLogic({
       }
 
       game.scores[yourPlayerId] += amount;
-      // game.catHappiness += amount;
+
       if (isGameOver(game)) {
         finalizeScores(game);
         Rune.gameOver({
           players: Object.fromEntries(
-            game.playerIds.map((id) => [id, game.scores[id]]),
+            game.playerIds.map((id) => [id, game.scores[id]])
           ),
         });
       }
     },
+
     myAction: (allPlayerIds) => {
       Rune.gameOver({
         players: {
-          [allPlayerIds[0]]: 21981, //game.scores[allPlayerIds[0]]
-          // [allPlayerIds[1]]: 8911,
-          // [allPlayerIds[2]]: 20109,
-          // [allPlayerIds[3]]: 323,
+          [allPlayerIds[0]]: 21981,
+          // Add others if needed
         },
       });
     },
   },
 
-  // Click the 'Add player' button on the desktop version succesfully adds a new player
   events: {
     playerJoined: (playerId, { game }) => {
       console.log("Player joined:", playerId);
     },
     playerLeft: (playerId, { game }) => {
       console.log("Player left:", playerId);
-      // Remove the player from roles and personas
       delete game.roles[playerId];
       delete game.personas[playerId];
     },
