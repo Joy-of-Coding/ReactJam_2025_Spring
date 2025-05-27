@@ -34,13 +34,7 @@ useEffect(() => {
     processQueue();
 }, []);
 
-  // Get the (x, y) from mouse or touch event
-  const getEventPosition = (e) => {
-    if (e.touches && e.touches[0]) {
-      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
-    }
-    return { x: e.clientX, y: e.clientY };
-  };
+
   // Get the (x, y) from mouse or touch event
 const getEventPosition = (e) => {
     if (e.touches && e.touches[0]) {
