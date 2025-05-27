@@ -34,6 +34,7 @@ Rune.initLogic({
       personas: Object.fromEntries(allPlayerIds.map((id) => [id, null])),
       playerIds: allPlayerIds,
       cars,
+      sellerCars: [], // Array to store the seller's selected cars with prices
       scores: Object.fromEntries(allPlayerIds.map((playerId) => [playerId, 1])),
       objects: Object.fromEntries(
         allPlayerIds.map((playerId, index) => [
@@ -59,6 +60,14 @@ Rune.initLogic({
       game.personas[playerId] = persona;
     },
 
+    // New action to save seller's car selections and prices
+    saveSellerCars: ({ cars }, { game, playerId }) => {
+      if (game.roles[playerId] === "Seller") {
+        game.sellerCars = cars;
+      } else {
+        throw Rune.invalidAction();
+      }
+    },
 
     startDrag: (_, { playerId, game }) => {
       const obj = game.objects[playerId];

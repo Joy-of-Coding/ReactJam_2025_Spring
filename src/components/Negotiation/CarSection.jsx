@@ -4,15 +4,14 @@ import carPersonas from '../../assets/car_buyer_personas_final_enriched.json';
 const CarSection = ({ game }) => {
   const [selectedCarIndex, setSelectedCarIndex] = useState(0);
   
-  // Find the seller
-  const sellerId = game.playerIds.find(id => game.roles[id] === "Seller");
-  
-  // For now we'll use placeholder data - in a real implementation, 
-  // this would come from the seller's selections in SellerChoice
-  const sellerCars = carPersonas.slice(0, 3).map((persona, index) => ({
-    ...persona.idealCar,
-    price: 20000 + (index * 5000) // Placeholder prices
-  }));
+  // Get cars from the seller's selections
+  const sellerCars = game.sellerCars && game.sellerCars.length > 0 
+    ? game.sellerCars 
+    // Fallback to placeholder data if seller cars are not yet available
+    : carPersonas.slice(0, 3).map((persona, index) => ({
+        ...persona.idealCar,
+        price: 20000 + (index * 5000) // Placeholder prices
+      }));
   
   const handleCarSelect = (index) => {
     setSelectedCarIndex(index);

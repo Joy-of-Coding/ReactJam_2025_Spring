@@ -13,11 +13,11 @@ const PlayerSection = ({ yourPlayerId, game }) => {
     <div className="player-section" style={{ 
       width: '100%', 
       maxWidth: '360px', 
-      padding: '0.3rem', 
+      padding: '0.1rem', 
       backgroundColor: '#45a049', 
       borderRadius: '6px',
-      marginBottom: '0.5rem',
-      height: '30vh',
+      marginBottom: '0.2rem',
+      height: '15vh',
       overflow: 'hidden'
     }}>
       <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Negotiators</h3>
@@ -26,7 +26,7 @@ const PlayerSection = ({ yourPlayerId, game }) => {
       <div style={{ 
         display: 'flex', 
         gap: '0.3rem', 
-        height: 'calc(100% - 1.5rem)'
+        height: 'calc(100% 0.5rem)'
       }}>
         {/* Buyer */}
         <div style={{ 
