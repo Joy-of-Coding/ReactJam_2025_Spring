@@ -19,14 +19,31 @@ main {
 }
 
 /* Start Screen Specific Styles */
+/* StartScreen.css */
+
 .start-screen {
-  background: linear-gradient(135deg, #87CEEB 0%, #E0F6FF 50%, #B8E6B8 100%) !important;
-  min-height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  padding: 20px;
+  align-items: center;
+  height: 100vh;            /* force full screen height */
+  width: 100vw;
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+  padding: 2rem;
 }
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  justify-content: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+
 
 .start-screen h1 {
   color: #D32F2F;

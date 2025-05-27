@@ -21,6 +21,7 @@
     },
     "idealCar": {
       "name": "Red Comet ZR",
+      "picture":"red_comet_zr.svg",
       "carType": "sports car",
       "colorModel": "speedyred",
       "rarity": "high",
@@ -56,6 +57,7 @@
     },
     "idealCar": {
       "name": "Safehauler LX",
+      "picture":"suv.svg",
       "carType": "van",
       "colorModel": "white",
       "rarity": "low",
@@ -91,6 +93,7 @@
     },
     "idealCar": {
       "name": "Green Bullet Mk2",
+      "picture":"green_bullet_mk2.svg",
       "carType": "sports car",
       "colorModel": "green",
       "rarity": "high",
@@ -126,7 +129,8 @@
     },
     "idealCar": {
       "name": "First Slide",
-      "carType": "van",
+      "picture":"van.svg",
+      "carType": "first_slide.svg",
       "colorModel": "butterscotch - fun",
       "rarity": "low",
       "driveType": "standard",
@@ -161,6 +165,7 @@
     },
     "idealCar": {
       "name": "LeafLuxe Eco+",
+      "picture":"leafluxe_eco.svg",
       "carType": "van",
       "colorModel": "common, eco, high social score",
       "rarity": null,
@@ -196,6 +201,7 @@
     },
     "idealCar": {
       "name": "Dreamstreamer",
+      "picture":"dreamstreamer.svg",
       "carType": "van",
       "colorModel": "butterscotch - roomy",
       "rarity": "medium",
@@ -231,6 +237,7 @@
     },
     "idealCar": {
       "name": "GruntXL V8",
+      "picture":"gruntxl_v8.svg",
       "carType": "heavy duty truck",
       "colorModel": "green",
       "rarity": "low",
@@ -266,6 +273,7 @@
     },
     "idealCar": {
       "name": "ShiftMax LuxHaul",
+      "picture":"black_van.svg",
       "carType": "van",
       "colorModel": "black",
       "rarity": "low",
@@ -301,6 +309,7 @@
     },
     "idealCar": {
       "name": "SureStep Compact",
+      "picture":"white_coupe.svg",
       "carType": "reliable coupe",
       "colorModel": "white",
       "rarity": "low",
@@ -336,6 +345,7 @@
     },
     "idealCar": {
       "name": "Unity Cruiser",
+      "picture":"green_van.svg",
       "carType": "van",
       "colorModel": "green",
       "rarity": "low",
@@ -372,6 +382,7 @@
     },
     "idealCar": {
       "name": "Torque Queen 500",
+      "picture":"sports_car.svg",
       "carType": "sports car",
       "colorModel": "maroon",
       "rarity": "medium-high",
@@ -407,6 +418,7 @@
     },
     "idealCar": {
       "name": "VoltVibe Spark",
+      "picture":"spark.svg",
       "carType": "eco-tech hatchback",
       "colorModel": "green",
       "rarity": null,
