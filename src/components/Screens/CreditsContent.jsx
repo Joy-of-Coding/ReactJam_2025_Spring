@@ -35,7 +35,7 @@ const CreditsContent = () => {
 					Mindi Briese, Developer
 					Lisa D ass officerjinxter
 					Hope Barnett, Assistant Designer
-					Rebecca Beckstone, Project Admin
+					Rebecca A. Stone, Project Admin
 					Jay Prox
 					Anna
 					Sam Crowe
