@@ -134,7 +134,32 @@ Rune.initLogic({
     resetGameStart: (_, { game }) => {
       game.gameStarted = true;
       game.noNegotiations = true;
+    },
 
+    // New resetGame action to reset the game state
+    resetGame: (_, { game }) => {
+      // Reset game state
+      game.gameStarted = false;
+      game.noNegotiations = true;
+      game.countdownStart = null;
+      game.countdownActive = false;
+
+      // Reset all player roles
+      Object.keys(game.roles).forEach(playerId => {
+        game.roles[playerId] = null;
+      });
+
+      // Reset all personas
+      Object.keys(game.personas).forEach(playerId => {
+        game.personas[playerId] = null;
+      });
+
+      // Reset player positions to initial positions
+      Object.entries(game.objects).forEach(([playerId, obj], index) => {
+        obj.x = 50 + index * 50;
+        obj.y = 50;
+        obj.heldBy = null;
+      });
     },
 
     update: ({ game }) => {

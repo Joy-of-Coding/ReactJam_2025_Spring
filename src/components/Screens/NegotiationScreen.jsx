@@ -7,7 +7,13 @@ import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
 import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
 import carData from '../Cars/CarInfo';
 
-const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
+const NegotiationScreen = ({ offNegotiation, yourPlayerId, game, onEndGame }) => {
+  
+  const handleSignContract = () => {
+    // Handle signing the contract
+    onEndGame(); // End the game when contract is signed
+  };
+  
   return (
     <div className="fullscreen-centered">
     <div className="game-screen" style={{ padding: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'center' }}>
@@ -93,7 +99,20 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
           <div className="buyer-actions" style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
             <span style={{ minWidth: '50px', fontSize: '0.75rem' }}><strong>Buyer:</strong></span>
             <WalkAwayButton playerId={yourPlayerId} />
-            <SignTheContractButton yourPlayerId={yourPlayerId} game={game} />
+            <button 
+              className="contract-button" 
+              style={{ 
+                fontSize: '0.75rem', 
+                padding: '0.3rem 0.6rem', 
+                backgroundColor: 'green', 
+                color: 'white', 
+                border: 'none', 
+                borderRadius: '4px' 
+              }} 
+              onClick={handleSignContract}
+            >
+              Sign Contract
+            </button>
           </div>
         </div>
       </div>

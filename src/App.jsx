@@ -27,7 +27,11 @@ function App() {
 
   const handleEndGame = () => {
     console.log("The game has ended");
-    //setGameStarted(false);
+    // Reset all states to return to start screen
+    setNegotiationStarted(false);
+    setChoiceEnded(false);
+    // Reset roles and other game state
+    Rune.actions.resetGame();
     console.log("Current players:", game.playerIds);
     console.log("Current roles:", game.roles);
   };
@@ -55,10 +59,44 @@ function App() {
         setYourPlayerId(yourPlayerId);
 
         if (action && action.name === "assignRole") oldHorn.play();
-        if (action && action.name === "resetStart" && noNegotiations) setNegotiationStarted(false);
+        
+        // Handle game reset
+        if (action && action.name === "resetGame") {
+          setNegotiationStarted(false);
+          setChoiceEnded(false);
+        }
+        
+        // Handle game end
+        if (game && !game.gameStarted && action && action.name === "endGame") {
+          setNegotiationStarted(false);
+          setChoiceEnded(false);
+        }
       },
     });
   }, []);
+
+  // Add an effect to listen to window reload/refresh
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      // This will run right before the page is unloaded (refreshed)
+      localStorage.setItem('gameWasRefreshed', 'true');
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    
+    // Check if page was reloaded
+    const wasRefreshed = localStorage.getItem('gameWasRefreshed') === 'true';
+    if (wasRefreshed && game) {
+      // Reset states after page reload
+      setNegotiationStarted(false);
+      setChoiceEnded(false);
+      localStorage.removeItem('gameWasRefreshed');
+    }
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [game]);
 
   if (!game) return;
 
@@ -86,48 +124,14 @@ function App() {
         <GameScreen onEndChoice={handleChoiceEnded} onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} yourPlayerId={yourPlayerId} game={game} />
       )}
 
-{gameStarted && negotiationStarted && ChoiceEnded && (
-  <NegotiationScreen 
-    offNegotiation={handleStopNegotiation} 
-    yourPlayerId={yourPlayerId} 
-    game={game} 
-  />
-)}
-
-
-      {/* 🟡 Fixed Footer Buttons */}
-      <div style={{
-        position: "fixed",
-        bottom: 0,
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        gap: "1rem",
-        padding: "0.5rem",
-        backgroundColor: "transparent",
-        zIndex: 1000
-      }}>
-        <button style={{
-          backgroundColor: "#FFD700",
-          border: "none",
-          padding: "0.5rem 1rem",
-          borderRadius: "6px",
-          cursor: "pointer",
-          fontWeight: "bold",
-        }}>
-          How to Play ❓
-        </button>
-        <button style={{
-          backgroundColor: "#FFD700",
-          border: "none",
-          padding: "0.5rem 1rem",
-          borderRadius: "6px",
-          cursor: "pointer",
-          fontWeight: "bold",
-        }}>
-          Credits 🏆
-        </button>
-      </div>
+      {gameStarted && negotiationStarted && ChoiceEnded && (
+        <NegotiationScreen 
+          offNegotiation={handleStopNegotiation} 
+          yourPlayerId={yourPlayerId} 
+          game={game} 
+          onEndGame={handleEndGame}
+        />
+      )}
     </>
   );
 }

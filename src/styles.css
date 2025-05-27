@@ -31,6 +31,8 @@ main {
   box-sizing: border-box;
   background-color: #f0f0f0;
   padding: 2rem;
+  margin: 0 !important; /* Force no margin */
+  padding-top: 0 !important; /* Force no top padding */
 }
 
 .page-container {
@@ -323,4 +325,131 @@ li[data-player="1"]:before {
   margin: 0;
   padding: 0;
   line-height: 1.4;
+}
+
+/* Fix for excessive margin at the top */
+body > div#root {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Container elements should have no top margin/padding */
+div, section, main {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Footer buttons */
+.footer-buttons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  background-color: transparent;
+  z-index: 1000;
+}
+
+.footer-button {
+  background-color: #FFD700;
+  color: #333;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.footer-button:hover {
+  background-color: #FFC000;
+  transform: translateY(-2px);
+}
+
+/* Popup styles */
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.popup-content {
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 600px;
+  width: 80%;
+  max-height: 70vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  color: #333;
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #555;
+}
+
+.popup-body {
+  margin-top: 20px;
+}
+
+/* Role container styles */
+.role-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+
+/* Drop zone styles */
+.drop-zone {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.drop-zone:hover {
+  opacity: 0.8;
+}
+
+/* Player lists */
+.players-list {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.player-name {
+  padding: 2px 5px;
+  margin: 2px 0;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
 }
