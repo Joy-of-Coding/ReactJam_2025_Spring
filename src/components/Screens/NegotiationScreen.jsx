@@ -9,6 +9,7 @@ import carData from '../Cars/CarInfo';
 
 const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
   return (
+    <div className="fullscreen-centered">
     <div className="game-screen" style={{ padding: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'center' }}>
       <h2 style={{ fontSize: '1.1rem', margin: '0.3rem 0' }}>The negotiation has started!</h2>
 
@@ -101,6 +102,7 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
       <button className="end-button" style={{ fontSize: '0.85rem', padding: '0.3rem 0.6rem', marginTop: '0.3rem' }} onClick={offNegotiation}>
         Back to Showroom
       </button>
+    </div>
     </div>
   );
 };
