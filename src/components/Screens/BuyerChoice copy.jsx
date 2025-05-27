@@ -20,6 +20,7 @@ const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
     console.log(`${persona.nickName} persona assigned`);
   };
 
+  // ✅ Wait until the game state actually updates with the persona
   useEffect(() => {
     if (
       hasConfirmed &&
@@ -35,12 +36,15 @@ const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
       <h1>Buyer Game</h1>
       <div className="persona-choice-list">
-        {randomPersonas.map((persona) => (
+        {personas.map((persona) => (
           <div key={persona.id} className="persona-card">
             <p><strong>{persona.nickName}</strong></p>
             <p>{persona.description}</p>
             <p>{persona.budgetAmount}</p>
-            <button onClick={() => handleChoosePersona(persona)}>
+            <button
+              onClick={() => handleChoosePersona(persona)}
+              // disabled={selectedPersonaId !== null}
+            >
               I'm {persona.nickName}
             </button>
           </div>
