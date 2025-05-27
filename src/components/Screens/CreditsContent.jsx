@@ -27,17 +27,17 @@ const CreditsContent = () => {
 		<div className="container">
 			{/* <h2> */}
 				<ReadMore>
-				  John Walter Kowal, Product owner
-				  Linda Frank-Seriously, Project Admin
+				  John Walter Kowal, Product Owner
+				  Linda Franklin (Linda Seriously) Project Admin
 					Katrina Wright, Project Manager
 					Shelly
 					Abu H Kamal
 					Mindi Briese, Developer
-					Lisa D ass officerjinxter
+					Lisa Dean, officerjinxter
 					Hope Barnett, Assistant Designer
-					Rebecca Beckstone, Project Admin
+					Rebecca A. Stone, Project Admin
 					Jay Prox
-					Anna
+					Anna Rankin, Developer
 					Sam Crowe
 					John Serwatka
 					Tonia Ellers, Tester
