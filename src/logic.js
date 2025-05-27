@@ -2,8 +2,6 @@ import cars from "./components/Cars/CarInfo";
 import { scoreNegotiation } from './components/Cars/ScoringLogic';
 
 const isGameOver = (game) => {
-  // Game over if catHappiness reaches 2000 or drops to 0
-  // return game.catHappiness >= 1000 || game.catHappiness <= 0;
   return game.scores[0] != 1;
 };
 
@@ -21,6 +19,18 @@ Rune.initLogic({
 
   setup: (allPlayerIds) => {
     return {
+      gameStarted: false,
+      noNegotiations: true,
+      //added timer for coundown
+      countdownStart:null,
+      countdownDuration: 5000,  //5 seconds
+      countdownActive: false,
+
+      // timeElapsed: 0,
+      // stopTimer: false,
+      // setBombs: 9,
+      // baselineScore: 100,
+
       roles: Object.fromEntries(allPlayerIds.map((id) => [id, null])),
       personas: Object.fromEntries(allPlayerIds.map((id) => [id, null])),
       playerIds: allPlayerIds,
@@ -50,6 +60,7 @@ Rune.initLogic({
     assignPersona: (persona, { game, playerId }) => {
       game.personas[playerId] = persona;
     },
+
 
     startDrag: (_, { playerId, game }) => {
       const obj = game.objects[playerId];
@@ -140,17 +151,39 @@ Rune.initLogic({
         },
       });
     },
-  },
+    //adding a countdown timer
+    startCountdown: (_, { game }) => {
+      game.countdownStart = Rune.gameTime();
+      game.countdownActive = true; 
+    },
+    startGame: (_, { game }) => {
+      // game.countdownStart = Rune.gameTime();
+      // game.countdownActive = true; 
+      /*onStartGame();*/
+      console.log("press all the burttons");
+      game.gameStarted = true;
+      game.noNegotiations = true;
+    },
+  
+    resetGameStart: (_, { game }) => {
+      game.gameStarted = true;
+      game.noNegotiations = true;
 
+    },
+
+    update: ({ game }) => {
+      if (game.countdownActive) {
+        const elapsed = Rune.gameTime() - game.countdownStart;
+        if (elapsed >= game.countdownDuration) {
+          game.countdownActive = false;
+          console.log("countdown completed let the game begin");
+        }
+      }
+    },
+  }, 
+  // Click the 'Add player' button on the desktop version succesfully adds a new player
   events: {
-  //   playerJoined: (playerId, { game }) => {
-  //     console.log("Player joined:", playerId);
-  //   },
-  //   playerLeft: (playerId, { game }) => {
-  //     console.log("Player left:", playerId);
-  //     delete game.roles[playerId];
-  //     delete game.personas[playerId];
-  //   },
+
     playerJoined: (playerId, { game }) => {
       game.scores[playerId] = 0;
       if (!game.playerIds.includes(playerId)) {
@@ -158,8 +191,6 @@ Rune.initLogic({
       }
     },
     playerLeft: (playerId, { game }) => {
-      // game.scores[playerId] = 0;
-      // game.roles[playerId] = null;
       game.playerIds = game.playerIds.filter(id => id !== playerId);
     }
   },
