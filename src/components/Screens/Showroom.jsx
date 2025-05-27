@@ -3,8 +3,10 @@ import "../styles/StartScreen.css";
 import BuyerChoice from "./BuyerChoice";
 import DragAvatar from "../Drag/DragAvatar";
 import yellowtilesquares from "../../assets/img/yellowtilesquares.png";
+import Lobbybackground from "../../assets/img/Lobbybackground.png";
 
-// import bg from '../assets/bg.jpg';
+// import bg from '../assets/bg.jpg'; 
+
 
 const Showroom = ({
   onEndChoice,
@@ -16,7 +18,7 @@ const Showroom = ({
   return (
     <>
       <div>
-        <img src={yellowtilesquares} alt="Yellow Tile Floor" />
+        <img src={Lobbybackground} alt="Lobbybackground" height={300}/>
         {/* Other components or elements */}
       </div>
       <DragAvatar yourPlayerId={yourPlayerId} game={game} />
