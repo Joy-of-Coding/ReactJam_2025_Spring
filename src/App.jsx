@@ -6,22 +6,28 @@ import BuyerChoice from "./components/Screens/BuyerChoice.jsx";
 import SellerChoice from "./components/Screens/SellerChoice.jsx";
 import Showroom from "./components/Screens/Showroom.jsx";
 import NegotiationScreen from "./components/Screens/NegotiationScreen.jsx";
+import oldHornAudio from "./assets/sound/old-car-horn-153262.mp3"
+
 
 function App() {
-  const [gameStarted, setGameStarted] = useState(false);
+  //   ///
+  const oldHorn = new Audio(oldHornAudio)
+  // const [gameStarted, setGameStarted] = useState(false);
   const [negotiationStarted, setNegotiationStarted] = useState(false);
   const [ChoiceEnded, setChoiceEnded] = useState(false);
   const [game, setGame] = useState();
   const [yourPlayerId, setYourPlayerId] = useState();
 
   const handleStartGame = () => {
+    Rune.actions.startCountdown();
     console.log("The game has started");
-    setGameStarted(true);
+    Rune.actions.startGame();
+    // setGameStarted(true);
   };
 
   const handleEndGame = () => {
     console.log("The game has ended");
-    setGameStarted(false);
+    //setGameStarted(false);
     console.log("Current players:", game.playerIds);
     console.log("Current roles:", game.roles);
   };
@@ -48,14 +54,17 @@ function App() {
         setGame(game);
         setYourPlayerId(yourPlayerId);
 
-        if (action && action.name === "claimCell") selectSound.play();
+        if (action && action.name === "assignRole") oldHorn.play();
+        if (action && action.name === "resetStart" && noNegotiations) setNegotiationStarted(false);
       },
     });
   }, []);
 
   if (!game) return;
 
-  const { winCombo, cells, lastMovePlayerId, playerIds, freeCells } = game;
+  const { roles, personas, cars, scores, objects, gameStarted, noNegotiations } = game;
+  // if (noNegotiations) setNegotiationStarted(false);
+  // if (ChoiceEnded) rune.noNegotiations == false;
 
   return (
     <>
@@ -77,24 +86,14 @@ function App() {
         <GameScreen onEndChoice={handleChoiceEnded} onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} yourPlayerId={yourPlayerId} game={game} />
       )}
 
-      {negotiationStarted && (
-        <NegotiationScreen offNegotiation={handleStopNegotiation} yourPlayerId={yourPlayerId} game={game} />
-      )}
+{gameStarted && negotiationStarted && ChoiceEnded && (
+  <NegotiationScreen 
+    offNegotiation={handleStopNegotiation} 
+    yourPlayerId={yourPlayerId} 
+    game={game} 
+  />
+)}
 
-      <ul id="playersSection">
-        {playerIds.map((playerId, index) => {
-          const player = Rune.getPlayerInfo(playerId);
-          return (
-            <li key={playerId} data-player={index.toString()}>
-              <img src={player.avatarUrl} />
-              <span>
-                {player.displayName}
-                {player.playerId === yourPlayerId && <><br />(You)</>}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
 
       {/* 🟡 Fixed Footer Buttons */}
       <div style={{
