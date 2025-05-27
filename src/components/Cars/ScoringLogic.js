@@ -1,6 +1,6 @@
 // scoringLogic.js
 
-export function scoreNegotiation(salespersonCar, buyerProfile, negotiatedDeal, game, yourPlayerId) {
+export function scoreNegotiation(salespersonCar, buyerProfile, negotiatedDeal) {
   let buyerPoints = 0;
   let salespersonPoints = 0;
   const matchReasons = [];
@@ -103,27 +103,6 @@ export function scoreNegotiation(salespersonCar, buyerProfile, negotiatedDeal, g
     matchReasons.push("Lemon with Inadequate Coverage");
   }
 
-  if (!game.matches[yourPlayerId]) {
-    game.matches[yourPlayerId] = [];
-  }
-    const newMatchEntry = {
-    carName: salespersonCar.name,
-    buyerPoints,
-    salespersonPoints,
-    matchReasons,
-    };
-
-    game.matches = {
-    ...game.matches,
-    [yourPlayerId]: [...(game.matches[yourPlayerId] || []), newMatchEntry],
-    };
-
-  return {
-    buyerPoints,
-    salespersonPoints
-  };
-}
-
 function getUpsellPoints(actualLevel, desiredLevel) {
   const levels = ["low", "medium", "high"];
   const diff = levels.indexOf(actualLevel) - levels.indexOf(desiredLevel);
@@ -165,4 +144,11 @@ function getMileageBucketPoints(mileage) {
   } else {
     return { buyer: 0, salesperson: 5 };
   }
+};
+
+  return {
+    buyerPoints,
+    salespersonPoints,
+    matchReasons
+  };
 }

@@ -1,4 +1,5 @@
 import cars from "./components/Cars/CarInfo";
+import { scoreNegotiation } from './components/Cars/ScoringLogic';
 
 const isGameOver = (game) => {
   // Game over if catHappiness reaches 2000 or drops to 0
@@ -77,7 +78,39 @@ Rune.initLogic({
         throw Rune.invalidAction();
       }
     },
+    // scoreMatch: ({ salespersonCar, buyerProfile, negotiatedDeal, yourPlayerId }, { game }) => {
+    //   const { buyerPoints, salespersonPoints, matchReasons } = scoreNegotiation(
+    //     salespersonCar,
+    //     buyerProfile,
+    //     negotiatedDeal
+    //   );
 
+    //   const newMatch = {
+    //     carName: salespersonCar.name,
+    //     buyerPoints,
+    //     salespersonPoints,
+    //     matchReasons,
+    //   };
+
+    //   game.matches[yourPlayerId] = [...(game.matches[yourPlayerId] || []), newMatch];
+    // },
+    finalizeSale: ({ yourPlayerId, salespersonCar, buyerProfile, negotiatedDeal }, { game }) => {
+      const { buyerPoints, salespersonPoints, matchReasons } = scoreNegotiation(
+        salespersonCar, buyerProfile, negotiatedDeal
+      );
+
+      const newMatch = {
+        carName: salespersonCar.name,
+        buyerPoints,
+        salespersonPoints,
+        matchReasons,
+      };
+
+      game.matches[yourPlayerId] = [
+        ...(game.matches[yourPlayerId] || []),
+        newMatch,
+      ];
+    },
     updateScore: ({ yourPlayerId, amount }, { game }) => {
       if (!game.playerIds.includes(yourPlayerId)) {
         throw Rune.invalidAction();
