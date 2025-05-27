@@ -28,6 +28,7 @@ function App() {
   const handleEndGame = () => {
     console.log("The game has ended");
     //setGameStarted(false);
+    Rune.actions.tally();
     console.log("Current players:", game.playerIds);
     console.log("Current roles:", game.roles);
   };
@@ -70,6 +71,7 @@ function App() {
     scores,
     objects,
     gameStarted,
+    tallyingScores,
     noNegotiations,
   } = game;
   const salespersonCar = Tempo.idealCar;
@@ -140,7 +142,7 @@ function App() {
         negotiatedDeal,
       })}
 
-      {gameStarted && (
+      {gameStarted && tallyingScores && (
         <TallyScores
           // onEndChoice={onEndChoice}
           // onEndGame={onEndGame}

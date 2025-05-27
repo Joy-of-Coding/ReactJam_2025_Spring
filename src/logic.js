@@ -1,5 +1,5 @@
 import cars from "./components/Cars/CarInfo";
-import { scoreNegotiation } from './components/Cars/ScoringLogic.js';
+import { scoreNegotiation } from "./components/Cars/ScoringLogic.js";
 
 const isGameOver = (game) => {
   return game.scores[0] != 1;
@@ -21,6 +21,7 @@ Rune.initLogic({
     return {
       gameStarted: false,
       noNegotiations: true,
+      tallyingScores: false,
       //added timer for coundown
       countdownStart: null,
       countdownDuration: 5000, //5 seconds
@@ -36,8 +37,12 @@ Rune.initLogic({
       playerIds: allPlayerIds,
       cars,
       sellerCars: [], // Array to store the seller's selected cars with prices
-      scores: Object.fromEntries(allPlayerIds.map((playerId) => [playerId, 1])),
-      matches: Object.fromEntries(allPlayerIds.map((playerId) => [playerId, ["looked for a car"]])),
+      scores: Object.fromEntries(
+        allPlayerIds.map((playerId) => [playerId, "TIE"]),
+      ),
+      matches: Object.fromEntries(
+        allPlayerIds.map((playerId) => [playerId, ["looked for a car"]]),
+      ),
       objects: Object.fromEntries(
         allPlayerIds.map((playerId, index) => [
           playerId,
@@ -114,9 +119,14 @@ Rune.initLogic({
 
     //   game.matches[yourPlayerId] = [...(game.matches[yourPlayerId] || []), newMatch];
     // },
-    finalizeSale: ({ yourPlayerId, salespersonCar, buyerProfile, negotiatedDeal }, { game }) => {
+    finalizeSale: (
+      { yourPlayerId, salespersonCar, buyerProfile, negotiatedDeal },
+      { game },
+    ) => {
       const { buyerPoints, salespersonPoints, matchReasons } = scoreNegotiation(
-        salespersonCar, buyerProfile, negotiatedDeal
+        salespersonCar,
+        buyerProfile,
+        negotiatedDeal,
       );
 
       const newMatch = {
@@ -169,9 +179,15 @@ Rune.initLogic({
       // game.countdownStart = Rune.gameTime();
       // game.countdownActive = true;
       /*onStartGame();*/
-      console.log("press all the burttons");
+      console.log("press all the buttons");
       game.gameStarted = true;
       game.noNegotiations = true;
+    },
+    tally: ({ game }) => {
+      game.tallyingScores = true;
+      Rune.gameOver({
+        players: {},
+      });
     },
 
     resetGameStart: (_, { game }) => {
