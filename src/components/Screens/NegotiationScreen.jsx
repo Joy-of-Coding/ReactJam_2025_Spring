@@ -4,7 +4,7 @@ import PlayerSection from "../Negotiation/PlayerSection";
 import CarSection from "../Negotiation/CarSection";
 import ContractSection from "../Negotiation/ContractSection";
 
-const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
+const NegotiationScreen = ({ offNegotiation, yourPlayerId, game, onEndGame }) => {
   const [selectedCar, setSelectedCar] = useState(null);
   const [selectedCarIndex, setSelectedCarIndex] = useState(0);
   
@@ -14,6 +14,12 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
     setSelectedCarIndex(index);
   };
 
+  
+  const handleSignContract = () => {
+    // Handle signing the contract
+    onEndGame(); // End the game when contract is signed
+  };
+  
   return (
     <div className="fullscreen-centered">
       <div className="game-screen" style={{ 
