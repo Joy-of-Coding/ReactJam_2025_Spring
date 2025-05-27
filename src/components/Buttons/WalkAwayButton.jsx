@@ -1,11 +1,12 @@
 import React from "react"
 
-function WalkAwayButton({ playerId }) {
+function WalkAwayButton({ playerId, game }) {
     const handleClick = () => {
         // When the button is clicked display an console! 
         console.log("Player has walked away from the deal!")
-        const player = Rune.getPlayerInfo(playerId);
-        console.log(playerId,  player)
+        
+        // Use the endGame action with walkAway result
+        Rune.actions.endGame({ result: "walkAway" });
     }
 
     return (

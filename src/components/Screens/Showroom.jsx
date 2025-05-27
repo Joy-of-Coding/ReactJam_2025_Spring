@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/StartScreen.css";
 import BuyerChoice from "./BuyerChoice";
 import DragAvatar from "../Drag/DragAvatar";
-import yellowtilesquares from "../../assets/img/yellowtilesquares.png";
+import yellowtilesquares from "../../assets/img/lobby with 2 desks.png";
 
 // import bg from '../assets/bg.jpg';
 

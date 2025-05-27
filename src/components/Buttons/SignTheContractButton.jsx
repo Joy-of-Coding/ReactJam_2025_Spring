@@ -1,14 +1,106 @@
-import React from 'react'
+import React from 'react';
+import carPersonas from '../../assets/car_buyer_personas_final_enriched.json';
 
 function SignTheContractButton ({yourPlayerId, game}) {
     const handleClick = () => {
-      const amount = 1;
-        // When the button is clicked display an console! 
-        console.log("Player has signed the contract!")
-        // console.log("OldScore: ", game.scores[yourPlayerId])
-        Rune.actions.updateScore({ yourPlayerId, amount});
-        // console.log("newScore: ", game.scores[yourPlayerId])
+      // Check if contract details are filled out
+      if (!game.contractDetails.carName || !game.contractDetails.price) {
+        alert("Contract is incomplete! Please make sure car and price are filled out.");
+        return;
+      }
+      
+      // Get player roles
+      const buyerId = game.playerIds.find(id => game.roles[id] === "Buyer");
+      const sellerId = game.playerIds.find(id => game.roles[id] === "Seller");
+      
+      if (!buyerId || !sellerId) {
+        console.error("Missing buyer or seller");
+        return;
+      }
+      
+      // Get buyer's persona
+      const buyerPersonaId = game.personas[buyerId];
+      const buyerPersona = carPersonas.find(p => p.id === buyerPersonaId);
+      
+      if (!buyerPersona) {
+        console.error("No buyer persona found - defaulting to seller win");
+        // End game with seller win if no buyer persona is found
+        Rune.actions.endGame({ result: "sellerWins" });
+        return;
+      }
+      
+      // Get the selected car
+      // We need to find the car from the contractDetails.carName
+      const selectedCarName = game.contractDetails.carName;
+      const selectedCar = game.cars.find(car => car.name === selectedCarName);
+      
+      if (!selectedCar) {
+        console.error("Selected car not found:", selectedCarName);
+        // End game with seller win if no car is found
+        Rune.actions.endGame({ result: "sellerWins" });
+        return;
+      }
+      
+      // Calculate match score
+      const idealCar = buyerPersona.idealCar;
+      let matchCount = 0;
+      let matchItems = [];
+      
+      // Count matching attributes
+      if (selectedCar.carType === idealCar.carType) {
+        matchCount++; 
+        matchItems.push('carType');
+      }
+      if (selectedCar.colorModel === idealCar.colorModel) {
+        matchCount++; 
+        matchItems.push('colorModel');
+      }
+      if (selectedCar.safety === idealCar.safety) {
+        matchCount++; 
+        matchItems.push('safety');
+      }
+      if (selectedCar.maintenanceExpenses === idealCar.maintenanceExpenses) {
+        matchCount++; 
+        matchItems.push('maintenanceExpenses');
+      }
+      if (selectedCar.techFeatures === idealCar.techFeatures) {
+        matchCount++; 
+        matchItems.push('techFeatures');
+      }
+      if (selectedCar.driveType === idealCar.driveType) {
+        matchCount++; 
+        matchItems.push('driveType');
+      }
+      if (selectedCar.gasMileage === idealCar.gasMileage) {
+        matchCount++; 
+        matchItems.push('gasMileage');
+      }
+      
+      // Check budget match
+      const price = parseInt(game.contractDetails.price);
+      const budget = buyerPersona.profile.budgetAmount || 30000; // Default budget if not specified
+      const isMidToLowBudget = price <= budget * 0.8; // Mid to low range = 80% or less of budget
+      
+      console.log("Contract signed with:");
+      console.log("Contract details:", game.contractDetails);
+      console.log("Match count:", matchCount);
+      console.log("Matching items:", matchItems);
+      console.log("Price:", price, "Budget:", budget, "Is mid-low budget:", isMidToLowBudget);
+      
+      // Determine winner: Buyer wins if 5+ matches AND mid-low budget range
+      // Otherwise seller wins
+      let buyerWins = matchCount >= 5 && isMidToLowBudget;
+      
+      // Call the endGame action with the appropriate result
+      if (buyerWins) {
+        console.log("Buyer wins! Perfect car match and good price.");
+        Rune.actions.endGame({ result: "buyerWins" });
+      } else {
+        console.log("Seller wins! Car doesn't match buyer's ideal needs.");
+        Rune.actions.endGame({ result: "sellerWins" });
+      }
     }
+    
   return (
     <button 
         onClick={handleClick}

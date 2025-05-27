@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import WalkAwayButton from '../Buttons/WalkAwayButton';
 import SignTheContractButton from '../Buttons/SignTheContractButton';
 import carPersonas from '../../assets/car_buyer_personas_final_enriched.json';
@@ -10,6 +10,10 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
   const [spiffs, setSpiffs] = useState('');
   const [carMatchScore, setCarMatchScore] = useState(null);
   
+  // Create refs for debouncing
+  const updateTimeoutRef = useRef(null);
+  const lastUpdateTimeRef = useRef(0);
+  
   // Determine player roles
   const buyerId = game.playerIds.find(id => game.roles[id] === "Buyer");
   const sellerId = game.playerIds.find(id => game.roles[id] === "Seller");
@@ -20,11 +24,33 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
   const buyerPersonaId = game.personas && buyerId ? game.personas[buyerId] : null;
   const buyerPersona = buyerPersonaId !== null ? carPersonas.find(p => p.id === buyerPersonaId) : null;
 
+  // Update local state from game's contract details
+  useEffect(() => {
+    if (game.contractDetails) {
+      if (game.contractDetails.carName) setCarName(game.contractDetails.carName);
+      if (game.contractDetails.price) setPrice(game.contractDetails.price);
+      if (game.contractDetails.spiffs) setSpiffs(game.contractDetails.spiffs);
+    }
+  }, [game.contractDetails]);
+
   // Update form when selected car changes
   useEffect(() => {
     if (selectedCar) {
-      setCarName(selectedCar.name);
-      setPrice(selectedCar.price.toString());
+      // Only set these values if seller and contract details are empty
+      if (isSeller && (!game.contractDetails.carName || !game.contractDetails.price)) {
+        const newCarName = selectedCar.name;
+        const newPrice = selectedCar.price.toString();
+        
+        setCarName(newCarName);
+        setPrice(newPrice);
+        
+        // Update the shared contract details
+        updateContractDetailsThrottled({
+          carName: newCarName,
+          price: newPrice,
+          spiffs: spiffs
+        });
+      }
       
       // Calculate match score if we have buyer persona
       if (buyerPersona) {
@@ -43,9 +69,10 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
         if (selectedCar.gasMileage === idealCar.gasMileage) matchScore += 1;
         
         // Budget match (better if under budget)
-        if (parseInt(price) <= buyerPersona.profile.budgetAmount) {
+        const currentPrice = game.contractDetails.price || price;
+        if (parseInt(currentPrice) <= buyerPersona.profile.budgetAmount) {
           matchScore += 1;
-          if (parseInt(price) <= buyerPersona.profile.budgetAmount * 0.9) {
+          if (parseInt(currentPrice) <= buyerPersona.profile.budgetAmount * 0.9) {
             matchScore += 1; // bonus for being significantly under budget
           }
         }
@@ -56,7 +83,67 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
         setCarMatchScore(matchPercentage);
       }
     }
-  }, [selectedCar, buyerPersona, price]);
+  }, [selectedCar, buyerPersona, game.contractDetails, isSeller, spiffs]);
+
+  // Throttled update function to avoid hitting rate limits
+  const updateContractDetailsThrottled = (details) => {
+    const now = Date.now();
+    const timeSinceLastUpdate = now - lastUpdateTimeRef.current;
+    
+    // Clear any pending updates
+    if (updateTimeoutRef.current) {
+      clearTimeout(updateTimeoutRef.current);
+    }
+    
+    // If we updated recently, schedule an update for later
+    if (timeSinceLastUpdate < 300) { // 300ms minimum between updates
+      updateTimeoutRef.current = setTimeout(() => {
+        Rune.actions.updateContractDetails(details);
+        lastUpdateTimeRef.current = Date.now();
+      }, 300 - timeSinceLastUpdate);
+    } else {
+      // Otherwise update immediately
+      Rune.actions.updateContractDetails(details);
+      lastUpdateTimeRef.current = now;
+    }
+  };
+
+  // Handle input changes and update the shared contract details
+  const handleCarNameChange = (e) => {
+    const newValue = e.target.value;
+    setCarName(newValue);
+    if (isSeller) {
+      updateContractDetailsThrottled({
+        carName: newValue,
+        price: price,
+        spiffs: spiffs
+      });
+    }
+  };
+
+  const handlePriceChange = (e) => {
+    const newValue = e.target.value;
+    setPrice(newValue);
+    if (isSeller) {
+      updateContractDetailsThrottled({
+        carName: carName,
+        price: newValue,
+        spiffs: spiffs
+      });
+    }
+  };
+
+  const handleSpiffsChange = (e) => {
+    const newValue = e.target.value;
+    setSpiffs(newValue);
+    if (isSeller) {
+      updateContractDetailsThrottled({
+        carName: carName,
+        price: price,
+        spiffs: newValue
+      });
+    }
+  };
 
   return (
     <div className="contract-section" style={{
@@ -130,7 +217,7 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
             type="text" 
             placeholder="Car name" 
             value={carName}
-            onChange={(e) => setCarName(e.target.value)}
+            onChange={handleCarNameChange}
             disabled={!isSeller}
             style={{ 
               flex: 1, 
@@ -153,7 +240,7 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
             type="text" 
             placeholder="Enter price" 
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={handlePriceChange}
             disabled={!isSeller}
             style={{ 
               flex: 1, 
@@ -176,7 +263,7 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
             type="text" 
             placeholder="Warranties, add-ons, etc." 
             value={spiffs}
-            onChange={(e) => setSpiffs(e.target.value)}
+            onChange={handleSpiffsChange}
             disabled={!isSeller}
             style={{ 
               flex: 1, 
@@ -227,7 +314,7 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
         }}>
           {isBuyer ? (
             <>
-              <WalkAwayButton playerId={yourPlayerId} />
+              <WalkAwayButton playerId={yourPlayerId} game={game} />
               <SignTheContractButton yourPlayerId={yourPlayerId} game={game} />
             </>
           ) : (
@@ -254,7 +341,7 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
                   border: '1px solid #ccc'
                 }}
               >
-                Sign the contract!
+                Sign contract
               </button>
             </>
           )}
