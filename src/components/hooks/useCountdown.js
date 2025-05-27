@@ -11,7 +11,10 @@ export default function useCountdown(game) {
 
     const timerId = setInterval(() => {
       const elapsed = Rune.gameTime() - game.countdownStart;
-      const timeLeft = Math.max(0, Math.ceil((game.countdownDuration - elapsed) / 1000));
+      const timeLeft = Math.max(
+        0,
+        Math.ceil((game.countdownDuration - elapsed) / 1000),
+      );
       setRemainingTime(timeLeft);
     }, 100);
 
