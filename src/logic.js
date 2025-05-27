@@ -85,12 +85,12 @@ Rune.initLogic({
     startCountdown: (_, { game }) => {
       game.countdownStart = Rune.gameTime();
       game.countdownActive = true; 
-      game.started = true;
+      //game.started = true;
       /*onStartGame();*/
-    
     },
     update: ({ game }) => {
       if (game.countdownActive) {
+        count elpsed = RuneIf .countdownActive
         const elapsed = Rune.gameTime() - game.countdownStart;
           if (elapsed >= game.countdownDuration) {
             game.countdownActive = false;
