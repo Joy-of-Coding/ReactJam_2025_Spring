@@ -11,6 +11,9 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState("Loading...");
   const [isHtmlContent, setIsHtmlContent] = useState(false); // to determine if content is HTML or plain text
+
+  const isSpectator = game.roles[yourPlayerId] === "Spectator";
+
   const remainingTime = useCountdown(game);
     //add this use effect to detect game start
     useEffect(() => {
@@ -100,13 +103,15 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
             I'm the Buyer
           </button>
         </div>
-        <button className="start-button" onClick={handleStartgame}>
+        {/* <button className="start-button" onClick={handleStartgame}></button> */}
+        <button className="start-button" onClick={onStartGame}
+          style={isSpectator ? { opacity: 0.5, cursor: "not-allowed" } : {}}>
           Start Game
         </button>
       </div>
     </div>
 
-   <div className="flex" style={{ marginTop: "1rem" }}>
+   {/* <div className="flex" style={{ marginTop: "1rem" }}>
       <button
         style={{
           backgroundColor: "blue",
@@ -143,7 +148,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
       >
         Credits
       </button>
-    </div>
+    </div> */}
 
     {showPopup && (
       <>
