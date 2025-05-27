@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from 'react';
-import image from "../../assets/img"
 
 const EnhancedCarCarousel = ({ cars, onSelect }) => {
   const trackRef = useRef(null);
