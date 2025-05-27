@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import image from "../../assets/img"
 
 const EnhancedCarCarousel = ({ cars, onSelect }) => {
   const trackRef = useRef(null);
@@ -77,11 +78,11 @@ const EnhancedCarCarousel = ({ cars, onSelect }) => {
           >
             {/* Car Image */}
             <div style={{ 
-              height: '100px', 
+              height: '75px', 
               backgroundColor: '#f5f5f5',
               borderRadius: '4px',
               marginBottom: '0.5rem',
-              backgroundImage: car.picture ? `url(/src/assets/img/${car.picture})` : 'none',
+              backgroundImage: car.picture ? `url(../../assets/img/${car.picture})` : 'none',
               backgroundSize: 'contain',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'

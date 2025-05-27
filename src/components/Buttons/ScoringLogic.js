@@ -92,12 +92,12 @@ export function scoreNegotiation(salespersonCar, buyerProfile, negotiatedDeal) {
     if (upsell > 0) sellerMatchReasons.push("Safety Upsell");
   }
 
-//   // 7. Maintenance Package
-//   if ("maint" in negotiatedDeal.spiffs) {
-//     salespersonPoints +=
-//       ConversionPoints(negotiatedDeal.maintUp) * 10;
-//     sellerMatchReasons.push("Maintenance Upsell");
-//   }
+  //   // 7. Maintenance Package
+  //   if ("maint" in negotiatedDeal.spiffs) {
+  //     salespersonPoints +=
+  //       ConversionPoints(negotiatedDeal.maintUp) * 10;
+  //     sellerMatchReasons.push("Maintenance Upsell");
+  //   }
 
   // 8. Price Buckets
   const priceBucket = getPriceBucketPoints(
@@ -108,16 +108,17 @@ export function scoreNegotiation(salespersonCar, buyerProfile, negotiatedDeal) {
   buyerPoints += priceBucket.buyer * 10;
   salespersonPoints += priceBucket.salesperson * 10;
 
-//   // 9. Mileage Buckets
-//   const mileageBucket = getMileageBucketPoints(salespersonCar.mileage);
-//   buyerPoints += mileageBucket.buyer * 10;
-//   salespersonPoints += mileageBucket.salesperson * 10;
+  //   // 9. Mileage Buckets
+  //   const mileageBucket = getMileageBucketPoints(salespersonCar.mileage);
+  //   buyerPoints += mileageBucket.buyer * 10;
+  //   salespersonPoints += mileageBucket.salesperson * 10;
 
   // 10. Lemon Check
   if (
-    !negotiatedDeal.lemonInsurance && 
-    ConversionPoints(negotiatedDeal.mainUp) < ConversionPoints(salespersonCar.maintenanceExpences) 
-    && Math.floor(Math.random() * 6) + 1 === 4
+    !negotiatedDeal.lemonInsurance &&
+    ConversionPoints(negotiatedDeal.mainUp) <
+      ConversionPoints(salespersonCar.maintenanceExpences) &&
+    Math.floor(Math.random() * 6) + 1 === 4
   ) {
     buyerPoints -= 50; // constant penalty
     buyerMatchReasons.push("Lemon with Inadequate Coverage");
@@ -154,22 +155,22 @@ export function scoreNegotiation(salespersonCar, buyerProfile, negotiatedDeal) {
     }
   }
 
-//   function getMileageBucketPoints(mileage) {
-//     if (mileage <= 100000) {
-//       return { buyer: 3, salesperson: 2 };
-//     } else if (mileage <= 175000) {
-//       return { buyer: 2, salesperson: 3 };
-//     } else if (mileage <= 250000) {
-//       return { buyer: 1, salesperson: 4 };
-//     } else {
-//       return { buyer: 0, salesperson: 5 };
-//     }
-//   }
+  //   function getMileageBucketPoints(mileage) {
+  //     if (mileage <= 100000) {
+  //       return { buyer: 3, salesperson: 2 };
+  //     } else if (mileage <= 175000) {
+  //       return { buyer: 2, salesperson: 3 };
+  //     } else if (mileage <= 250000) {
+  //       return { buyer: 1, salesperson: 4 };
+  //     } else {
+  //       return { buyer: 0, salesperson: 5 };
+  //     }
+  //   }
 
   return {
     buyerPoints,
     salespersonPoints,
     buyerMatchReasons,
-    sellerMatchReasons
+    sellerMatchReasons,
   };
 }
