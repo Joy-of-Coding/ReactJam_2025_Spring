@@ -4,7 +4,7 @@ import "../styles/CarCarousel.css";
 const CarCarousel = ({ cars, onSelect }) => {
   const trackRef = useRef(null);
   const fullList = [...cars.slice(-2), ...cars, ...cars.slice(0, 2)]; // Clone start & end
-  const cardWidth = 160 + 24; // width + gap
+  const cardWidth = 120 + 24; // width + gap
   const scrollStart = cardWidth * 2;
 
   useEffect(() => {
