@@ -66,7 +66,7 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
   const handleClosePopup = () => {
     setShowPopup(false);
   };
-     
+    
   return (
   <>
      {/* Countdown Timer */}
@@ -97,14 +97,17 @@ const StartScreen = ({ onStartGame, yourPlayerId, game }) => {
           </button>
         </div>
         {/* <button className="start-button" onClick={handleStartgame}></button> */}
-        <button className="start-button" onClick={onStartGame}
-          style={isSpectator ? { opacity: 0.5, cursor: "not-allowed" } : {}}>
+        <button className="start-button"
+          onClick={!isSpectator ? onStartGame : undefined}
+          disabled={isSpectator}
+          style={isSpectator ? { opacity: 0.5, cursor: "not-allowed" } : {}}
+          >
           Start Game
         </button>
       </div>
     </div>
 
-   {/* <div className="flex" style={{ marginTop: "1rem" }}>
+    {/* <div className="flex" style={{ marginTop: "1rem" }}>
       <button
         style={{
           backgroundColor: "blue",
