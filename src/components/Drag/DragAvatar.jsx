@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import React, { useEffect, useRef } from "react";
 
 const DragAvatar = ({ yourPlayerId, game }) => {
 const draggingRef = useRef(false);
