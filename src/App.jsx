@@ -7,6 +7,8 @@ import SellerChoice from "./components/Screens/SellerChoice.jsx";
 import TallyScores from "./components/Screens/TallyScores.jsx";
 import NegotiationScreen from "./components/Screens/NegotiationScreen.jsx";
 import oldHornAudio from "./assets/sound/old-car-horn-153262.mp3"
+import Tempo from './components/Drag/tempPerson.json';
+
 
 
 function App() {
@@ -63,11 +65,27 @@ function App() {
   if (!game) return;
 
   const { roles, personas, cars, scores, objects, gameStarted, noNegotiations } = game;
+  const salespersonCar = Tempo.idealCar
+  const buyerProfile = Tempo.profile
+  const negotiatedDeal = Tempo.exampleDeal
   // if (noNegotiations) setNegotiationStarted(false);
   // if (ChoiceEnded) rune.noNegotiations == false;
 
   return (
     <>
+    {/* //logic here to go here when game ends */}
+    {Rune.actions.finalizeSale({ yourPlayerId, salespersonCar, buyerProfile, negotiatedDeal })}
+
+{ !gameStarted &&
+  <TallyScores
+    // onEndChoice={onEndChoice}
+    // onEndGame={onEndGame}
+    // onNegotiation={onNegotiation}
+    yourPlayerId={yourPlayerId} 
+    game={game} 
+  />
+}
+    
       {!gameStarted && !negotiationStarted && !ChoiceEnded && (
         <StartScreen onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />
       )}
@@ -94,7 +112,7 @@ function App() {
   />
 )}
 
-{/* //logic here to go here when game ends */}
+{/* //logic here to go here when game ends
 { !gameStarted &&
   <TallyScores
     // onEndChoice={onEndChoice}
@@ -104,7 +122,7 @@ function App() {
     game={game} 
   />
 }
-      
+       */}
       {/* {<SellerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
       {<BuyerChoice onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}
       {<Showroom onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />}

@@ -1,5 +1,5 @@
 import cars from "./components/Cars/CarInfo";
-import { scoreNegotiation } from './components/Cars/ScoringLogic';
+import { scoreNegotiation } from './components/Cars/ScoringLogic.js';
 
 const isGameOver = (game) => {
   return game.scores[0] != 1;

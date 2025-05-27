@@ -20,3 +20,5 @@ const TallyScores = ({ yourPlayerId, game }) => {
     </div>
   );
 };
+
+export default TallyScores;
