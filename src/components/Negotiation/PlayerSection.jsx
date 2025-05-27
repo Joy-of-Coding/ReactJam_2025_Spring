@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import carPersonas from '../../assets/car_buyer_personas_final_enriched.json';
 
 const PlayerSection = ({ yourPlayerId, game }) => {
+  const [showBuyerDetails, setShowBuyerDetails] = useState(false);
+  
   // Find the buyer and seller IDs from game state
   const buyerId = game.playerIds.find(id => game.roles[id] === "Buyer");
   const sellerId = game.playerIds.find(id => game.roles[id] === "Seller");
@@ -8,25 +11,99 @@ const PlayerSection = ({ yourPlayerId, game }) => {
   // Get player info using Rune API
   const buyerInfo = buyerId ? Rune.getPlayerInfo(buyerId) : null;
   const sellerInfo = sellerId ? Rune.getPlayerInfo(sellerId) : null;
+  
+  // Get buyer's persona if assigned
+  const buyerPersonaId = game.personas && buyerId ? game.personas[buyerId] : null;
+  const buyerPersona = buyerPersonaId !== null ? carPersonas.find(p => p.id === buyerPersonaId) : null;
+
+  // Determine if current player is the buyer
+  const isBuyer = yourPlayerId === buyerId;
 
   return (
     <div className="player-section" style={{ 
       width: '100%', 
       maxWidth: '360px', 
-      padding: '0.1rem', 
+      padding: '0.3rem', 
       backgroundColor: '#45a049', 
       borderRadius: '6px',
       marginBottom: '0.2rem',
-      height: '15vh',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      height: isBuyer && showBuyerDetails ? 'auto' : '15vh',
+      transition: 'height 0.3s'
     }}>
-      <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Negotiators</h3>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Negotiators</h3>
+        {isBuyer && (
+          <button 
+            onClick={() => setShowBuyerDetails(!showBuyerDetails)}
+            style={{
+              border: 'none',
+              background: 'rgba(255,255,255,0.5)',
+              borderRadius: '4px',
+              padding: '0.2rem 0.4rem',
+              fontSize: '0.7rem',
+              cursor: 'pointer'
+            }}
+          >
+            {showBuyerDetails ? 'Hide Details' : 'Show Details'}
+          </button>
+        )}
+      </div>
+
+      {/* Buyer Details Section - Only visible to buyer */}
+      {isBuyer && showBuyerDetails && buyerPersona && (
+        <div style={{ 
+          backgroundColor: '#f0f8ff', 
+          padding: '0.4rem', 
+          marginBottom: '0.4rem', 
+          borderRadius: '4px',
+          fontSize: '0.75rem',
+          border: '1px solid #1565C0'
+        }}>
+          <div style={{ marginBottom: '0.3rem', display: 'flex', alignItems: 'center' }}>
+            <strong style={{ color: '#1565C0' }}>{buyerPersona.nickName}</strong>
+            <span style={{ marginLeft: 'auto', fontSize: '0.7rem', backgroundColor: '#1565C0', color: 'white', padding: '0.1rem 0.3rem', borderRadius: '10px' }}>
+              Budget: ${buyerPersona.profile.budgetAmount}
+            </span>
+          </div>
+          <p style={{ margin: '0.2rem 0', fontSize: '0.7rem' }}>{buyerPersona.description}</p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem', marginTop: '0.3rem' }}>
+            <span style={{ 
+              fontSize: '0.65rem', 
+              backgroundColor: '#e8e8e8', 
+              padding: '0.1rem 0.3rem', 
+              borderRadius: '10px' 
+            }}>
+              {buyerPersona.profile.carType}
+            </span>
+            <span style={{ 
+              fontSize: '0.65rem', 
+              backgroundColor: '#e8e8e8', 
+              padding: '0.1rem 0.3rem', 
+              borderRadius: '10px' 
+            }}>
+              {buyerPersona.profile.colorModel}
+            </span>
+            <span style={{ 
+              fontSize: '0.65rem', 
+              backgroundColor: '#e8e8e8', 
+              padding: '0.1rem 0.3rem', 
+              borderRadius: '10px' 
+            }}>
+              {buyerPersona.profile.safety} safety
+            </span>
+          </div>
+          <div style={{ fontSize: '0.7rem', marginTop: '0.3rem' }}>
+            <span style={{ color: '#555' }}>Looking for: <strong>{buyerPersona.idealCar.name}</strong></span>
+          </div>
+        </div>
+      )}
 
       {/* Buyer/Seller Container */}
       <div style={{ 
         display: 'flex', 
         gap: '0.3rem', 
-        height: 'calc(100% 0.5rem)'
+        height: '100%'
       }}>
         {/* Buyer */}
         <div style={{ 
@@ -51,12 +128,12 @@ const PlayerSection = ({ yourPlayerId, game }) => {
             </div>
           )}
           
-          {/* Buyer Details - Placeholder for now */}
+          {/* Buyer Role Description */}
           <div style={{ fontSize: '0.75rem', marginTop: 'auto', backgroundColor: '#e8e8e8', padding: '0.3rem', borderRadius: '4px' }}>
             {buyerId === yourPlayerId ? (
-              <p>Your role: Make a good deal on a car!</p>
+              <p style={{ margin: '0' }}>Your role: Find the best car for your needs!</p>
             ) : (
-              <p>Buyer is looking for a great deal</p>
+              <p style={{ margin: '0' }}>Buyer is comparing options</p>
             )}
           </div>
         </div>
@@ -84,12 +161,12 @@ const PlayerSection = ({ yourPlayerId, game }) => {
             </div>
           )}
           
-          {/* Seller Details - Placeholder for now */}
+          {/* Seller Role Description */}
           <div style={{ fontSize: '0.75rem', marginTop: 'auto', backgroundColor: '#e8e8e8', padding: '0.3rem', borderRadius: '4px' }}>
             {sellerId === yourPlayerId ? (
-              <p>Your role: Sell cars for profit!</p>
+              <p style={{ margin: '0' }}>Your role: Make profitable sales!</p>
             ) : (
-              <p>Seller wants to make a profit</p>
+              <p style={{ margin: '0' }}>Seller wants to close a deal</p>
             )}
           </div>
         </div>

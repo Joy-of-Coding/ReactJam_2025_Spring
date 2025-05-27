@@ -33,7 +33,8 @@
       "techDesire": "bells and whistles",
       "description": "Quirky, colorful, and full of character \u2014 like its owner.",
       "dealerCost": 28784,
-      "gasMileage": "turbo"
+      "gasMileage": "turbo",
+      "mileage": 1200
     }
   },
   {
@@ -69,7 +70,8 @@
       "techDesire": "standard",
       "description": "Ideal for getting noticed at the light and ignored at the pump.",
       "dealerCost": 11361,
-      "gasMileage": "standard"
+      "gasMileage": "standard",
+      "mileage": 15000
     }
   },
   {
@@ -105,7 +107,8 @@
       "techDesire": "open to upgrade",
       "description": "Built like a tank but purrs like a kitten.",
       "dealerCost": 17515,
-      "gasMileage": "turbo"
+      "gasMileage": "turbo",
+      "mileage": 55000
     }
   },
   {
@@ -141,7 +144,8 @@
       "techDesire": "open to upgrade",
       "description": "Perfect for the cautious heart with a wild hair.",
       "dealerCost": 8556,
-      "gasMileage": "standard"
+      "gasMileage": "standard",
+      "mileage": 85000
     }
   },
   {
@@ -177,7 +181,8 @@
       "techDesire": "bells and whistles",
       "description": "Looks modest. Drives like mischief.",
       "dealerCost": 20167,
-      "gasMileage": "standard"
+      "gasMileage": "standard",
+      "mileage": 500
     }
   },
   {
@@ -213,7 +218,8 @@
       "techDesire": "open to upgrade",
       "description": "Built like a tank but purrs like a kitten.",
       "dealerCost": 15698,
-      "gasMileage": "standard"
+      "gasMileage": "standard",
+      "mileage": 65000
     }
   },
   {
@@ -249,7 +255,8 @@
       "techDesire": "open to upgrade",
       "description": "Looks modest. Drives like mischief.",
       "dealerCost": 15154,
-      "gasMileage": "guzzler"
+      "gasMileage": "guzzler",
+      "mileage": 2500
     }
   },
   {
@@ -285,7 +292,8 @@
       "techDesire": "open to upgrade",
       "description": "Perfect for the cautious heart with a wild hair.",
       "dealerCost": 15708,
-      "gasMileage": "standard"
+      "gasMileage": "standard",
+      "mileage": 1800
     }
   },
   {
@@ -321,7 +329,8 @@
       "techDesire": "open to upgrade",
       "description": "Looks modest. Drives like mischief.",
       "dealerCost": 8415,
-      "gasMileage": "standard"
+      "gasMileage": "standard",
+      "mileage": 45000
     }
   },
   {
@@ -357,7 +366,8 @@
       "techDesire": "open to upgrade",
       "description": "More sensors than a spaceship, and just as shiny.",
       "dealerCost": 16325,
-      "gasMileage": "standard"
+      "gasMileage": "standard",
+      "mileage": 3200
     }
   },
   {
@@ -394,7 +404,8 @@
       "techDesire": "bells and whistles",
       "description": "More sensors than a spaceship, and just as shiny.",
       "dealerCost": 29315,
-      "gasMileage": "turbo"
+      "gasMileage": "turbo",
+      "mileage": 800
     }
   },
   {
@@ -430,7 +441,8 @@
       "techDesire": "bells and whistles",
       "description": "Perfect for the cautious heart with a wild hair.",
       "dealerCost": 20952,
-      "gasMileage": "eco"
+      "gasMileage": "eco",
+      "mileage": 1500
     }
   }
 ]

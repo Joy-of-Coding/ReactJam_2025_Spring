@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../styles/NegotiationScreen.css";
 import PlayerSection from "../Negotiation/PlayerSection";
 import CarSection from "../Negotiation/CarSection";
 import ContractSection from "../Negotiation/ContractSection";
 
 const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
+  const [selectedCar, setSelectedCar] = useState(null);
+  const [selectedCarIndex, setSelectedCarIndex] = useState(0);
+  
+  // Handle car selection from the CarSection
+  const handleCarSelect = (car, index) => {
+    setSelectedCar(car);
+    setSelectedCarIndex(index);
+  };
+
   return (
     <div className="fullscreen-centered">
       <div className="game-screen" style={{ 
@@ -25,10 +34,19 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
         <PlayerSection yourPlayerId={yourPlayerId} game={game} />
         
         {/* Car Section */}
-        <CarSection game={game} />
+        <CarSection 
+          game={game} 
+          yourPlayerId={yourPlayerId} 
+          onCarSelect={handleCarSelect} 
+        />
         
         {/* Contract Section */}
-        <ContractSection yourPlayerId={yourPlayerId} game={game} />
+        <ContractSection 
+          yourPlayerId={yourPlayerId} 
+          game={game} 
+          selectedCar={selectedCar}
+          selectedCarIndex={selectedCarIndex}
+        />
         
         {/* Exit Button */}
         <button 
@@ -37,6 +55,7 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
             fontSize: '0.85rem', 
             padding: '0.3rem 0.6rem', 
             marginTop: '0.3rem',
+            marginBottom: '0.3rem',
             backgroundColor: '#45a049',
             color: 'white',
             border: 'none',

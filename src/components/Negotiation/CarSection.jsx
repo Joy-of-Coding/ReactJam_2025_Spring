@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import carPersonas from '../../assets/car_buyer_personas_final_enriched.json';
 
-const CarSection = ({ game }) => {
+const CarSection = ({ game, yourPlayerId, onCarSelect }) => {
   const [selectedCarIndex, setSelectedCarIndex] = useState(0);
+  const [showDetails, setShowDetails] = useState(false);
+  
+  // Determine if current player is the seller
+  const sellerId = game.playerIds.find(id => game.roles[id] === "Seller");
+  const isSeller = yourPlayerId === sellerId;
   
   // Get cars from the seller's selections
   const sellerCars = game.sellerCars && game.sellerCars.length > 0 
@@ -15,6 +20,14 @@ const CarSection = ({ game }) => {
   
   const handleCarSelect = (index) => {
     setSelectedCarIndex(index);
+    if (onCarSelect) {
+      onCarSelect(sellerCars[index], index);
+    }
+  };
+
+  const toggleDetails = (e) => {
+    e.stopPropagation();
+    setShowDetails(!showDetails);
   };
 
   return (
@@ -28,7 +41,24 @@ const CarSection = ({ game }) => {
       height: '35vh',
       overflow: 'hidden'
     }}>
-      <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Available Cars</h3>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Available Cars</h3>
+        {isSeller && (
+          <button 
+            onClick={toggleDetails}
+            style={{
+              border: 'none',
+              background: 'rgba(0,0,0,0.1)',
+              borderRadius: '4px',
+              padding: '0.2rem 0.4rem',
+              fontSize: '0.7rem',
+              cursor: 'pointer'
+            }}
+          >
+            {showDetails ? 'Simple View' : 'Detailed View'}
+          </button>
+        )}
+      </div>
       
       {/* Car Carousel */}
       <div className="car-carousel" style={{
@@ -44,7 +74,7 @@ const CarSection = ({ game }) => {
             className={`car-card ${index === selectedCarIndex ? 'selected' : ''}`}
             style={{
               flex: '0 0 auto',
-              width: '160px',
+              width: isSeller && showDetails ? '240px' : '160px',
               height: '100%',
               backgroundColor: index === selectedCarIndex ? '#1565C0' : '#f0f0f0',
               color: index === selectedCarIndex ? 'white' : 'black',
@@ -54,7 +84,9 @@ const CarSection = ({ game }) => {
               cursor: 'pointer',
               display: 'flex',
               flexDirection: 'column',
-              boxShadow: index === selectedCarIndex ? '0 0 8px rgba(0,0,0,0.3)' : 'none'
+              boxShadow: index === selectedCarIndex ? '0 0 8px rgba(0,0,0,0.3)' : 'none',
+              transition: 'width 0.3s, transform 0.2s',
+              transform: index === selectedCarIndex ? 'scale(1.02)' : 'scale(1)'
             }}
             onClick={() => handleCarSelect(index)}
           >
@@ -85,15 +117,29 @@ const CarSection = ({ game }) => {
               <div><strong>Color:</strong> {car.colorModel}</div>
               <div><strong>Safety:</strong> {car.safety}</div>
               <div><strong>Maint:</strong> {car.maintenanceExpenses}</div>
+              
+              {/* Additional details for sellers */}
+              {isSeller && showDetails && (
+                <>
+                  <div><strong>Mileage:</strong> {car.mileage.toLocaleString()} miles</div>
+                  <div><strong>Gas:</strong> {car.gasMileage}</div>
+                  <div><strong>Tech:</strong> {car.techFeatures || 'Basic'}</div>
+                  <div><strong>Drive:</strong> {car.driveType}</div>
+                  <div><strong>Dealer Cost:</strong> ${car.dealerCost.toLocaleString()}</div>
+                </>
+              )}
             </div>
             
             <div style={{ 
               marginTop: 'auto', 
               fontWeight: 'bold', 
               fontSize: '0.9rem', 
-              textAlign: 'center' 
+              textAlign: 'center',
+              backgroundColor: index === selectedCarIndex ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.05)',
+              padding: '0.2rem',
+              borderRadius: '4px'
             }}>
-              ${car.price}
+              ${car.price.toLocaleString()}
             </div>
           </div>
         ))}
