@@ -38,7 +38,7 @@ Rune.initLogic({
       contractDetails: {
         carName: "",
         price: "",
-        spiffs: ""
+        spiffs: "",
       }, // Contract details shared between buyer and seller
       scores: Object.fromEntries(allPlayerIds.map((playerId) => [playerId, 1])),
       objects: Object.fromEntries(
@@ -81,7 +81,7 @@ Rune.initLogic({
         game.contractDetails = {
           carName: carName || game.contractDetails.carName,
           price: price || game.contractDetails.price,
-          spiffs: spiffs || game.contractDetails.spiffs
+          spiffs: spiffs || game.contractDetails.spiffs,
         };
       } else {
         throw Rune.invalidAction();
@@ -93,58 +93,62 @@ Rune.initLogic({
       // Prepare players object with results
       const players = {};
       
+
       if (result === "walkAway") {
         // When buyer walks away, both buyer and seller tie
-        const buyerId = game.playerIds.find(id => game.roles[id] === "Buyer");
-        const sellerId = game.playerIds.find(id => game.roles[id] === "Seller");
-        
+        const buyerId = game.playerIds.find((id) => game.roles[id] === "Buyer");
+        const sellerId = game.playerIds.find(
+          (id) => game.roles[id] === "Seller",
+        );
+
         if (buyerId) players[buyerId] = "TIE";
         if (sellerId) players[sellerId] = "TIE";
-        
+
         // Set all other players to TIE as well
-        game.playerIds.forEach(id => {
+        game.playerIds.forEach((id) => {
           if (!players[id]) {
             players[id] = "TIE";
           }
         });
-        
+
         console.log("Game ended with walk away. Result:", players);
-      } 
-      else if (result === "buyerWins") {
+      } else if (result === "buyerWins") {
         // Buyer wins, seller loses
-        const buyerId = game.playerIds.find(id => game.roles[id] === "Buyer");
-        const sellerId = game.playerIds.find(id => game.roles[id] === "Seller");
-        
+        const buyerId = game.playerIds.find((id) => game.roles[id] === "Buyer");
+        const sellerId = game.playerIds.find(
+          (id) => game.roles[id] === "Seller",
+        );
+
         if (buyerId) players[buyerId] = "WON";
         if (sellerId) players[sellerId] = "LOST";
-        
+
         // Set all other players to TIE
-        game.playerIds.forEach(id => {
+        game.playerIds.forEach((id) => {
           if (!players[id]) {
             players[id] = "TIE";
           }
         });
-        
+
         console.log("Game ended with buyer win. Result:", players);
-      }
-      else if (result === "sellerWins") {
+      } else if (result === "sellerWins") {
         // Seller wins, buyer loses
-        const buyerId = game.playerIds.find(id => game.roles[id] === "Buyer");
-        const sellerId = game.playerIds.find(id => game.roles[id] === "Seller");
-        
+        const buyerId = game.playerIds.find((id) => game.roles[id] === "Buyer");
+        const sellerId = game.playerIds.find(
+          (id) => game.roles[id] === "Seller",
+        );
+
         if (buyerId) players[buyerId] = "LOST";
         if (sellerId) players[sellerId] = "WON";
-        
+
         // Set all other players to TIE
-        game.playerIds.forEach(id => {
+        game.playerIds.forEach((id) => {
           if (!players[id]) {
             players[id] = "TIE";
           }
         });
-        
+
         console.log("Game ended with seller win. Result:", players);
-      }
-      else {
+      } else {
         // Custom results provided (for future extensibility)
         Object.assign(players, result);
         console.log("Game ended with custom result:", players);
@@ -152,6 +156,7 @@ Rune.initLogic({
       
       // End the game with the calculated results
       Rune.gameOver({ players });
+      // Rune.actons.resetGame();
     },
 
     startDrag: (_, { playerId, game }) => {
@@ -239,27 +244,27 @@ Rune.initLogic({
       game.countdownActive = false;
 
       // Reset all player roles
-      Object.keys(game.roles).forEach(playerId => {
+      Object.keys(game.roles).forEach((playerId) => {
         game.roles[playerId] = null;
       });
 
       // Reset all personas
-      Object.keys(game.personas).forEach(playerId => {
+      Object.keys(game.personas).forEach((playerId) => {
         game.personas[playerId] = null;
       });
 
       // Reset player positions to initial positions
-      Object.entries(game.objects).forEach(([playerId, obj], index) => {
+      Object.entries(game.objects).forEach(([ obj], index) => {
         obj.x = 50 + index * 50;
         obj.y = 50;
         obj.heldBy = null;
       });
-      
+
       // Reset contract details
       game.contractDetails = {
         carName: "",
         price: "",
-        spiffs: ""
+        spiffs: "",
       };
     },
 

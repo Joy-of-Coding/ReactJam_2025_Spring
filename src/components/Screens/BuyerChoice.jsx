@@ -29,12 +29,12 @@ const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
 
   return (
     <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
-      <h1>Buyer Game</h1>\
+      <h1>Buyer Game</h1>
       <button
         className="start-button"
         onClick={() => setHasConfirmed(true)}
         disabled={selectedPersonaId === null}
-      >
+        >
         Confirm Choice
       </button>
       <div className="persona-choice-list">
