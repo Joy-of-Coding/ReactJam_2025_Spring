@@ -1,0 +1,51 @@
+.carousel-outer {
+  overflow: hidden;
+  margin: 1rem 0;
+  position: relative;
+  padding: 1rem;
+  cursor: grab;
+  border-top: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
+  scroll-padding: 40px;
+  padding-left: 40vw; /* left and right padding so first/last can center */
+  padding-right: 40vw;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.car-card {
+  scroll-snap-align: center;
+  flex: 0 0 160px;
+  border: 2px solid #0a5201;
+  background: rgb(212, 197, 56);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+  margin-left: -40px;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.car-card:hover {
+  transform: scale(1.1) rotateY(-2deg);
+}
+.car-card {
+  scroll-snap-align: center;
+  flex: 0 0 160px;
+  max-width: 180px;
+  min-width: 140px;
+  margin-left: -40px;
+  z-index: 1;
+  transition: transform 0.3s ease;
+  box-sizing: border-box;
+}
