@@ -1,0 +1,46 @@
+{
+    "id": 3,
+    "description": "little old lady with a secret need for speed",
+    "avatarUrl": "https://example.com/avatars/oldladyracer.jpg",
+    "nickName": "Betty Speedwell",
+    "profile": {
+      "newCar": false,
+      "carType": "sports car",
+      "colorModel": "green",
+      "qualifyLargeBudget": "mid range",
+      "insights": "frequent repairs, seat belts only, no airbags",
+      "rarity": "high",
+      "purchaseCategory": "premium",
+      "budgetAmount": 20000,
+      "safety": "low",
+      "maintStart": "low",
+      "maintenanceExpenses": "high",
+      "techFeatures": "low",
+      "techDesire": "open"
+    },
+    "idealCar": {
+      "name": "Green Bullet Mk2",
+      "picture":"green_bullet_mk2.svg",
+      "carType": "sports car",
+      "colorModel": "green",
+      "rarity": "high",
+      "driveType": "standard",
+      "safety": "low",
+      "maintenanceExpenses": "high",
+      "estimatedCost": 20000,
+      "techLevel": "low",
+      "description": "Built like a tank but purrs like a kitten.",
+      "dealerCost": 17515,
+      "gasMileage": "turbo"
+    },
+    "exampleDeal": {
+      "price": 20000,
+      "spiffs": [],
+      "techUp": "low",
+      "maintUp": "low",
+      "safetyUp": "low",
+      "upsoldPaint": false,
+      "LemonInsurance": false
+
+    }
+  }

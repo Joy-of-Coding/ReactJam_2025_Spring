@@ -21,8 +21,8 @@ Rune.initLogic({
       gameStarted: false,
       noNegotiations: true,
       //added timer for coundown
-      countdownStart:null,
-      countdownDuration: 5000,  //5 seconds
+      countdownStart: null,
+      countdownDuration: 5000, //5 seconds
       countdownActive: false,
 
       // timeElapsed: 0,
@@ -34,6 +34,7 @@ Rune.initLogic({
       personas: Object.fromEntries(allPlayerIds.map((id) => [id, null])),
       playerIds: allPlayerIds,
       cars,
+      sellerCars: [], // Array to store the seller's selected cars with prices
       scores: Object.fromEntries(allPlayerIds.map((playerId) => [playerId, 1])),
       objects: Object.fromEntries(
         allPlayerIds.map((playerId, index) => [
@@ -59,6 +60,14 @@ Rune.initLogic({
       game.personas[playerId] = persona;
     },
 
+    // New action to save seller's car selections and prices
+    saveSellerCars: ({ cars }, { game, playerId }) => {
+      if (game.roles[playerId] === "Seller") {
+        game.sellerCars = cars;
+      } else {
+        throw Rune.invalidAction();
+      }
+    },
 
     startDrag: (_, { playerId, game }) => {
       const obj = game.objects[playerId];
@@ -120,21 +129,46 @@ Rune.initLogic({
     //adding a countdown timer
     startCountdown: (_, { game }) => {
       game.countdownStart = Rune.gameTime();
-      game.countdownActive = true; 
+      game.countdownActive = true;
     },
     startGame: (_, { game }) => {
       // game.countdownStart = Rune.gameTime();
-      // game.countdownActive = true; 
+      // game.countdownActive = true;
       /*onStartGame();*/
       console.log("press all the burttons");
       game.gameStarted = true;
       game.noNegotiations = true;
     },
-  
+
     resetGameStart: (_, { game }) => {
       game.gameStarted = true;
       game.noNegotiations = true;
+    },
 
+    // New resetGame action to reset the game state
+    resetGame: (_, { game }) => {
+      // Reset game state
+      game.gameStarted = false;
+      game.noNegotiations = true;
+      game.countdownStart = null;
+      game.countdownActive = false;
+
+      // Reset all player roles
+      Object.keys(game.roles).forEach(playerId => {
+        game.roles[playerId] = null;
+      });
+
+      // Reset all personas
+      Object.keys(game.personas).forEach(playerId => {
+        game.personas[playerId] = null;
+      });
+
+      // Reset player positions to initial positions
+      Object.entries(game.objects).forEach(([playerId, obj], index) => {
+        obj.x = 50 + index * 50;
+        obj.y = 50;
+        obj.heldBy = null;
+      });
     },
 
     update: ({ game }) => {
@@ -146,10 +180,9 @@ Rune.initLogic({
         }
       }
     },
-  }, 
+  },
   // Click the 'Add player' button on the desktop version succesfully adds a new player
   events: {
-
     playerJoined: (playerId, { game }) => {
       game.scores[playerId] = 0;
       if (!game.playerIds.includes(playerId)) {
@@ -157,7 +190,7 @@ Rune.initLogic({
       }
     },
     playerLeft: (playerId, { game }) => {
-      game.playerIds = game.playerIds.filter(id => id !== playerId);
-    }
+      game.playerIds = game.playerIds.filter((id) => id !== playerId);
+    },
   },
 });

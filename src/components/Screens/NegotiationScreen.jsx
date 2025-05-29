@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../styles/NegotiationScreen.css";
-import Buyer from "../Buyer.jsx";
-import Salesperson from "../Salesperson.jsx";
-import CarList from "../Cars/CarList.jsx";
-import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
-import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
-import carData from '../Cars/CarInfo';
+import PlayerSection from "../Negotiation/PlayerSection";
+import CarSection from "../Negotiation/CarSection";
+import ContractSection from "../Negotiation/ContractSection";
 
-const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
+const NegotiationScreen = ({ offNegotiation, yourPlayerId, game, onEndGame }) => {
+  const [selectedCar, setSelectedCar] = useState(null);
+  const [selectedCarIndex, setSelectedCarIndex] = useState(0);
+  
+  // Handle car selection from the CarSection
+  const handleCarSelect = (car, index) => {
+    setSelectedCar(car);
+    setSelectedCarIndex(index);
+  };
+
+  
+  const handleSignContract = () => {
+    // Handle signing the contract
+    onEndGame(); // End the game when contract is signed
+  };
+  
   return (
     <div className="fullscreen-centered">
+
     <div className="game-screen" style={{ padding: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'center' }}>
       <h2 style={{ fontSize: '1.1rem', margin: '0.3rem 0' }}>The negotiation has started!</h2>
 
@@ -45,8 +58,47 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
               {/* Future content goes here */}
             </div>
           </div>
+
         </div>
+        
+        {/* Player Section */}
+        <PlayerSection yourPlayerId={yourPlayerId} game={game} />
+        
+        {/* Car Section */}
+        <CarSection 
+          game={game} 
+          yourPlayerId={yourPlayerId} 
+          onCarSelect={handleCarSelect} 
+        />
+        
+        {/* Contract Section */}
+        <ContractSection 
+          yourPlayerId={yourPlayerId} 
+          game={game} 
+          selectedCar={selectedCar}
+          selectedCarIndex={selectedCarIndex}
+        />
+        
+        {/* Exit Button */}
+        <button 
+          className="end-button" 
+          style={{ 
+            fontSize: '0.85rem', 
+            padding: '0.3rem 0.6rem', 
+            marginTop: '0.3rem',
+            marginBottom: '0.3rem',
+            backgroundColor: '#45a049',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer'
+          }} 
+          onClick={offNegotiation}
+        >
+          Back to Showroom
+        </button>
       </div>
+
 
       {/* Section 2: Car List */}
       <div className="section-box" style={{ width: '95%', maxWidth: '360px', padding: '0.3rem', color: 'white', backgroundColor: '#D32F2F', borderRadius: '6px' }}>
@@ -104,6 +156,7 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game }) => {
         Back to Showroom
       </button>
     </div>
+
     </div>
   );
 };

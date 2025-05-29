@@ -27,6 +27,7 @@ const CreditsContent = () => {
 		<div className="container">
 			{/* <h2> */}
 				<ReadMore>
+
 				  <>
                     John Walter Kowal, Product Owner<br />
                     Linda Franklin (Linda Seriously), Project Admin<br />
@@ -44,6 +45,7 @@ const CreditsContent = () => {
                     Susanne Atkinson<br />
                     Tonia Ellers, Tester<br />
                 </>
+
 
 				</ReadMore>
 			{/* </h2> */}
