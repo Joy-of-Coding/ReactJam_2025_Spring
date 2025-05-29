@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import "../styles/NegotiationScreen.css"; // Custom styling for this page
 import useCountdown from "../hooks/useCountdown";
-import Buyer from "../Buyer.jsx";
-import Salesperson from "../Salesperson.jsx";
-import CarList from "../Cars/CarList.jsx";
-import WalkAwayButton from "../Buttons/WalkAwayButton.jsx";
-import SignTheContractButton from "../Buttons/SignTheContractButton.jsx";
 import Showroom from "./Showroom.jsx";
 
 const GameScreen = ({

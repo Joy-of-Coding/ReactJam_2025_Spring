@@ -108,8 +108,8 @@ function App() {
     <>
       {/* <Carscreentest></Carscreentest> */}
       {!gameStarted && !negotiationStarted && !ChoiceEnded && (
-        // <StartScreen onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />
-        <Carscreentest></Carscreentest>
+        <StartScreen onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />
+        
       )}
       {gameStarted && !negotiationStarted && !ChoiceEnded && (
         game.roles[yourPlayerId] === "Buyer" ? (
@@ -122,7 +122,7 @@ function App() {
       )}
 
       {gameStarted && !negotiationStarted && ChoiceEnded && (
-        <GameScreen onEndChoice={handleChoiceEnded} onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} yourPlayerId={yourPlayerId} game={game} />
+        <><GameScreen onEndChoice={handleChoiceEnded} onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} yourPlayerId={yourPlayerId} game={game} /><Carscreentest></Carscreentest></>
       )}
 
       {gameStarted && negotiationStarted && ChoiceEnded && (

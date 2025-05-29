@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "../styles/StartScreen.css";
 import BuyerChoice from "./BuyerChoice";
 import DragAvatar from "../Drag/DragAvatar";
-import yellowtilesquares from "../../assets/img/yellowtilesquares.png";
+//import yellowtilesquares from "../../assets/img/yellowtilesquares.png";
+import lobbyFloor from "../../assets/img/Lobby with 2 desks.png";
 
 // import bg from '../assets/bg.jpg';
 
@@ -16,7 +17,7 @@ const Showroom = ({
   return (
     <>
       <div>
-        <img src={yellowtilesquares} alt="Yellow Tile Floor" />
+        <img src={lobbyFloor} alt="Lobby with 2 desks" />
         {/* Other components or elements */}
       </div>
       <DragAvatar yourPlayerId={yourPlayerId} game={game} />
