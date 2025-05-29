@@ -7,7 +7,7 @@ import SellerChoice from "./components/Screens/SellerChoice.jsx";
 import Showroom from "./components/Screens/Showroom.jsx";
 import NegotiationScreen from "./components/Screens/NegotiationScreen.jsx";
 import oldHornAudio from "./assets/sound/old-car-horn-153262.mp3"
-
+import Carscreentest from "./components/Screens/Carscreentest.jsx";
 
 function App() {
   //   ///
@@ -119,8 +119,8 @@ function App() {
     }}>
       {!gameStarted && !negotiationStarted && !ChoiceEnded && (
         <StartScreen onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />
+        
       )}
-
       {gameStarted && !negotiationStarted && !ChoiceEnded && (
         game.roles[yourPlayerId] === "Buyer" ? (
           <BuyerChoice onEndChoice={handleChoiceEnded} yourPlayerId={yourPlayerId} game={game} />
@@ -132,7 +132,7 @@ function App() {
       )}
 
       {gameStarted && !negotiationStarted && ChoiceEnded && (
-        <GameScreen onEndChoice={handleChoiceEnded} onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} yourPlayerId={yourPlayerId} game={game} />
+        <><GameScreen onEndChoice={handleChoiceEnded} onEndGame={handleEndGame} onNegotiation={handleStartNegotiation} yourPlayerId={yourPlayerId} game={game} /><Carscreentest></Carscreentest></>
       )}
 
       {gameStarted && negotiationStarted && ChoiceEnded && (

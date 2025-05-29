@@ -33,7 +33,7 @@ const CreditsContent = () => {
 					Shelly
 					Abu H Kamal
 					Mindi Briese, Developer
-					Lisa D ass officerjinxter
+					Lisa D as officerjinxter
 					Hope Barnett, Assistant Designer
 					Rebecca A. Stone, Project Admin
 					Jay Prox
