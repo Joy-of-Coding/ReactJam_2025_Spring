@@ -13,16 +13,22 @@ const CarCarousel = ({ cars, onSelect }) => {
     }
   }, []);
 
-  const handleScroll = () => {
-    const scrollLeft = trackRef.current.scrollLeft;
-    const totalWidth = cardWidth * (cars.length + 4);
+  let isThrottled = false;
 
-    if (scrollLeft < cardWidth) {
-      trackRef.current.scrollLeft = scrollLeft + cardWidth * cars.length;
-    } else if (scrollLeft > totalWidth - cardWidth * 2) {
-      trackRef.current.scrollLeft = scrollLeft - cardWidth * cars.length;
-    }
-  };
+const handleScroll = () => {
+  if (isThrottled) return;
+  isThrottled = true;
+  setTimeout(() => (isThrottled = false), 100);
+
+  const scrollLeft = trackRef.current.scrollLeft;
+  const totalWidth = cardWidth * (cars.length + 4);
+
+  if (scrollLeft < cardWidth) {
+    trackRef.current.scrollLeft = scrollLeft + cardWidth * cars.length;
+  } else if (scrollLeft > totalWidth - cardWidth * 2) {
+    trackRef.current.scrollLeft = scrollLeft - cardWidth * cars.length;
+  }
+};
 
   return (
     <div className="carousel-outer">
@@ -34,6 +40,8 @@ const CarCarousel = ({ cars, onSelect }) => {
             onClick={() => onSelect(car)}
           >
             <p>{car.name}</p>
+            {console.log((`../../assets/img/${car.picture}`))}
+            <img src={`/assets/img/${car.picture}`} alt="Car Image" />
             <p style={{ fontSize: "0.8rem" }}>{car.description}</p>
             <p style={{ fontSize: "0.7rem", color: "#888" }}>
               Ideal Owner: {car.owner}
