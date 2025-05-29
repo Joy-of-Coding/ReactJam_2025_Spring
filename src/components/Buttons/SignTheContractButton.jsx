@@ -1,5 +1,6 @@
 import React from 'react';
 import carPersonas from '../../assets/car_buyer_personas_final_enriched.json';
+import parkingLot from '../../assets/parkingLot.json'
 
 function SignTheContractButton ({yourPlayerId, game}) {
     const handleClick = () => {
@@ -36,7 +37,7 @@ function SignTheContractButton ({yourPlayerId, game}) {
       // We need to find the car from the contractDetails.carName
       const selectedCarName = game.contractDetails.carName;
       console.log("selectedCarName", selectedCarName);
-      const selectedCar = carPersonas.find(p => p.name === selectedCarName);
+      const selectedCar = parkingLot.find(p => p.name === selectedCarName);
       // const selectedCar = game.cars.find(car => car.name === selectedCarName);
       console.log("selectedCar", selectedCar);  
 
@@ -89,7 +90,7 @@ function SignTheContractButton ({yourPlayerId, game}) {
       // Check budget match
       const price = parseInt(game.contractDetails.price);
       const budget = buyerPersona.profile.budgetAmount || 30000; // Default budget if not specified
-      const isMidToLowBudget = price <= budget * 0.8; // Mid to low range = 80% or less of budget
+      const isMidToLowBudget = price <= budget; // Mid to low range = 80% or less of budget
       
       console.log("Contract signed with:");
       console.log("Contract details:", game.contractDetails);
@@ -99,7 +100,7 @@ function SignTheContractButton ({yourPlayerId, game}) {
       
       // Determine winner: Buyer wins if 5+ matches AND mid-low budget range
       // Otherwise seller wins
-      let buyerWins = matchCount >= 5 && isMidToLowBudget;
+      let buyerWins = matchCount >= 4 && isMidToLowBudget;
       
       // Call the endGame action with the appropriate result
       if (buyerWins) {
