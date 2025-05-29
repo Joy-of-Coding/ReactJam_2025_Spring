@@ -30,14 +30,14 @@ const CreditsContent = () => {
 
 				  <>
                     John Walter Kowal, Product Owner<br />
-                    Linda Franklin (Linda Seriously), Project Admin<br />
-                    Katrina Wright, Project Manager<br />
+                    Linda Franklin (Linda Seriously), Project Manager<br />
+                    Katrina Wright, Video Game Producer / Developer / AI wrangler<br />
                     Shelly<br />
                     Abu H Kamal<br />
                     Mindi Briese, Developer<br />
                     Lisa Dean, officerjinxter<br />
                     Hope Barnett, Assistant Designer<br />
-                    Rebecca A. Stone, Project Admin<br />
+                    Rebecca A. Stone, Project Manager / Lead Designer<br />
                     Jay Deguzman<br />
                     Anna Rankin, Developer<br />
                     Sam Crowe<br />
@@ -46,6 +46,10 @@ const CreditsContent = () => {
                     Tonia Ellers, Tester<br />
 					Rick Osteen - JSON dev<br />
 					Adre "yamahacello"
+					Kai Pannu, Developer<br />
+					Alyssa Dannielle<br />
+					John Schlautman<br />
+					Michelle Evans, Assistant Designer
                 </>
 
 
