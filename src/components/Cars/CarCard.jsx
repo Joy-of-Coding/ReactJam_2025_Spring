@@ -18,6 +18,7 @@ const CarCard = ({ car, onSelect }) => {
   return (
     <div className="car-card" onClick={handleClick} draggable onDragStart={(e) => e.dataTransfer.setData("car", JSON.stringify(car))}>
       <h4>{car.name}</h4>
+      <img src={car.picture ? require(`../../assets/img/${car.picture}`) : require('../../assets/img/${car.picture}')} alt={car.name} className="car-image" />
       <p>{car.description}</p>
     </div>
   );
