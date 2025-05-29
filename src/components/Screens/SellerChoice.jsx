@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import carData from "../../assets/car_buyer_personas_final_enriched.json";
+import carData from "../../assets/cars_only_final_enriched.json";
 import EnhancedCarCarousel from "../Cars/EnhancedCarCarousel";
 import "../styles/StartScreen.css";
 
