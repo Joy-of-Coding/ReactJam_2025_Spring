@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/CarCard.css";
-
+import carpath from "../../assets/car.picture"; // Adjust path as needed
 const CarCard = ({ car, onSelect }) => {
   let clickCount = 0;
   let timer;
@@ -18,6 +18,7 @@ const CarCard = ({ car, onSelect }) => {
   return (
     <div className="car-card" onClick={handleClick} draggable onDragStart={(e) => e.dataTransfer.setData("car", JSON.stringify(car))}>
       <h4>{car.name}</h4>
+      <img{...carpath}/>
       <p>{car.description}</p>
     </div>
   );

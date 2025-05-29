@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "../styles/CarCarousel.css";
-
+import carpath from "../../assets/carpath.png"; // Adjust path as needed
 const CarCarousel = ({ cars, onSelect }) => {
   const trackRef = useRef(null);
   const fullList = [...cars.slice(-2), ...cars, ...cars.slice(0, 2)]; // Clone start & end
