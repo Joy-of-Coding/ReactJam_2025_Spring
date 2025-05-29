@@ -92,7 +92,6 @@ Rune.initLogic({
     endGame: ({ result }, { game }) => {
       // Prepare players object with results
       const players = {};
-      
 
       if (result === "walkAway") {
         // When buyer walks away, both buyer and seller tie
@@ -153,7 +152,7 @@ Rune.initLogic({
         Object.assign(players, result);
         console.log("Game ended with custom result:", players);
       }
-      
+
       console.log("Game over with players:", players);
       // End the game with the calculated results
       Rune.gameOver({ players });
@@ -225,7 +224,7 @@ Rune.initLogic({
       // game.countdownStart = Rune.gameTime();
       // game.countdownActive = true;
       /*onStartGame();*/
-      console.log("press all the burttons");
+      console.log("press all the buttons");
       game.gameStarted = true;
       game.noNegotiations = true;
     },
@@ -254,7 +253,7 @@ Rune.initLogic({
       });
 
       // Reset player positions to initial positions
-      Object.entries(game.objects).forEach(([ obj], index) => {
+      Object.entries(game.objects).forEach(([obj], index) => {
         obj.x = 50 + index * 50;
         obj.y = 50;
         obj.heldBy = null;
