@@ -20,27 +20,37 @@ function SignTheContractButton ({yourPlayerId, game}) {
       
       // Get buyer's persona
       const buyerPersonaId = game.personas[buyerId];
+      console.log("buyerPersonaId", buyerPersonaId);
       const buyerPersona = carPersonas.find(p => p.id === buyerPersonaId);
+      console.log("buyerPersona", buyerPersona);
       
       if (!buyerPersona) {
         console.error("No buyer persona found - defaulting to seller win");
         // End game with seller win if no buyer persona is found
         Rune.actions.endGame({ result: "sellerWins" });
+        Rune.actions.resetGame();
         return;
-      }
+      }     
       
       // Get the selected car
       // We need to find the car from the contractDetails.carName
       const selectedCarName = game.contractDetails.carName;
-      const selectedCar = game.cars.find(car => car.name === selectedCarName);
-      
+      console.log("selectedCarName", selectedCarName);
+      const selectedCar = carPersonas.find(p => p.name === selectedCarName);
+      // const selectedCar = game.cars.find(car => car.name === selectedCarName);
+      console.log("selectedCar", selectedCar);  
+
       if (!selectedCar) {
         console.error("Selected car not found:", selectedCarName);
         // End game with seller win if no car is found
         Rune.actions.endGame({ result: "sellerWins" });
+        Rune.actions.resetGame();
         return;
       }
-      
+      console.log("buyerPersona", buyerPersona);
+      console.log("selectedCar", selectedCar);
+      console.log("game.contractDetails", game.contractDetails);
+      console.log("We did it!!!");
       // Calculate match score
       const idealCar = buyerPersona.idealCar;
       let matchCount = 0;
@@ -95,9 +105,11 @@ function SignTheContractButton ({yourPlayerId, game}) {
       if (buyerWins) {
         console.log("Buyer wins! Perfect car match and good price.");
         Rune.actions.endGame({ result: "buyerWins" });
+        Rune.actions.resetGame();
       } else {
         console.log("Seller wins! Car doesn't match buyer's ideal needs.");
         Rune.actions.endGame({ result: "sellerWins" });
+        Rune.actions.resetGame();
       }
     }
     

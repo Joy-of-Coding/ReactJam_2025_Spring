@@ -131,7 +131,7 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
                     backgroundColor: "#f5f5f5",
                     borderRadius: "4px",
                     marginBottom: "0.5rem",
-                    backgroundImage: car.picture ? `url(/src/assets/img/${car.picture})` : 'none',
+                    backgroundImage: car.picture ? `url(../assets/img/${car.picture})` : 'none',
                     backgroundSize: "contain",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat"

@@ -7,6 +7,7 @@ function WalkAwayButton({ playerId, game }) {
         
         // Use the endGame action with walkAway result
         Rune.actions.endGame({ result: "walkAway" });
+        Rune.actions.resetGame();
     }
 
     return (

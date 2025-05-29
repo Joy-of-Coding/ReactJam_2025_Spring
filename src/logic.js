@@ -154,9 +154,9 @@ Rune.initLogic({
         console.log("Game ended with custom result:", players);
       }
       
+      console.log("Game over with players:", players);
       // End the game with the calculated results
       Rune.gameOver({ players });
-      // Rune.actons.resetGame();
     },
 
     startDrag: (_, { playerId, game }) => {

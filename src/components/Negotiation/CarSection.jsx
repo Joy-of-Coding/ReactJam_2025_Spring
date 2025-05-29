@@ -37,8 +37,8 @@ const CarSection = ({ game, yourPlayerId, onCarSelect }) => {
       padding: '0.3rem',
       backgroundColor: '#FFD700',
       borderRadius: '6px',
-      marginBottom: '0.5rem',
-      height: '35vh',
+      marginBottom: '0.3rem',
+      height: '30vh',
       overflow: 'hidden'
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -96,7 +96,7 @@ const CarSection = ({ game, yourPlayerId, onCarSelect }) => {
               backgroundColor: '#ddd',
               borderRadius: '4px',
               marginBottom: '0.5rem',
-              backgroundImage: car.picture ? `url(../../assets/img/${car.picture})` : 'none',
+              backgroundImage: car.picture ? `url(../assets/img/${car.picture})` : 'none',
               backgroundSize: 'contain',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'

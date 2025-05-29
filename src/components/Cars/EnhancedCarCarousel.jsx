@@ -81,7 +81,7 @@ const EnhancedCarCarousel = ({ cars, onSelect }) => {
               backgroundColor: '#f5f5f5',
               borderRadius: '4px',
               marginBottom: '0.5rem',
-              backgroundImage: car.picture ? `url(../../assets/img/${car.picture})` : 'none',
+              backgroundImage: car.picture ? `url(../assets/img/${car.picture})` : 'none',
               backgroundSize: 'contain',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
