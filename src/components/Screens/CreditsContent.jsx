@@ -38,12 +38,14 @@ const CreditsContent = () => {
                     Lisa Dean, officerjinxter<br />
                     Hope Barnett, Assistant Designer<br />
                     Rebecca A. Stone, Project Admin<br />
-                    Jay Prox<br />
+                    Jay Deguzman<br />
                     Anna Rankin, Developer<br />
                     Sam Crowe<br />
                     John Serwatka<br />
                     Susanne Atkinson<br />
                     Tonia Ellers, Tester<br />
+					Rick Osteen - JSON dev<br />
+					Adre "yamahacello"
                 </>
 
 
