@@ -42,7 +42,7 @@ const CreditsContent = () => {
                     Anna Rankin, Developer<br />
                     Sam Crowe<br />
                     John Serwatka<br />
-                    Susanne Atkinson<br />
+                    Susanne Atkinson, Development Consultant<br />
                     Tonia Ellers, Tester<br />
 					Rick Osteen - JSON dev<br />
 					Adre "yamahacello"
