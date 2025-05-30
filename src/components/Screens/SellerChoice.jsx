@@ -3,10 +3,46 @@ import carData from "../../assets/car_buyer_personas_final_enriched.json";
 import EnhancedCarCarousel from "../Cars/EnhancedCarCarousel";
 import "../styles/StartScreen.css";
 
+// Import all car images that might be used
+import blackVan from '../../assets/img/black_van.svg';
+import greenVan from '../../assets/img/green_van.svg';
+import whiteCoupe from '../../assets/img/white_coupe.svg';
+import sportsCar from '../../assets/img/sports_car.svg';
+import dreamstreamer from '../../assets/img/dreamstreamer.svg';
+import suv from '../../assets/img/suv.svg';
+import van from '../../assets/img/van.svg';
+import spark from '../../assets/img/spark.svg';
+import leafluxeEco from '../../assets/img/leafluxe_eco.svg';
+import greenBulletMk2 from '../../assets/img/green_bullet_mk2.svg';
+import redCometZr from '../../assets/img/red_comet_zr.svg';
+import gruntxlV8 from '../../assets/img/gruntxl_v8.svg';
+
+// Create a mapping of image filenames to their imported values
+const carImages = {
+  'black_van.svg': blackVan,
+  'green_van.svg': greenVan,
+  'white_coupe.svg': whiteCoupe,
+  'sports_car.svg': sportsCar,
+  'dreamstreamer.svg': dreamstreamer,
+  'suv.svg': suv,
+  'van.svg': van,
+  'spark.svg': spark,
+  'leafluxe_eco.svg': leafluxeEco,
+  'green_bullet_mk2.svg': greenBulletMk2,
+  'red_comet_zr.svg': redCometZr,
+  'gruntxl_v8.svg': gruntxlV8,
+};
+
 const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
   const player = Rune.getPlayerInfo(yourPlayerId);
   const [slots, setSlots] = useState([null, null, null]);
   const [prices, setPrices] = useState([null, null, null]);
+
+  // Helper function to get the correct image source
+  const getCarImage = (pictureName) => {
+    if (!pictureName) return null;
+    return carImages[pictureName] || null;
+  };
 
   const handleSelect = (car) => {
     const next = slots.findIndex(s => s === null);
@@ -133,7 +169,7 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
                     backgroundColor: "#f5f5f5",
                     borderRadius: "4px",
                     marginBottom: "0.5rem",
-                    backgroundImage: car.picture ? `url(../../assets/img/${car.picture})` : 'none',
+                    backgroundImage: car.picture && getCarImage(car.picture) ? `url(${getCarImage(car.picture)})` : 'none',
                     backgroundSize: "contain",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat"

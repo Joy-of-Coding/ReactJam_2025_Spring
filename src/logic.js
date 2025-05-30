@@ -286,7 +286,7 @@ Rune.initLogic({
       }
     },
     playerLeft: (playerId, { game }) => {
-      game.playerIds = game.playerIds.filter((id) => id !== playerId);   
+      game.playerIds = game.playerIds.filter((id) => id !== playerId);
     },
   },
 });
