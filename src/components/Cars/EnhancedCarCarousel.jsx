@@ -17,6 +17,52 @@ const EnhancedCarCarousel = ({ cars, onSelect }) => {
     }
   }, []);
 
+  useEffect(() => {
+  const el = trackRef.current;
+  if (!el) return;
+
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  const handleMouseDown = (e) => {
+    isDown = true;
+    el.classList.add('dragging');
+    startX = e.pageX - el.offsetLeft;
+    scrollLeft = el.scrollLeft;
+  };
+
+  const handleMouseLeave = () => {
+    isDown = false;
+    el.classList.remove('dragging');
+  };
+
+  const handleMouseUp = () => {
+    isDown = false;
+    el.classList.remove('dragging');
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - startX) * 1.5; // adjust scroll speed
+    el.scrollLeft = scrollLeft - walk;
+  };
+
+  el.addEventListener('mousedown', handleMouseDown);
+  el.addEventListener('mouseleave', handleMouseLeave);
+  el.addEventListener('mouseup', handleMouseUp);
+  el.addEventListener('mousemove', handleMouseMove);
+
+  return () => {
+    el.removeEventListener('mousedown', handleMouseDown);
+    el.removeEventListener('mouseleave', handleMouseLeave);
+    el.removeEventListener('mouseup', handleMouseUp);
+    el.removeEventListener('mousemove', handleMouseMove);
+  };
+}, []);
+
   return (
     <div className="enhanced-carousel" style={{
       width: '100%',
@@ -54,7 +100,8 @@ const EnhancedCarCarousel = ({ cars, onSelect }) => {
           minHeight: '200px',
           WebkitOverflowScrolling: 'touch',
           msOverflowStyle: 'touch',
-          scrollbarWidth: 'none'
+          scrollbarWidth: 'none',
+          cursor: 'grab'
         }}
       >
         {enhancedCars.map((car, index) => (
