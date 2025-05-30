@@ -35,6 +35,11 @@ Rune.initLogic({
       playerIds: allPlayerIds,
       cars,
       sellerCars: [], // Array to store the seller's selected cars with prices
+      contractDetails: {
+        carName: "",
+        price: "",
+        spiffs: "",
+      }, // Contract details shared between buyer and seller
       scores: Object.fromEntries(allPlayerIds.map((playerId) => [playerId, 1])),
       objects: Object.fromEntries(
         allPlayerIds.map((playerId, index) => [
@@ -67,6 +72,90 @@ Rune.initLogic({
       } else {
         throw Rune.invalidAction();
       }
+    },
+
+    // New action to update contract details
+    updateContractDetails: ({ carName, price, spiffs }, { game, playerId }) => {
+      // Only seller can update contract details
+      if (game.roles[playerId] === "Seller") {
+        game.contractDetails = {
+          carName: carName || game.contractDetails.carName,
+          price: price || game.contractDetails.price,
+          spiffs: spiffs || game.contractDetails.spiffs,
+        };
+      } else {
+        throw Rune.invalidAction();
+      }
+    },
+
+    // New action to end the game with results
+    endGame: ({ result }, { game }) => {
+      // Prepare players object with results
+      const players = {};
+
+      if (result === "walkAway") {
+        // When buyer walks away, both buyer and seller tie
+        const buyerId = game.playerIds.find((id) => game.roles[id] === "Buyer");
+        const sellerId = game.playerIds.find(
+          (id) => game.roles[id] === "Seller",
+        );
+
+        if (buyerId) players[buyerId] = "TIE";
+        if (sellerId) players[sellerId] = "TIE";
+
+        // Set all other players to TIE as well
+        game.playerIds.forEach((id) => {
+          if (!players[id]) {
+            players[id] = "TIE";
+          }
+        });
+
+        console.log("Game ended with walk away. Result:", players);
+      } else if (result === "buyerWins") {
+        // Buyer wins, seller loses
+        const buyerId = game.playerIds.find((id) => game.roles[id] === "Buyer");
+        const sellerId = game.playerIds.find(
+          (id) => game.roles[id] === "Seller",
+        );
+
+        if (buyerId) players[buyerId] = "WON";
+        if (sellerId) players[sellerId] = "LOST";
+
+        // Set all other players to TIE
+        game.playerIds.forEach((id) => {
+          if (!players[id]) {
+            players[id] = "TIE";
+          }
+        });
+
+        console.log("Game ended with buyer win. Result:", players);
+      } else if (result === "sellerWins") {
+        // Seller wins, buyer loses
+        const buyerId = game.playerIds.find((id) => game.roles[id] === "Buyer");
+        const sellerId = game.playerIds.find(
+          (id) => game.roles[id] === "Seller",
+        );
+
+        if (buyerId) players[buyerId] = "LOST";
+        if (sellerId) players[sellerId] = "WON";
+
+        // Set all other players to TIE
+        game.playerIds.forEach((id) => {
+          if (!players[id]) {
+            players[id] = "TIE";
+          }
+        });
+
+        console.log("Game ended with seller win. Result:", players);
+      } else {
+        // Custom results provided (for future extensibility)
+        Object.assign(players, result);
+        console.log("Game ended with custom result:", players);
+      }
+
+      console.log("Game over with players:", players);
+      // End the game with the calculated results
+      Rune.gameOver({ players });
     },
 
     startDrag: (_, { playerId, game }) => {
@@ -135,7 +224,7 @@ Rune.initLogic({
       // game.countdownStart = Rune.gameTime();
       // game.countdownActive = true;
       /*onStartGame();*/
-      console.log("press all the burttons");
+      console.log("press all the buttons");
       game.gameStarted = true;
       game.noNegotiations = true;
     },
@@ -169,6 +258,13 @@ Rune.initLogic({
         obj.y = 50;
         obj.heldBy = null;
       });
+
+      // Reset contract details
+      game.contractDetails = {
+        carName: "",
+        price: "",
+        spiffs: "",
+      };
     },
 
     update: ({ game }) => {
