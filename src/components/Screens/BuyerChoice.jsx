@@ -14,7 +14,7 @@ const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
   }, []);
 
   const handleChoosePersona = (persona) => {
-    if (selectedPersonaId !== null) return;
+    // if (selectedPersonaId !== null) return; // this prevented re-selecting a persona if you changed your mind
     setSelectedPersonaId(persona.id);
     Rune.actions.assignPersona(persona.id);
     console.log(`${persona.nickName} persona assigned`);
@@ -28,36 +28,38 @@ const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
   }, [game.personas, hasConfirmed, yourPlayerId, onEndChoice]);
 
   return (
-    <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
-      <h1>Buyer Game</h1>
-      <button
+    <div className="buyer-screen">
+      <h3>Choose Your Persona</h3>
+      <div className="persona-choice-list">
+        {randomPersonas.map((persona) => (
+          <div key={persona.id} className="persona-card">
+            <button 
+              onClick={() => handleChoosePersona(persona)}
+              style={{
+                backgroundColor: selectedPersonaId === persona.id ? '#4CAF50' : '#2196F3',
+                color: 'white',
+                padding: '4px 8px',
+                border: 'none',
+                borderRadius: '4px',
+                width: '100%',
+                cursor: 'pointer'
+              }}
+            >
+              I'm {persona.nickName}
+            </button>
+            {/* <p><strong>{persona.nickName}</strong></p> */}
+            <p>{persona.description}</p>
+            <p>Budget: ${persona.profile?.budgetAmount || 'Not specified'}</p>
+            
+          </div>
+        ))}
+          <button
         className="start-button"
         onClick={() => setHasConfirmed(true)}
         disabled={selectedPersonaId === null}
         >
         Confirm Choice
       </button>
-      <div className="persona-choice-list">
-        {randomPersonas.map((persona) => (
-          <div key={persona.id} className="persona-card">
-            <p><strong>{persona.nickName}</strong></p>
-            <p>{persona.description}</p>
-            <p>Budget: ${persona.profile?.budgetAmount || 'Not specified'}</p>
-            <button 
-              onClick={() => handleChoosePersona(persona)}
-              style={{
-                backgroundColor: selectedPersonaId === persona.id ? '#4CAF50' : '#2196F3',
-                color: 'white',
-                padding: '8px 12px',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer'
-              }}
-            >
-              I'm {persona.nickName}
-            </button>
-          </div>
-        ))}
       </div>
 
 
