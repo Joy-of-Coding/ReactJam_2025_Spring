@@ -154,17 +154,17 @@ Rune.initLogic({
       game.countdownActive = false;
 
       // Reset all player roles
-      Object.keys(game.roles).forEach(playerId => {
+      Object.keys(game.roles).forEach((playerId) => {
         game.roles[playerId] = null;
       });
 
       // Reset all personas
-      Object.keys(game.personas).forEach(playerId => {
+      Object.keys(game.personas).forEach((playerId) => {
         game.personas[playerId] = null;
       });
 
       // Reset player positions to initial positions
-      Object.entries(game.objects).forEach(([playerId, obj], index) => {
+      Object.entries(game.objects).forEach(([obj], index) => {
         obj.x = 50 + index * 50;
         obj.y = 50;
         obj.heldBy = null;
