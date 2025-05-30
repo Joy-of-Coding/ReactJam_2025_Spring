@@ -220,24 +220,7 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
           ))}
         </div>
       </div>
-
-      {/* Middle: Car Carousel */}
-      <div style={{
-        flex: "1 0 auto",
-        maxHeight: "40%"
-      }}>
-        <EnhancedCarCarousel cars={idealCars} onSelect={handleSelect} />
-      </div>
-
-      {/* Bottom: Confirm Button */}
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "0.5rem",
-        marginTop: "auto"
-      }}>
-        <button
+      <button
           className="start-button"
           onClick={handleConfirm}
           disabled={slots.includes(null) || prices.some(p => !p)}
@@ -254,6 +237,23 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
         >
           Confirm & Continue
         </button>
+      {/* Middle: Car Carousel */}
+      <div style={{
+        flex: "1 0 auto",
+        maxHeight: "40%"
+      }}>
+        <EnhancedCarCarousel cars={idealCars} onSelect={handleSelect} />
+      </div>
+
+      {/* Bottom: Confirm Button */}
+      <div style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "0.5rem",
+        marginTop: "auto"
+      }}>
+
       </div>
     </div>
   );
