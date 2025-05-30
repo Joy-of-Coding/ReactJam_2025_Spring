@@ -18,7 +18,7 @@ const Showroom = ({
   return (
     <>
       <div>
-        <img src={lobbyFloor} alt="Lobby with 2 desks"  alignItems="center" height="250" width="100%"/>
+        <img src={lobbyFloor} alt="Lobby with 2 desks"  alignItems="center" height="200" width="100%"/>
         {/* Other components or elements */}
       </div>
       <DragAvatar yourPlayerId={yourPlayerId} game={game} />
