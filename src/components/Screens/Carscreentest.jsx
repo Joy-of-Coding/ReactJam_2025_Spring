@@ -17,9 +17,9 @@ const Carscreentest = () => {
   return (
     
     <div>
-      <h1>Gallery</h1>
+      <h1 style={{textAlign: 'center', height: 40, width: 80}} >Gallery</h1>
       {images.map((imgSrc, index) => (
-        <img key={index} src={imgSrc} alt={`Image ${index + 1}`} style={{ width: '200px', marginRight: '10px' }} />
+        <img key={index} src={imgSrc} alt={`Image ${index + 1}`} style={{ width: '90px', marginRight: '5px' }} />
       ))}
     </div>
   );

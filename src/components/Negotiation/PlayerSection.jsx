@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import carPersonas from '../../assets/car_buyer_personas_final_enriched.json';
 
-const PlayerSection = ({ yourPlayerId, game }) => {
+const PlayerSection = ({ yourPlayerId, game, isExpanded }) => {
   const [showBuyerDetails, setShowBuyerDetails] = useState(false);
   
   // Find the buyer and seller IDs from game state
@@ -20,25 +20,28 @@ const PlayerSection = ({ yourPlayerId, game }) => {
   const isBuyer = yourPlayerId === buyerId;
 
   return (
-    <div className="player-section" style={{ 
-      width: '100%', 
-      maxWidth: '360px', 
-      padding: '0.3rem', 
-      backgroundColor: '#45a049', 
-      borderRadius: '6px',
-      marginBottom: '0.2rem',
-      overflow: 'hidden',
-      height: isBuyer && showBuyerDetails ? 'auto' : '15vh',
-      transition: 'height 0.3s'
+    <div className="player-section-content" style={{ 
+      width: '100%',
+      padding: '0.3rem',
+      backgroundColor: '#f5f5f5',
+      borderBottomLeftRadius: '6px',
+      borderBottomRightRadius: '6px',
+      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+      display: isExpanded ? 'block' : 'none',
+      boxSizing: 'border-box'
     }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Negotiators</h3>
-        {isBuyer && (
+      {/* Buyer Details Toggle - Only for buyer */}
+      {isBuyer && (
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'flex-end', 
+          marginBottom: '0.3rem' 
+        }}>
           <button 
             onClick={() => setShowBuyerDetails(!showBuyerDetails)}
             style={{
               border: 'none',
-              background: 'rgba(255,255,255,0.5)',
+              background: 'rgba(21, 101, 192, 0.1)',
               borderRadius: '4px',
               padding: '0.2rem 0.4rem',
               fontSize: '0.7rem',
@@ -47,8 +50,8 @@ const PlayerSection = ({ yourPlayerId, game }) => {
           >
             {showBuyerDetails ? 'Hide Details' : 'Show Details'}
           </button>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* Buyer Details Section - Only visible to buyer */}
       {isBuyer && showBuyerDetails && buyerPersona && (
@@ -58,7 +61,9 @@ const PlayerSection = ({ yourPlayerId, game }) => {
           marginBottom: '0.4rem', 
           borderRadius: '4px',
           fontSize: '0.75rem',
-          border: '1px solid #1565C0'
+          border: '1px solid #1565C0',
+          width: '100%',
+          boxSizing: 'border-box'
         }}>
           <div style={{ marginBottom: '0.3rem', display: 'flex', alignItems: 'center' }}>
             <strong style={{ color: '#1565C0' }}>{buyerPersona.nickName}</strong>
@@ -102,8 +107,9 @@ const PlayerSection = ({ yourPlayerId, game }) => {
       {/* Buyer/Seller Container */}
       <div style={{ 
         display: 'flex', 
-        gap: '0.3rem', 
-        height: '100%'
+        gap: '0.3rem',
+        width: '100%',
+        boxSizing: 'border-box'
       }}>
         {/* Buyer */}
         <div style={{ 
@@ -112,7 +118,8 @@ const PlayerSection = ({ yourPlayerId, game }) => {
           padding: '0.3rem', 
           borderRadius: '6px',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
         }}>
           <h4 style={{ fontSize: '0.85rem', margin: '0.2rem 0', color: '#1565C0' }}>Buyer</h4>
           
@@ -145,7 +152,8 @@ const PlayerSection = ({ yourPlayerId, game }) => {
           padding: '0.3rem', 
           borderRadius: '6px',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
         }}>
           <h4 style={{ fontSize: '0.85rem', margin: '0.2rem 0', color: '#FFD700' }}>Seller</h4>
           

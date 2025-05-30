@@ -17,6 +17,11 @@
   scroll-padding: 40px;
   padding-left: 40vw; /* left and right padding so first/last can center */
   padding-right: 40vw;
+  
+}
+.dragging {
+  cursor: grabbing !important;
+  user-select: none;
 }
 
 .carousel-track::-webkit-scrollbar {

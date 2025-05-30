@@ -4,6 +4,7 @@ import BuyerChoice from "./BuyerChoice";
 import DragAvatar from "../Drag/DragAvatar";
 //import yellowtilesquares from "../../assets/img/yellowtilesquares.png";
 import lobbyFloor from "../../assets/img/Lobby with 2 desks.png";
+import Carscreentest from "./Carscreentest";
 
 // import bg from '../assets/bg.jpg';
 
@@ -17,7 +18,7 @@ const Showroom = ({
   return (
     <>
       <div>
-        <img src={lobbyFloor} alt="Lobby with 2 desks" />
+        <img src={lobbyFloor} alt="Lobby with 2 desks"  alignItems="center" height="200" width="100%"/>
         {/* Other components or elements */}
       </div>
       <DragAvatar yourPlayerId={yourPlayerId} game={game} />
@@ -27,6 +28,8 @@ const Showroom = ({
       {game.roles[yourPlayerId] === "seller" && (
         <SellerChoice onEndChoice={onEndChoice} />
       )}
+
+      <Carscreentest />
     </>
   );
 };

@@ -3,10 +3,46 @@ import carData from "../../assets/car_buyer_personas_final_enriched.json";
 import EnhancedCarCarousel from "../Cars/EnhancedCarCarousel";
 import "../styles/StartScreen.css";
 
+// Import all car images that might be used
+import blackVan from '../../assets/img/black_van.svg';
+import greenVan from '../../assets/img/green_van.svg';
+import whiteCoupe from '../../assets/img/white_coupe.svg';
+import sportsCar from '../../assets/img/sports_car.svg';
+import dreamstreamer from '../../assets/img/dreamstreamer.svg';
+import suv from '../../assets/img/suv.svg';
+import van from '../../assets/img/van.svg';
+import spark from '../../assets/img/spark.svg';
+import leafluxeEco from '../../assets/img/leafluxe_eco.svg';
+import greenBulletMk2 from '../../assets/img/green_bullet_mk2.svg';
+import redCometZr from '../../assets/img/red_comet_zr.svg';
+import gruntxlV8 from '../../assets/img/gruntxl_v8.svg';
+
+// Create a mapping of image filenames to their imported values
+const carImages = {
+  'black_van.svg': blackVan,
+  'green_van.svg': greenVan,
+  'white_coupe.svg': whiteCoupe,
+  'sports_car.svg': sportsCar,
+  'dreamstreamer.svg': dreamstreamer,
+  'suv.svg': suv,
+  'van.svg': van,
+  'spark.svg': spark,
+  'leafluxe_eco.svg': leafluxeEco,
+  'green_bullet_mk2.svg': greenBulletMk2,
+  'red_comet_zr.svg': redCometZr,
+  'gruntxl_v8.svg': gruntxlV8,
+};
+
 const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
   const player = Rune.getPlayerInfo(yourPlayerId);
   const [slots, setSlots] = useState([null, null, null]);
   const [prices, setPrices] = useState([null, null, null]);
+
+  // Helper function to get the correct image source
+  const getCarImage = (pictureName) => {
+    if (!pictureName) return null;
+    return carImages[pictureName] || null;
+  };
 
   const handleSelect = (car) => {
     const next = slots.findIndex(s => s === null);
@@ -75,16 +111,18 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
       {/* Top: Selected Cars */}
       <div style={{
         flex: "1 0 auto",
-        maxWidth: "768px",
+        maxWidth: "500px",
+        maxHeight: "180px",
         margin: "0 auto",
         width: "100%"
       }}>
         <div className="car-sale-slots" style={{
           display: "flex",
-          gap: "0.5rem",
+          gap: "0.1rem",
           justifyContent: "center",
-          flexWrap: "wrap",
-          marginBottom: "1rem"
+          maxWidth: "100%",
+          // flexWrap: "wrap",
+          // marginBottom: "1rem"
         }}>
           {slots.map((car, idx) => (
             <div key={idx} className="car-slot" style={{
@@ -92,9 +130,9 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
               padding: "0.75rem",
               backgroundColor: car ? "#f0f8ff" : "#f9f9f9",
               borderRadius: "8px",
-              width: "30%",
-              minWidth: "140px",
-              maxWidth: "180px",
+              width: "100%",
+              minWidth: "25px",
+              maxWidth: "130px",
               boxSizing: "border-box",
               boxShadow: car ? "0 2px 5px rgba(0,0,0,0.1)" : "none",
               position: "relative"
@@ -131,7 +169,7 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
                     backgroundColor: "#f5f5f5",
                     borderRadius: "4px",
                     marginBottom: "0.5rem",
-                    backgroundImage: car.picture ? `url(/src/assets/img/${car.picture})` : 'none',
+                    backgroundImage: car.picture && getCarImage(car.picture) ? `url(${getCarImage(car.picture)})` : 'none',
                     backgroundSize: "contain",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat"
@@ -179,8 +217,9 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
                         placeholder="Price"
                         onChange={(e) => handlePriceChange(idx, parseInt(e.target.value) || 0)}
                         style={{ 
-                          width: "70px", 
-                          textAlign: "center",
+                          minWidth: "22px", 
+                          MaxWidth: "70px", 
+                          textAlign: "right",
                           border: "none",
                           padding: "0.2rem 0",
                           fontSize: "0.8rem"
@@ -220,7 +259,8 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
           ))}
         </div>
       </div>
-      <button
+      
+          <button
           className="start-button"
           onClick={handleConfirm}
           disabled={slots.includes(null) || prices.some(p => !p)}
@@ -229,7 +269,7 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
             color: "white",
             border: "none",
             borderRadius: "4px",
-            padding: "0.75rem 1.5rem",
+            padding: "0.5rem 1.5rem",
             fontSize: "1rem",
             cursor: slots.includes(null) || prices.some(p => !p) ? "not-allowed" : "pointer",
             boxShadow: "0 2px 4px rgba(0,0,0,0.2)"
@@ -237,23 +277,13 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
         >
           Confirm & Continue
         </button>
+
       {/* Middle: Car Carousel */}
       <div style={{
         flex: "1 0 auto",
         maxHeight: "40%"
       }}>
         <EnhancedCarCarousel cars={idealCars} onSelect={handleSelect} />
-      </div>
-
-      {/* Bottom: Confirm Button */}
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "0.5rem",
-        marginTop: "auto"
-      }}>
-
       </div>
     </div>
   );

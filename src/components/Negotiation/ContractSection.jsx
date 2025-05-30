@@ -4,7 +4,7 @@ import SignTheContractButton from '../Buttons/SignTheContractButton';
 import carPersonas from '../../assets/car_buyer_personas_final_enriched.json';
 import { scoreNegotiation } from '../Buttons/ScoringLogic';
 
-const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) => {
+const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex, isExpanded }) => {
   const [price, setPrice] = useState('');
   const [carName, setCarName] = useState('');
   const [spiffs, setSpiffs] = useState('');
@@ -36,18 +36,15 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
   // Update form when selected car changes
   useEffect(() => {
     if (selectedCar) {
-      // Only set these values if seller and contract details are empty
-      if (isSeller && (!game.contractDetails.carName || !game.contractDetails.price)) {
-        const newCarName = selectedCar.name;
-        const newPrice = selectedCar.price.toString();
-        
-        setCarName(newCarName);
-        setPrice(newPrice);
-        
-        // Update the shared contract details
+      // Always update the car name and price in the contract when a car is selected
+      setCarName(selectedCar.name);
+      setPrice(selectedCar.price.toString());
+      
+      // Only have the seller update the shared contract details
+      if (isSeller) {
         updateContractDetailsThrottled({
-          carName: newCarName,
-          price: newPrice,
+          carName: selectedCar.name,
+          price: selectedCar.price.toString(),
           spiffs: spiffs
         });
       }
@@ -69,7 +66,7 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
         if (selectedCar.gasMileage === idealCar.gasMileage) matchScore += 1;
         
         // Budget match (better if under budget)
-        const currentPrice = game.contractDetails.price || price;
+        const currentPrice = price || selectedCar.price.toString();
         if (parseInt(currentPrice) <= buyerPersona.profile.budgetAmount) {
           matchScore += 1;
           if (parseInt(currentPrice) <= buyerPersona.profile.budgetAmount * 0.9) {
@@ -83,7 +80,7 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
         setCarMatchScore(matchPercentage);
       }
     }
-  }, [selectedCar, buyerPersona, game.contractDetails, isSeller, spiffs]);
+  }, [selectedCar, buyerPersona, isSeller, spiffs]);
 
   // Throttled update function to avoid hitting rate limits
   const updateContractDetailsThrottled = (details) => {
@@ -146,71 +143,42 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
   };
 
   return (
-    <div className="contract-section" style={{
+    <div className="contract-section-content" style={{
       width: '100%',
-      maxWidth: '360px',
-      padding: '0.3rem',
-      height: '25vh',
-      overflow: 'hidden',
-      position: 'relative'
+      padding: '0',
+      display: isExpanded ? 'block' : 'none'
     }}>
-      {/* Clipboard top */}
-      <div style={{ 
-        backgroundColor: '#db4c3f',
-        height: '20px',
-        borderTopLeftRadius: '6px',
-        borderTopRightRadius: '6px',
-        display: 'flex',
-        justifyContent: 'center',
-        position: 'relative',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
-      }}>
-        <div style={{
-          position: 'absolute',
-          top: '-10px',
-          width: '80px',
-          height: '35px',
-          backgroundColor: '#a5a5a5',
-          borderRadius: '20px 20px 0 0',
-          zIndex: -1
-        }} />
-        <div style={{
-          position: 'absolute',
-          top: '3px',
-          width: '60px',
-          height: '10px',
-          backgroundColor: '#8d8d8d',
-          borderRadius: '5px'
-        }} />
-      </div>
-      
       {/* Contract form */}
       <div className="contract-form" style={{ 
         display: 'flex', 
         flexDirection: 'column', 
         gap: '0.4rem',
-        height: 'calc(100% - 25px)',
-        backgroundColor: '#ffffff',
-        padding: '0.5rem',
-        borderBottomLeftRadius: '6px',
-        borderBottomRightRadius: '6px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.2)',
-        border: '1px solid #ddd',
-        borderTop: 'none'
+        padding: '0.7rem',
+        width: '100%',
+        boxSizing: 'border-box',
+        position: 'relative'
       }}>
-        <div style={{ 
-          textAlign: 'center', 
-          borderBottom: '1px dashed #ccc', 
-          paddingBottom: '0.3rem',
-          marginBottom: '0.3rem'
+        {/* Contract title */}
+        <div style={{
+          textAlign: 'center',
+          borderBottom: '1px dashed #8B4513',
+          marginBottom: '0.5rem',
+          paddingBottom: '0.3rem'
         }}>
-          <h3 style={{ fontSize: '0.9rem', margin: '0', fontFamily: 'cursive' }}>Vehicle Sale Contract</h3>
+          <h4 style={{
+            margin: 0,
+            fontFamily: 'cursive, sans-serif',
+            fontSize: '1rem',
+            color: '#8B4513'
+          }}>
+            VEHICLE SALE CONTRACT
+          </h4>
         </div>
         
         {/* Car Name Input */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
-          <label htmlFor="car-input" style={{ minWidth: '50px', fontSize: '0.75rem' }}>
-            <strong>Car:</strong>
+          <label htmlFor="car-input" style={{ minWidth: '80px', fontSize: '0.75rem', color: '#8B4513' }}>
+            <strong>Vehicle:</strong>
           </label>
           <input 
             id="car-input"
@@ -222,9 +190,9 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
             style={{ 
               flex: 1, 
               fontSize: '0.75rem', 
-              padding: '0.2rem',
+              padding: '0.3rem',
               borderRadius: '4px',
-              border: '1px solid #ccc',
+              border: '1px solid #dbc1ac',
               backgroundColor: isSeller ? 'white' : '#f9f9f9'
             }} 
           />
@@ -232,8 +200,8 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
         
         {/* Price Input */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
-          <label htmlFor="price-input" style={{ minWidth: '50px', fontSize: '0.75rem' }}>
-            <strong>Price:</strong>
+          <label htmlFor="price-input" style={{ minWidth: '80px', fontSize: '0.75rem', color: '#8B4513' }}>
+            <strong>Sale Price:</strong>
           </label>
           <input 
             id="price-input"
@@ -245,9 +213,9 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
             style={{ 
               flex: 1, 
               fontSize: '0.75rem', 
-              padding: '0.2rem',
+              padding: '0.3rem',
               borderRadius: '4px',
-              border: '1px solid #ccc',
+              border: '1px solid #dbc1ac',
               backgroundColor: isSeller ? 'white' : '#f9f9f9'
             }} 
           />
@@ -255,8 +223,8 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
         
         {/* Spiffs Input */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
-          <label htmlFor="spiffs-input" style={{ minWidth: '50px', fontSize: '0.75rem' }}>
-            <strong>Extras:</strong>
+          <label htmlFor="spiffs-input" style={{ minWidth: '80px', fontSize: '0.75rem', color: '#8B4513' }}>
+            <strong>Add-ons:</strong>
           </label>
           <input 
             id="spiffs-input"
@@ -268,9 +236,9 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
             style={{ 
               flex: 1, 
               fontSize: '0.75rem', 
-              padding: '0.2rem',
+              padding: '0.3rem',
               borderRadius: '4px',
-              border: '1px solid #ccc',
+              border: '1px solid #dbc1ac',
               backgroundColor: isSeller ? 'white' : '#f9f9f9'
             }} 
           />
@@ -281,12 +249,13 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
           <div style={{ 
             fontSize: '0.75rem', 
             textAlign: 'center',
-            padding: '0.2rem',
+            padding: '0.4rem',
+            margin: '0.3rem 0',
             backgroundColor: carMatchScore > 75 ? '#e6ffe6' : carMatchScore > 50 ? '#fff9e6' : '#ffe6e6',
             borderRadius: '4px',
             border: '1px solid ' + (carMatchScore > 75 ? '#c3e6cb' : carMatchScore > 50 ? '#ffeeba' : '#f5c6cb')
           }}>
-            <span>Car match: <strong>{carMatchScore}%</strong></span>
+            <span>Car match for your needs: <strong>{carMatchScore}%</strong></span>
             <div style={{
               width: '100%',
               height: '6px',
@@ -305,11 +274,41 @@ const ContractSection = ({ yourPlayerId, game, selectedCar, selectedCarIndex }) 
           </div>
         )}
         
+        {/* Signature line */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginTop: '0.7rem',
+          borderTop: '1px dashed #8B4513',
+          paddingTop: '0.5rem'
+        }}>
+          <div style={{ fontSize: '0.75rem', color: '#8B4513' }}>
+            <div>Date: {new Date().toLocaleDateString()}</div>
+          </div>
+          <div style={{ 
+            borderBottom: '1px solid #8B4513', 
+            width: '130px', 
+            marginTop: '1rem',
+            position: 'relative'
+          }}>
+            <div style={{ 
+              position: 'absolute', 
+              top: '3px', 
+              fontSize: '0.65rem', 
+              color: '#8B4513', 
+              width: '100%', 
+              textAlign: 'center' 
+            }}>
+              Signature
+            </div>
+          </div>
+        </div>
+        
         {/* Buttons - only enabled for buyer */}
         <div style={{ 
           display: 'flex', 
-          gap: '0.3rem', 
-          marginTop: 'auto',
+          gap: '0.5rem', 
+          marginTop: '1rem',
           justifyContent: 'space-around'
         }}>
           {isBuyer ? (

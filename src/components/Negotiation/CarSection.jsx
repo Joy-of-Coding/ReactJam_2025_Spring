@@ -1,7 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import carPersonas from '../../assets/car_buyer_personas_final_enriched.json';
 
-const CarSection = ({ game, yourPlayerId, onCarSelect }) => {
+// Import all car images that might be used
+import blackVan from '../../assets/img/black_van.svg';
+import greenVan from '../../assets/img/green_van.svg';
+import whiteCoupe from '../../assets/img/white_coupe.svg';
+import sportsCar from '../../assets/img/sports_car.svg';
+import dreamstreamer from '../../assets/img/dreamstreamer.svg';
+import suv from '../../assets/img/suv.svg';
+import van from '../../assets/img/van.svg';
+import spark from '../../assets/img/spark.svg';
+import leafluxeEco from '../../assets/img/leafluxe_eco.svg';
+import greenBulletMk2 from '../../assets/img/green_bullet_mk2.svg';
+import redCometZr from '../../assets/img/red_comet_zr.svg';
+import gruntxlV8 from '../../assets/img/gruntxl_v8.svg';
+
+// Create a mapping of image filenames to their imported values
+const carImages = {
+  'black_van.svg': blackVan,
+  'green_van.svg': greenVan,
+  'white_coupe.svg': whiteCoupe,
+  'sports_car.svg': sportsCar,
+  'dreamstreamer.svg': dreamstreamer,
+  'suv.svg': suv,
+  'van.svg': van,
+  'spark.svg': spark,
+  'leafluxe_eco.svg': leafluxeEco,
+  'green_bullet_mk2.svg': greenBulletMk2,
+  'red_comet_zr.svg': redCometZr,
+  'gruntxl_v8.svg': gruntxlV8,
+};
+
+const CarSection = ({ game, yourPlayerId, onCarSelect, isExpanded }) => {
   const [selectedCarIndex, setSelectedCarIndex] = useState(0);
   const [showDetails, setShowDetails] = useState(false);
   
@@ -30,20 +60,26 @@ const CarSection = ({ game, yourPlayerId, onCarSelect }) => {
     setShowDetails(!showDetails);
   };
 
+  // Helper function to get the correct image source
+  const getCarImage = (pictureName) => {
+    if (!pictureName) return null;
+    return carImages[pictureName] || null;
+  };
+
   return (
-    <div className="car-section" style={{
+    <div className="car-section-content" style={{
       width: '100%',
-      maxWidth: '360px',
       padding: '0.3rem',
-      backgroundColor: '#FFD700',
-      borderRadius: '6px',
-      marginBottom: '0.3rem',
-      height: '30vh',
-      overflow: 'hidden'
+      backgroundColor: '#f9f9f9',
+      borderBottomLeftRadius: '6px',
+      borderBottomRightRadius: '6px',
+      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+      display: isExpanded ? 'block' : 'none',
+      boxSizing: 'border-box'
     }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <h3 style={{ fontSize: '0.9rem', margin: '0.2rem 0' }}>Available Cars</h3>
-        {isSeller && (
+      {/* Detail toggle button for seller */}
+      {isSeller && (
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '0.3rem' }}>
           <button 
             onClick={toggleDetails}
             style={{
@@ -57,16 +93,21 @@ const CarSection = ({ game, yourPlayerId, onCarSelect }) => {
           >
             {showDetails ? 'Simple View' : 'Detailed View'}
           </button>
-        )}
-      </div>
+        </div>
+      )}
       
       {/* Car Carousel */}
       <div className="car-carousel" style={{
         display: 'flex',
         overflowX: 'auto',
         gap: '0.5rem',
-        padding: '0.2rem',
-        height: 'calc(100% - 1.5rem)'
+        padding: '0.3rem',
+        height: isExpanded ? 'auto' : '0',
+        maxHeight: '60vh',
+        backgroundColor: 'rgba(255, 255, 255, 0.3)',
+        borderRadius: '4px',
+        width: '100%',
+        boxSizing: 'border-box'
       }}>
         {sellerCars.map((car, index) => (
           <div 
@@ -75,7 +116,7 @@ const CarSection = ({ game, yourPlayerId, onCarSelect }) => {
             style={{
               flex: '0 0 auto',
               width: isSeller && showDetails ? '240px' : '160px',
-              height: '100%',
+              height: isExpanded ? 'auto' : '0',
               backgroundColor: index === selectedCarIndex ? '#1565C0' : '#f0f0f0',
               color: index === selectedCarIndex ? 'white' : 'black',
               borderRadius: '6px',
@@ -84,8 +125,8 @@ const CarSection = ({ game, yourPlayerId, onCarSelect }) => {
               cursor: 'pointer',
               display: 'flex',
               flexDirection: 'column',
-              boxShadow: index === selectedCarIndex ? '0 0 8px rgba(0,0,0,0.3)' : 'none',
-              transition: 'width 0.3s, transform 0.2s',
+              boxShadow: index === selectedCarIndex ? '0 0 8px rgba(0,0,0,0.3)' : '0 1px 3px rgba(0,0,0,0.1)',
+              transition: 'width 0.3s, transform 0.2s, box-shadow 0.2s',
               transform: index === selectedCarIndex ? 'scale(1.02)' : 'scale(1)'
             }}
             onClick={() => handleCarSelect(index)}
@@ -96,9 +137,7 @@ const CarSection = ({ game, yourPlayerId, onCarSelect }) => {
               backgroundColor: '#ddd',
               borderRadius: '4px',
               marginBottom: '0.5rem',
-              backgroundImage: car.picture ? `url(/src/assets/img/${car.picture})` : 'none',
-
-              //backgroundImage: car.picture ? `url(../../assets/img/${car.picture})` : 'none',
+              backgroundImage: car.picture && getCarImage(car.picture) ? `url(${getCarImage(car.picture)})` : 'none',
               backgroundSize: 'contain',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -146,6 +185,20 @@ const CarSection = ({ game, yourPlayerId, onCarSelect }) => {
           </div>
         ))}
       </div>
+
+      {/* Selected car summary when section is not expanded */}
+      {!isExpanded && selectedCarIndex !== null && sellerCars[selectedCarIndex] && (
+        <div style={{
+          padding: '0.3rem',
+          backgroundColor: '#f0f0f0',
+          borderRadius: '4px',
+          marginTop: '0.2rem',
+          fontSize: '0.75rem',
+          display: 'none' // Hidden until needed
+        }}>
+          <strong>{sellerCars[selectedCarIndex].name}</strong> - ${sellerCars[selectedCarIndex].price.toLocaleString()}
+        </div>
+      )}
     </div>
   );
 };

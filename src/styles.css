@@ -208,6 +208,13 @@ div[style*="position: fixed"][style*="backgroundColor: \"#fff\""] {
   z-index: -1;
 }
 
+.game-screen h1 {
+  width: 20vw;
+  height: 20vw;
+  margin-top: 1.4vw;
+  margin-bottom: 1.5vw;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .start-screen h1 {
@@ -219,6 +226,7 @@ div[style*="position: fixed"][style*="backgroundColor: \"#fff\""] {
     padding: 12px 20px;
     font-size: 1rem;
   }
+  
   
   .start-button {
     padding: 15px 30px;

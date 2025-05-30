@@ -17,8 +17,6 @@ const GameScreen = ({
 
   return (
     <div className="game-screen">
-      <h2>LOBBY</h2>
-
       <div style={{ display: "flex", gap: "16px" }}>
         <button
           className="end-button"
@@ -27,7 +25,7 @@ const GameScreen = ({
             backgroundColor: "brown",
             color: "white",
             border: "none",
-            padding: "10px 20px",
+            padding: "0px 20px",
             fontSize: "16px",
             cursor: "pointer",
             flex: "1",

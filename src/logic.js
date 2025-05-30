@@ -13,8 +13,8 @@ const finalizeScores = (game) => {
 };
 
 Rune.initLogic({
-  minPlayers: 2,
-  maxPlayers: 4, // Buyer, Salesperson, Spectator, Additional Player joining mid game
+  minPlayers: 1,
+  maxPlayers: 2, // Buyer, Salesperson, Spectator, Additional Player joining mid game
 
   setup: (allPlayerIds) => {
     return {
