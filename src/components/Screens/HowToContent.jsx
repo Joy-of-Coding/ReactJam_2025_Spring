@@ -27,20 +27,16 @@ const HowToContent = () => {
 		<div className="container">
 			{/* <h2> */}
 				<ReadMore>
-				How To Play:
-				Outwit the salesperson and get your dream car to win!
-                Click  "I am the Buyer" button:
-                1. Click the "START GAME" button
-                2. Choose your persona/charcter and hit that button
-                3. Click "Confirm Choice" button
-								4. Choose a car:
-										click car
-										click car price
-										select features
-								5. Click "Enter Contract" button if you have what your want.
-								   Fill out fields
-					         Click "Sign Contract" button.  ENDS game.
-								6. Otherwise Click "Negotiate" button.
+				How To Play: <br></br>
+				<br></br>Outwit the salesperson and get your dream car to win!
+                <br></br>Click  "I am the Buyer" button:
+                <br></br>1. Click the "START GAME" button
+                <br></br>2. Choose your persona/charcter and hit that button
+                <br></br>3. Click "Confirm Choice" button
+				<br></br>4. Enter the Showroom Lobby
+						 5. Join the SELLER at the Negotiation desk
+					         
+						 6. Choose to either "Sign Contract" or "Walk Away" button.  ENDS game.
 
 
 					OR

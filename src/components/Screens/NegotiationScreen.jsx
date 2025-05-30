@@ -132,62 +132,8 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game, onEndGame }) =>
           <h2 style={{ fontSize: '1.1rem', margin: '0.1rem 0', color: '#333' }}>Car Dealership</h2>
         </div>
         
-        {/* Player Section - Expandable */}
-        <div className={`expandable-section`}>
-          <div 
-            className="section-header player-section-header" 
-            onClick={() => toggleSection('player')}
-          >
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3>Negotiators</h3>
-              {summaryData.player && !expandedSections.player && (
-                <span style={{ fontSize: '0.7rem', opacity: 0.9 }}>
-                  {summaryData.player.buyer} & {summaryData.player.seller}
-                </span>
-              )}
-            </div>
-            <div className={`expand-icon ${expandedSections.player ? 'expanded' : ''}`}>
-              ▼
-            </div>
-          </div>
-          <div className={`section-content ${expandedSections.player ? 'expanded' : ''}`}>
-            <PlayerSection 
-              yourPlayerId={yourPlayerId} 
-              game={game} 
-              isExpanded={expandedSections.player} 
-            />
-          </div>
-        </div>
-        
-        {/* Car Section - Expandable */}
-        <div className={`expandable-section`}>
-          <div 
-            className="section-header car-section-header" 
-            onClick={() => toggleSection('car')}
-          >
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <h3>Available Cars</h3>
-              {summaryData.car && !expandedSections.car && (
-                <span style={{ fontSize: '0.7rem', opacity: 0.9 }}>
-                  Selected: {summaryData.car.name} - ${summaryData.car.price?.toLocaleString()}
-                </span>
-              )}
-            </div>
-            <div className={`expand-icon ${expandedSections.car ? 'expanded' : ''}`}>
-              ▼
-            </div>
-          </div>
-          <div className={`section-content ${expandedSections.car ? 'expanded' : ''}`}>
-            <CarSection 
-              game={game} 
-              yourPlayerId={yourPlayerId} 
-              onCarSelect={handleCarSelect}
-              isExpanded={expandedSections.car} 
-            />
-          </div>
-        </div>
-        
-        {/* Contract Section - Expandable */}
+
+         {/* Contract Section - Expandable */}
         <div className={`expandable-section`}>
           <div 
             className="section-header contract-section-header" 
@@ -215,7 +161,60 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game, onEndGame }) =>
             />
           </div>
         </div>
-        
+        {/* Car Section - Expandable */}
+        <div className={`expandable-section`}>
+          <div 
+            className="section-header car-section-header" 
+            onClick={() => toggleSection('car')}
+          >
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <h3>Available Cars</h3>
+              {summaryData.car && !expandedSections.car && (
+                <span style={{ fontSize: '0.7rem', opacity: 0.9 }}>
+                  Selected: {summaryData.car.name} - ${summaryData.car.price?.toLocaleString()}
+                </span>
+              )}
+            </div>
+            <div className={`expand-icon ${expandedSections.car ? 'expanded' : ''}`}>
+              ▼
+            </div>
+          </div>
+          <div className={`section-content ${expandedSections.car ? 'expanded' : ''}`}>
+            <CarSection 
+              game={game} 
+              yourPlayerId={yourPlayerId} 
+              onCarSelect={handleCarSelect}
+              isExpanded={expandedSections.car} 
+            />
+          </div>
+        </div>
+                {/* Player Section - Expandable */}
+        <div className={`expandable-section`}>
+          <div 
+            className="section-header player-section-header" 
+            onClick={() => toggleSection('player')}
+          >
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <h3>Negotiators</h3>
+              {summaryData.player && !expandedSections.player && (
+                <span style={{ fontSize: '0.7rem', opacity: 0.9 }}>
+                  {summaryData.player.buyer} & {summaryData.player.seller}
+                </span>
+              )}
+            </div>
+            <div className={`expand-icon ${expandedSections.player ? 'expanded' : ''}`}>
+              ▼
+            </div>
+          </div>
+          <div className={`section-content ${expandedSections.player ? 'expanded' : ''}`}>
+            <PlayerSection 
+              yourPlayerId={yourPlayerId} 
+              game={game} 
+              isExpanded={expandedSections.player} 
+            />
+          </div>
+        </div>
+       
         {/* Exit Button */}
         <button 
           className="end-button" 

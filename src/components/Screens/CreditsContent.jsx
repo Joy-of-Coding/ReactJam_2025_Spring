@@ -43,6 +43,7 @@ const CreditsContent = () => {
                     <br></br><b>Mindi Briese</b>, Developer 
 					<br></br><b>Rick Osteen</b>, Developer
                     <br></br><b>Tonia Ellers</b>, Developer / Tester
+					<br></br><b>Sam Crowe</b>, Tester
 					<br></br><b>Hope Barnett</b>, Assistant Designer
  					<br></br><b>Michelle Evans (Shelly)</b>, Assistant Designer
 					<br></br><b>Dr. Susanne Atkinson</b>, Project Consultant

@@ -101,7 +101,7 @@ const CarSection = ({ game, yourPlayerId, onCarSelect, isExpanded }) => {
               backgroundColor: '#ddd',
               borderRadius: '4px',
               marginBottom: '0.5rem',
-              backgroundImage: car.picture ? `url(/src/assets/img/${car.picture})` : 'none',
+              backgroundImage: car.picture ? `url(../../assets/img/${car.picture})` : 'none',
               backgroundSize: 'contain',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
