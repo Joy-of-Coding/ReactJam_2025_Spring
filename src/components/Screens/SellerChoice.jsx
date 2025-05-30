@@ -75,16 +75,18 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
       {/* Top: Selected Cars */}
       <div style={{
         flex: "1 0 auto",
-        maxWidth: "768px",
+        maxWidth: "500px",
+        maxHeight: "180px",
         margin: "0 auto",
         width: "100%"
       }}>
         <div className="car-sale-slots" style={{
           display: "flex",
-          gap: "0.5rem",
+          gap: "0.1rem",
           justifyContent: "center",
-          flexWrap: "wrap",
-          marginBottom: "1rem"
+          maxWidth: "100%",
+          // flexWrap: "wrap",
+          // marginBottom: "1rem"
         }}>
           {slots.map((car, idx) => (
             <div key={idx} className="car-slot" style={{
@@ -92,9 +94,9 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
               padding: "0.75rem",
               backgroundColor: car ? "#f0f8ff" : "#f9f9f9",
               borderRadius: "8px",
-              width: "30%",
-              minWidth: "140px",
-              maxWidth: "180px",
+              width: "100%",
+              minWidth: "25px",
+              maxWidth: "130px",
               boxSizing: "border-box",
               boxShadow: car ? "0 2px 5px rgba(0,0,0,0.1)" : "none",
               position: "relative"
@@ -179,8 +181,9 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
                         placeholder="Price"
                         onChange={(e) => handlePriceChange(idx, parseInt(e.target.value) || 0)}
                         style={{ 
-                          width: "70px", 
-                          textAlign: "center",
+                          minWidth: "22px", 
+                          MaxWidth: "70px", 
+                          textAlign: "right",
                           border: "none",
                           padding: "0.2rem 0",
                           fontSize: "0.8rem"
@@ -220,24 +223,8 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
           ))}
         </div>
       </div>
-
-      {/* Middle: Car Carousel */}
-      <div style={{
-        flex: "1 0 auto",
-        maxHeight: "40%"
-      }}>
-        <EnhancedCarCarousel cars={idealCars} onSelect={handleSelect} />
-      </div>
-
-      {/* Bottom: Confirm Button */}
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: "0.5rem",
-        marginTop: "auto"
-      }}>
-        <button
+      
+          <button
           className="start-button"
           onClick={handleConfirm}
           disabled={slots.includes(null) || prices.some(p => !p)}
@@ -246,7 +233,7 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
             color: "white",
             border: "none",
             borderRadius: "4px",
-            padding: "0.75rem 1.5rem",
+            padding: "0.5rem 1.5rem",
             fontSize: "1rem",
             cursor: slots.includes(null) || prices.some(p => !p) ? "not-allowed" : "pointer",
             boxShadow: "0 2px 4px rgba(0,0,0,0.2)"
@@ -254,6 +241,13 @@ const SellerChoice = ({ onEndChoice, yourPlayerId, game }) => {
         >
           Confirm & Continue
         </button>
+
+      {/* Middle: Car Carousel */}
+      <div style={{
+        flex: "1 0 auto",
+        maxHeight: "40%"
+      }}>
+        <EnhancedCarCarousel cars={idealCars} onSelect={handleSelect} />
       </div>
     </div>
   );

@@ -29,6 +29,16 @@ const EnhancedCarCarousel = ({ cars, onSelect }) => {
       <h3 style={{ fontSize: '1rem', margin: '0 0 0.5rem 0', textAlign: 'center' }}>
         Available Cars to Sell
       </h3>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '0.5rem' }}>
+        <div style={{ 
+          color: '#666', 
+          fontSize: '0.75rem',
+          display: 'flex',
+          alignItems: 'center' 
+        }}>
+          ← Scroll to see more cars →
+        </div>
+      </div>
       
       {/* Car Cards Container */}
       <div 
@@ -36,14 +46,14 @@ const EnhancedCarCarousel = ({ cars, onSelect }) => {
         ref={trackRef}
         style={{
           display: 'flex',
-          overflowX: 'auto',
-          gap: '1rem',
+          overflowX: 'scroll',
+          gap: '.1rem',
           padding: '0.5rem',
           scrollSnapType: 'x mandatory',
           scrollBehavior: 'smooth',
-          minHeight: '220px',
-          webkitOverflowScrolling: 'touch',
-          msOverflowStyle: 'none',
+          minHeight: '200px',
+          WebkitOverflowScrolling: 'touch',
+          msOverflowStyle: 'touch',
           scrollbarWidth: 'none'
         }}
       >
@@ -52,11 +62,11 @@ const EnhancedCarCarousel = ({ cars, onSelect }) => {
             key={index}
             className="car-card"
             style={{
-              flex: '0 0 200px',
+              flex: '0 0 150px',
               scrollSnapAlign: 'center',
               backgroundColor: '#fff',
               borderRadius: '8px',
-              padding: '0.75rem',
+              padding: '0.5rem',
               boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
               cursor: 'pointer',
               transition: 'transform 0.2s, box-shadow 0.2s',
@@ -98,7 +108,7 @@ const EnhancedCarCarousel = ({ cars, onSelect }) => {
               {car.name}
             </h4>
             
-            <div style={{ fontSize: '0.75rem', marginBottom: '0.5rem', flex: 1 }}>
+            <div style={{ fontSize: '0.75rem', marginBottom: '0.1rem', flex: 1 }}>
               <div><strong>Type:</strong> {car.carType}</div>
               <div><strong>Color:</strong> {car.colorModel}</div>
               <div><strong>Safety:</strong> {car.safety}</div>
@@ -109,7 +119,6 @@ const EnhancedCarCarousel = ({ cars, onSelect }) => {
               fontWeight: 'bold', 
               fontSize: '0.85rem', 
               color: '#45a049',
-              marginTop: 'auto',
               textAlign: 'center'
             }}>
               <div>Dealer Cost: ${car.dealerCost}</div>
@@ -138,16 +147,7 @@ const EnhancedCarCarousel = ({ cars, onSelect }) => {
       </div>
       
       {/* Scroll indicators */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '0.5rem' }}>
-        <div style={{ 
-          color: '#666', 
-          fontSize: '0.75rem',
-          display: 'flex',
-          alignItems: 'center' 
-        }}>
-          ← Scroll to see more cars →
-        </div>
-      </div>
+
     </div>
   );
 };
