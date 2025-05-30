@@ -67,7 +67,7 @@ function App() {
         }
         
         // Handle game end
-        if (game && !game.gameStarted && action && action.name === "endGame") {
+        if (action && action.name === "endGame") {
           setNegotiationStarted(false);
           setChoiceEnded(false);
         }
@@ -90,6 +90,8 @@ function App() {
       // Reset states after page reload
       setNegotiationStarted(false);
       setChoiceEnded(false);
+      // Reset game state to return to start screen
+      Rune.actions.resetGame();
       localStorage.removeItem('gameWasRefreshed');
     }
 
@@ -105,8 +107,16 @@ function App() {
   // if (ChoiceEnded) rune.noNegotiations == false;
 
   return (
-    <>
-      {/* <Carscreentest></Carscreentest> */}
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      overflow: 'hidden',
+      height: '100vh',
+      width: '100vw'
+    }}>
       {!gameStarted && !negotiationStarted && !ChoiceEnded && (
         <StartScreen onStartGame={handleStartGame} yourPlayerId={yourPlayerId} game={game} />
         
@@ -133,7 +143,7 @@ function App() {
           onEndGame={handleEndGame}
         />
       )}
-    </>
+    </div>
   );
 }
 

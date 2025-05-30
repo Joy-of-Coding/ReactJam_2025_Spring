@@ -14,46 +14,55 @@ const BuyerChoice = ({ onEndChoice, yourPlayerId, game }) => {
   }, []);
 
   const handleChoosePersona = (persona) => {
-    if (selectedPersonaId !== null) return;
+    // if (selectedPersonaId !== null) return; // this prevented re-selecting a persona if you changed your mind
     setSelectedPersonaId(persona.id);
-    Rune.actions.assignPersona(persona);
+    Rune.actions.assignPersona(persona.id);
     console.log(`${persona.nickName} persona assigned`);
   };
 
   useEffect(() => {
-    if (
-      hasConfirmed &&
-      game?.personas?.[yourPlayerId] &&
-      game.personas[yourPlayerId].id === selectedPersonaId
-    ) {
-      console.log("Persona sync confirmed in game state!");
+    if (hasConfirmed && game?.personas?.[yourPlayerId]) {
+      console.log("Persona assigned in game state:", game.personas[yourPlayerId]);
       onEndChoice();
     }
-  }, [game.personas, hasConfirmed]);
+  }, [game.personas, hasConfirmed, yourPlayerId, onEndChoice]);
 
   return (
-    <div className="start-screen" style={{ backgroundColor: "#f0f0f0" }}>
-      <h1>Buyer Game</h1>
+    <div className="buyer-screen">
+      <h3>Choose Your Persona</h3>
       <div className="persona-choice-list">
         {randomPersonas.map((persona) => (
           <div key={persona.id} className="persona-card">
-            <p><strong>{persona.nickName}</strong></p>
-            <p>{persona.description}</p>
-            <p>{persona.budgetAmount}</p>
-            <button onClick={() => handleChoosePersona(persona)}>
+            <button 
+              onClick={() => handleChoosePersona(persona)}
+              style={{
+                backgroundColor: selectedPersonaId === persona.id ? '#4CAF50' : '#2196F3',
+                color: 'white',
+                padding: '4px 8px',
+                border: 'none',
+                borderRadius: '4px',
+                width: '100%',
+                cursor: 'pointer'
+              }}
+            >
               I'm {persona.nickName}
             </button>
+            {/* <p><strong>{persona.nickName}</strong></p> */}
+            <p>{persona.description}</p>
+            <p>Budget: ${persona.profile?.budgetAmount || 'Not specified'}</p>
+            
           </div>
         ))}
-      </div>
-
-      <button
+          <button
         className="start-button"
         onClick={() => setHasConfirmed(true)}
         disabled={selectedPersonaId === null}
-      >
+        >
         Confirm Choice
       </button>
+      </div>
+
+
     </div>
   );
 };

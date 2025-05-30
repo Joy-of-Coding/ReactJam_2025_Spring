@@ -1,15 +1,15 @@
 .persona-choice-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin: 10px 0;
+  gap: 0.5rem;
+  margin: 3px 0;
 }
 
 .persona-card {
-  border: 1px solid #ccc;
-  padding: 1rem;
+  border: 1px solid #f2f0f7;
+  padding: 0.5rem;
   border-radius: 8px;
-  width: 150px;
+  width: 100%;
   background: #fff;
 }
 .carousel-track-up {
@@ -24,7 +24,7 @@
 }
 .confirm-button {
   display: flex;
-  gap: 1.5rem;
+  gap: 0.5rem;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
 }
@@ -36,6 +36,15 @@
   align-items: center;
   height: 100vh;
   background-color: #f0f0f0;
+  margin-top: 0; /* Fix the margin issue */
+  padding-top: 0; /* Fix the padding issue */
+}
+.buyer-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  background-color: #dec4b5;
   margin-top: 0; /* Fix the margin issue */
   padding-top: 0; /* Fix the padding issue */
 }

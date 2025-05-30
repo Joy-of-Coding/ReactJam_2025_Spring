@@ -21,19 +21,26 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game, onEndGame }) =>
   };
   
   return (
-    <div className="fullscreen-centered">
+    <div className="fullscreen-centered" style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      overflow: 'hidden'
+    }}>
       <div className="game-screen" style={{ 
-        padding: '0.5rem', 
+        padding: '0.3rem', 
         display: 'flex', 
         flexDirection: 'column', 
-        gap: '0.3rem', 
+        gap: '0.2rem', 
         alignItems: 'center',
-        height: '100vh',
+        height: '100%',
         boxSizing: 'border-box',
         justifyContent: 'space-between'
       }}>
         <div style={{ width: '100%', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '1rem', margin: '0.2rem 0' }}>Negotiation</h2>
+          <h2 style={{ fontSize: '1rem', margin: '0.1rem 0' }}>Negotiation</h2>
         </div>
         
         {/* Player Section */}
@@ -60,8 +67,8 @@ const NegotiationScreen = ({ offNegotiation, yourPlayerId, game, onEndGame }) =>
           style={{ 
             fontSize: '0.85rem', 
             padding: '0.3rem 0.6rem', 
-            marginTop: '0.3rem',
-            marginBottom: '0.3rem',
+            marginTop: '0.2rem',
+            marginBottom: '0.2rem',
             backgroundColor: '#45a049',
             color: 'white',
             border: 'none',
